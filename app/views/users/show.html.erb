@@ -1,0 +1,12 @@
+<% if current_user %>
+  <%= render "components/top-navbar-2" %>
+<% else %>
+  <%= render "components/top-navbar-1" %>
+<% end %>
+
+<% if @user == current_user %>
+  <%= render "components/side-navbar" %>
+  <%= render "components/user-profile" %>
+<% else %>
+  <%= render "components/creator-profile" %>
+<% end %>

@@ -1,0 +1,19 @@
+<div class="menubar-container">
+  <div class="menubar-title-spacer">
+    <%= link_to root_path, class: "root-link-1" do%>
+      <h1 class="menubar-title">niche</h1>
+    <% end %>
+  </div>
+
+  <%= render 'components/search-form' %>
+
+  <ul class="button-container">
+    <li>
+      <%= link_to "Login", new_user_session_path, class: "login-button" %>
+    </li>
+    <li>
+      <%= link_to "Become a Creator", "javascript:void(0)", class: "creator-button" %>
+    </li>
+  </ul>
+
+</div>

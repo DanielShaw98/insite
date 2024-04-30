@@ -1,0 +1,66 @@
+<div class="menubar-container">
+  <div class="menubar-title-spacer">
+    <%= link_to root_path, class: "root-link-1" do%>
+      <h1 class="menubar-title">niche</h1>
+    <% end %>
+  </div>
+</div>
+
+<div class="authenticate-bg">
+  <div class="signup-card">
+    <%= link_to 'javascript:history.back()', class: "back-btn" do %>
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    <% end %>
+    <h2 class="authenticate-header">Sign Up</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { id: 'signup-form' }, data: { controller: 'signup' }) do |f| %>
+
+      <div class="name-input-container">
+        <div class="form-container-half" data-signup-target="field">
+          <%= f.text_field :first_name, class: "form-field-half-width", id: "first-name-sign-up-field", placeholder: "First name", autofocus: true, autocomplete: "given-name" %>
+          <div class="error" data-signup-target="error"></div>
+        </div>
+
+        <div class="form-container-half" data-signup-target="field">
+          <%= f.text_field :last_name, class: "form-field-half-width", id: "last-name-sign-up-field", placeholder: "Last name", autocomplete: "family-name" %>
+          <div class="error" data-signup-target="error"></div>
+        </div>
+      </div>
+
+      <div class="form-container" data-signup-target="field">
+        <%= f.text_field :username, class: "form-field", id: "username-sign-up-field", placeholder: "Username" %>
+        <div class="error" data-signup-target="error"></div>
+      </div>
+
+      <div class="form-container" data-signup-target="field">
+        <%= f.text_field :email, class: "form-field", id: "email-sign-up-field", placeholder: "Email", autocomplete: "email" %>
+        <div class="error" data-signup-target="error"></div>
+      </div>
+
+      <div class="form-container" data-signup-target="field">
+        <div class="password-container" data-signup-target="passwordContainer">
+          <%= f.password_field :password, class: "form-field password", id: "password-sign-up-field", data: { "signup-target": "password" }, placeholder: "Password", autocomplete: "new-password" %>
+          <div class="show-hide" data-signup-target="showHide">show</div>
+          <div class="error" data-signup-target="error"></div>
+        </div>
+      </div>
+
+      <div class="validations" data-signup-target="validations">
+        <p>Password must:</p>
+          <ul class="password-checklist">
+            <li class="password-check-item" data-signup-target="passwordCheckItem">contain at least 8 characters</li>
+            <li class="password-check-item" data-signup-target="passwordCheckItem">contain a capital letter</li>
+            <li class="password-check-item" data-signup-target="passwordCheckItem">contain a number</li>
+            <li class="password-check-item" data-signup-target="passwordCheckItem">contain a special character</li>
+          </ul>
+      </div>
+
+      <div class="actions sign-up-btn-container">
+        <%= button_tag type: 'submit', class: "sign-up-btn" do %>
+          <span>Sign up</span>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

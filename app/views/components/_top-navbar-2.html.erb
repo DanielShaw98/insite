@@ -1,0 +1,36 @@
+<div class="top-navbar-container">
+  <div class="top-navbar-title-spacer">
+    <%= link_to root_path, class: "root-link-2" do%>
+      <h1 class="top-navbar-title">niche</h1>
+    <% end %>
+  </div>
+
+  <%= render 'components/search-form' %>
+
+  <div class="discover-avatar-container">
+    <ul>
+      <li>
+        <%= link_to "Discover", discover_pages_path, class: "discover-button" %>
+      </li>
+    </ul>
+
+    <div data-controller="avatar">
+      <% if current_user.avatar.present? %>
+        <img src="<%= current_user.avatar.image_url %>" class="avatar-image" data-action="click->avatar#click" data-avatar-target="avatarImage">
+      <% else %>
+        <img src="default-avatar" class="avatar-image" alt="Default Avatar">
+      <% end %>
+      <div class="avatar-dropdown" data-avatar-target="dropdown">
+        <ul>
+          <li class="profile-dropdown">
+            <%= link_to "Profile", user_path(current_user), class: "dropdown-links" %>
+          </li>
+          <li class="logout-dropdown">
+            <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-links" %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>

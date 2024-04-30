@@ -1,0 +1,59 @@
+<div class="menubar-container">
+  <div class="menubar-title-spacer">
+    <%= link_to root_path, class: "root-link-1" do%>
+      <h1 class="menubar-title">niche</h1>
+    <% end %>
+  </div>
+</div>
+<div class="authenticate-bg">
+  <div class="login-card">
+    <%= link_to 'javascript:history.back()', class: "back-btn" do %>
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    <% end %>
+    <h2 class="authenticate-header">Log in</h2>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { controller: 'login' }) do |f| %>
+
+      <div class="field form-container" data-login-target="field">
+        <%= f.text_field :email, autofocus: true, id: "user-email", class: "form-field", placeholder: "Email", autocomplete: "email" %>
+        <div class="login-error" data-login-target="error"></div>
+      </div>
+
+      <div class="field form-container" data-login-target="field">
+        <%= f.password_field :password, id: "user-password", class: "form-field", placeholder: "Password", autocomplete: "current-password" %>
+        <div class="login-error" data-login-target="error"></div>
+      </div>
+
+      <div class="remember-forgot-password-container">
+        <% if devise_mapping.rememberable? %>
+          <div class="field remember-me-container">
+            <%= f.check_box :remember_me, class: "remember-me-check-box" %>
+            <%= f.label :remember_me, class: "remember-me-text" %>
+          </div>
+        <% end %>
+
+        <div class="forgot-password-container">
+        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+          <%= link_to "Forgot password?", new_password_path(resource_name), class: "forgot-password-text" %><br />
+        <% end %>
+        </div>
+      </div>
+
+      <div class="actions">
+        <%= button_tag type: 'submit', class: "login-btn" do %>
+          <span class="login-btn-text">Log in to Niche</span><ion-icon class="login-btn-icon" name="arrow-forward-outline"></ion-icon>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="sign-up-link-container">
+      <p id="sign-up-question">Don't have an account?</p>
+      <div>
+        <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+          <%= link_to "Sign up", new_registration_path(resource_name), class: "sign-up-link" %><br />
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>

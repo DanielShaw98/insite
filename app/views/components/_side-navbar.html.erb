@@ -1,0 +1,20 @@
+<div class="side-navbar-container" data-controller="side-navbar">
+  <ul>
+    <li class="profile-link" >
+      <div data-side-navbar-target="link" data-navbar-page="user"></div>
+      <%= link_to "Profile", user_path(current_user), class: "side-links" %>
+    </li>
+    <li class="courses-link">
+      <div data-side-navbar-target="link" data-navbar-page="purchases"></div>
+      <%= link_to "Courses", purchases_path, class: "side-links" %>
+    </li>
+    <li class="subscriptions-link">
+      <div data-side-navbar-target="link" data-navbar-page="subscriptions"></div>
+      <%= link_to "Subscriptions", subscriptions_path, class: "side-links" %>
+    </li>
+    <li class="settings-link">
+      <div data-side-navbar-target="link" data-navbar-page="settings"></div>
+      <%= link_to "Settings", settings_user_path(current_user), class: "side-links" %>
+    </li>
+  </ul>
+</div>

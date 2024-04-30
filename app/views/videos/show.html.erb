@@ -1,0 +1,92 @@
+<% if current_user %>
+  <%= render "components/top-navbar-2" %>
+<% else %>
+  <%= render "components/top-navbar-1" %>
+<% end %>
+
+<div class="video-page-container">
+  <div class="left-section-video">
+    <div class="video-page-top-info">
+      <div class="video-page-title"><%= @video.title %></div>
+      <%= link_to user_path(@video.creator.user) do %>
+        <div class="video-page-avatar"><%= image_tag @video.creator.user.avatar.image_url %></div>
+      <% end %>
+    </div>
+    <div class="video-page-top-info-2">
+      <div class="video-page-rating"><%= display_average_rating(@video.average_rating) %>
+        <div data-controller="rating" data-rating="<%= @video.average_rating %>" class="rating">
+          <div class="stars" data-rating-target="rating"></div>
+        </div>
+      </div>
+      <div class="video-page-reviews">Reviews (<%= @video.reviews.count %>)</div>
+    </div>
+
+    <div class="video-page-bottom-info">
+      <h3>Description:</h3>
+      <div class="video-description"><%= @video.description %></div>
+      <h3>What you will learn:</h3>
+      <div class="video-learn"><%= @video.learning %></div>
+      <h3>This course includes:</h3>
+      <div class="video-includes"><%= @video.includes %></div>
+      <h3>Requirements:</h3>
+      <div class="video-requirements"><%= @video.requirements %></div>
+    </div>
+
+    <div class="review-modal" data-controller="review-modal">
+      <div class="video-review-title-button">
+        <h3 class="video-review-title">Reviews</h3>
+        <% if user_signed_in? && current_user.purchases.exists?(video_id: @video.id) %>
+          <button class="leave-review-button" data-action="click->review-modal#toggleModal">Leave Review</button>
+        <% end %>
+      </div>
+      <div class="modal" data-review-modal-target="modal">
+        <div class="modal-content">
+          <span class="close" data-action="click->review-modal#toggleModal">&times;</span>
+          <%= form_with(model: [@video, Review.new], url: video_reviews_path(@video), method: :post, class: "review-form", data: { "review-modal-target": "form" }) do |form| %>
+            <div class="review-content-layout">
+              <div data-review-modal-target="contentMessage"></div>
+              <%= form.label :content, class: "form-label-content" %>
+            </div>
+            <%= form.text_area :content, class: "form-control-content" %>
+            <div class="review-rating-layout">
+              <div data-review-modal-target="ratingMessage"></div>
+              <%= form.label :rating, class: "form-label-rating" %>
+            </div>
+            <%= form.number_field :rating, class: "form-control-rating" %>
+            <%= form.submit "Submit Review", class: "submit-review-button", data: { action: "click->review-modal#submitForm" } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-review-section" data-controller="review" data-review-url-value="<%= video_reviews_video_path(@video) %>" data-review-offset-value="3" data-video-id="<%= @video.id %>">
+      <% @reviews.each do |review| %>
+        <div class="video-review">
+          <div class="video-review-user-info">
+            <div class="video-review-username-date">
+              <div class="video-review-username"><%= review.user.username %></div>
+              <div class="video-review-date"><%= review.created_at.strftime("%d/%m/%y") %></div>
+            </div>
+            <div class="video-review-avatar"><%= image_tag review.user.avatar_image_url %></div>
+          </div>
+          <div class="video-review-rating-info">
+            <div class="video-review-rating"><%= display_average_rating(review.rating) %></div>
+            <div data-controller="rating" data-rating="<%= review.rating %>" class="rating">
+              <div class="stars" data-rating-target="rating"></div>
+            </div>
+          </div>
+          <div class="video-review-content"><%= review.content %></div>
+        </div>
+      <% end %>
+      <div data-review-target="container">
+      </div>
+      <% if @has_more %>
+        <button class="show-more-button" data-action="click->review#showMore" data-review-target="showMoreButton">More Reviews</button>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="right-section-video">
+  </div>
+
+</div>

@@ -1,0 +1,86 @@
+<% if user_signed_in? %>
+  <%= render "components/top-navbar-2" %>
+<% else %>
+  <%= render "components/top-navbar-1" %>
+<% end %>
+
+<div class="landing-container">
+  <div class="left-section-landing">
+    <h1 class="slogan">Discover your favourite creators & find your <br>
+    niche</h1>
+    <h2 class="trending">Trending</h2>
+
+    <div class="video-card-container">
+      <% @trending_videos.each do |video| %>
+        <div class="video-card">
+          <%= link_to video_path(video) do %>
+            <div class="video-thumbnail">
+              <%= image_tag video.thumbnail_url %>
+            </div>
+            <div class="video-info">
+              <div class="video-title"><%= video.title %></div>
+              <div class="video-creator"><%= video.creator.user.username %></div>
+              <div class="video-rating"><%= display_average_rating(video.average_rating) %>
+                <div data-controller="rating" data-rating="<%= video.average_rating %>" class="rating">
+                  <div class="stars" data-rating-target="rating"></div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <h2 class="popular">Popular</h2>
+
+    <div class="video-card-container">
+      <% @popular_videos.each do |video| %>
+        <div class="video-card">
+          <%= link_to video_path(video) do %>
+            <div class="video-thumbnail">
+              <%= image_tag video.thumbnail_url %>
+            </div>
+            <div class="video-info">
+              <div class="video-title"><%= video.title %></div>
+              <div class="video-creator"><%= video.creator.user.username %></div>
+              <div class="video-rating"><%= display_average_rating(video.average_rating) %>
+                <div data-controller="rating" data-rating="<%= video.average_rating %>" class="rating">
+                  <div class="stars" data-rating-target="rating"></div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <h2 class="recently-added">Recently Added</h2>
+
+    <div class="video-card-container">
+      <% @recent_videos.each do |video| %>
+        <div class="video-card">
+          <%= link_to video_path(video) do %>
+            <div class="video-thumbnail">
+              <%= image_tag video.thumbnail_url %>
+            </div>
+            <div class="video-info">
+              <div class="video-title"><%= video.title %></div>
+              <div class="video-creator"><%= video.creator.user.username %></div>
+              <div class="video-rating"><%= display_average_rating(video.average_rating) %>
+                <div data-controller="rating" data-rating="<%= video.average_rating %>" class="rating">
+                  <div class="stars" data-rating-target="rating"></div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="right-section-landing">
+    <div data-controller="particle" class="particle-container">
+      <div id="particles-js"></div>
+    </div>
+  </div>
+</div>
