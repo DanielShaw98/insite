@@ -6,8 +6,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  after_create :generate_placeholder_avatar
-
   has_one :avatar, dependent: :destroy
   has_one :creator, dependent: :destroy
   has_many :pledges, dependent: :destroy
@@ -15,6 +13,8 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :socials, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
+
+  after_create :generate_placeholder_avatar
 
   PASSWORD_FORMAT = /\A
   (?=.{8,})          # Must contain 8 or more characters
@@ -43,7 +43,8 @@ class User < ApplicationRecord
     color = COLORS.sample
     background_color = color.delete('#') # Remove '#' from the color code
     background_color_encoded = CGI.escape("##{background_color}") # URL-encode the background color
-    avatar = build_avatar(image_url: "https://ui-avatars.com/api/?name=#{initials}&background=#{background_color_encoded}&color=fff")
-    avatar.save
+    # avatar&.destroy # If the user already has an avatar, destroy it before creating a new one
+    new_avatar = build_avatar(image_url: "https://ui-avatars.com/api/?name=#{initials}&background=#{background_color_encoded}&color=fff")
+    new_avatar.save
   end
 end

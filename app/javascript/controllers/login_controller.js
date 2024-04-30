@@ -7,9 +7,8 @@ export default class extends Controller {
 
   connect() {
     this.fieldTargets.forEach((field) => {
-      const input = field.querySelector("input");
-      input.addEventListener("input", () => {
-        this.removeError(field);
+      field.addEventListener("input", () => {
+        this.clearFieldError(field);
       });
     });
 
@@ -38,14 +37,16 @@ export default class extends Controller {
     element.classList.remove("login-failure");
   }
 
-  removeError(field) {
-    const input = field.querySelector("input");
-    const inputControl = field;
-    const errorDisplay = inputControl.querySelector(".login-error");
+  clearFieldError(field) {
+    const errorDisplay = field.querySelector(".login-error");
+    const inputControl = field.firstElementChild;
+    const passwordControl = field.firstElementChild.firstElementChild;
 
+    inputControl.classList.remove("login-success", "login-failure");
+    if (passwordControl !== null) {
+      passwordControl.classList.remove("login-success", "login-failure");
+    }
     errorDisplay.style.display = "none";
-    inputControl.classList.remove("failure");
-    inputControl.classList.remove("success");
   }
 
   validateInputs() {

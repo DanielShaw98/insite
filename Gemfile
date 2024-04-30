@@ -27,7 +27,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 # Devise gem for user authentication
-gem "devise"
+gem 'devise'
 
 # Faker gem for seed data
 gem 'faker'

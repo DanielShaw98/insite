@@ -13,9 +13,9 @@ puts 'Deleting existing data...'
 
 User.destroy_all
 Creator.destroy_all
+Video.destroy_all
 Avatar.destroy_all
 Category.destroy_all
-Video.destroy_all
 Review.destroy_all
 Social.destroy_all
 Pledge.destroy_all
@@ -369,55 +369,55 @@ Video.create!(
 puts 'Videos created successfully!'
 
 # Seed data for avatars
-Avatar.create!(
-  image_url: 'https://gravatar.com/avatar/5e120bfaf70b297bddf0864ac34abafa?s=400&d=robohash&r=x',
-  user_id: User.first.id
-)
+# Avatar.create!(
+#   image_url: 'https://gravatar.com/avatar/5e120bfaf70b297bddf0864ac34abafa?s=400&d=robohash&r=x',
+#   user_id: User.first.id
+# )
 
-Avatar.create!(
-  image_url: 'https://gravatar.com/avatar/28427783bbd7ca509ca25268b1abe533?s=400&d=robohash&r=x',
-  user_id: User.second.id
-)
+# Avatar.create!(
+#   image_url: 'https://gravatar.com/avatar/28427783bbd7ca509ca25268b1abe533?s=400&d=robohash&r=x',
+#   user_id: User.second.id
+# )
 
-Avatar.create!(
-  image_url: 'https://gravatar.com/avatar/8533e83e8d8c57b85c98623c3ad9b682?s=400&d=robohash&r=x',
-  user_id: User.offset(2).first.id
-)
+# Avatar.create!(
+#   image_url: 'https://gravatar.com/avatar/8533e83e8d8c57b85c98623c3ad9b682?s=400&d=robohash&r=x',
+#   user_id: User.offset(2).first.id
+# )
 
-Avatar.create!(
-  image_url: 'https://gravatar.com/avatar/c37ce34d0c590a8cb886bd2d1edb5d45?s=400&d=robohash&r=x',
-  user_id: User.offset(3).first.id
-)
+# Avatar.create!(
+#   image_url: 'https://gravatar.com/avatar/c37ce34d0c590a8cb886bd2d1edb5d45?s=400&d=robohash&r=x',
+#   user_id: User.offset(3).first.id
+# )
 
-Avatar.create!(
-  image_url: 'https://gravatar.com/avatar/ca5f5832d1a6004d676256d05c236412?s=400&d=robohash&r=x',
-  user_id: User.offset(4).first.id
-)
+# Avatar.create!(
+#   image_url: 'https://gravatar.com/avatar/ca5f5832d1a6004d676256d05c236412?s=400&d=robohash&r=x',
+#   user_id: User.offset(4).first.id
+# )
 
-Avatar.create!(
-  image_url: 'https://gravatar.com/avatar/fb7520787445f45e84f1ff40b250bedb?s=400&d=robohash&r=x',
-  user_id: User.offset(5).first.id
-)
+# Avatar.create!(
+#   image_url: 'https://gravatar.com/avatar/fb7520787445f45e84f1ff40b250bedb?s=400&d=robohash&r=x',
+#   user_id: User.offset(5).first.id
+# )
 
-Avatar.create!(
-  image_url: 'https://gravatar.com/avatar/8d00ee7c9e15ca03b284dcbebf796a95?s=400&d=robohash&r=x',
-  user_id: User.offset(6).first.id
-)
+# Avatar.create!(
+#   image_url: 'https://gravatar.com/avatar/8d00ee7c9e15ca03b284dcbebf796a95?s=400&d=robohash&r=x',
+#   user_id: User.offset(6).first.id
+# )
 
-Avatar.create!(
-  image_url: 'https://gravatar.com/avatar/b5c2618adc21f5f9692a9bcfb50a68ba?s=400&d=robohash&r=x',
-  user_id: User.offset(7).first.id
-)
+# Avatar.create!(
+#   image_url: 'https://gravatar.com/avatar/b5c2618adc21f5f9692a9bcfb50a68ba?s=400&d=robohash&r=x',
+#   user_id: User.offset(7).first.id
+# )
 
-Avatar.create!(
-  image_url: 'https://gravatar.com/avatar/90bfdb30ae04c46bc87a300e9845f737?s=400&d=robohash&r=x',
-  user_id: User.offset(8).first.id
-)
+# Avatar.create!(
+#   image_url: 'https://gravatar.com/avatar/90bfdb30ae04c46bc87a300e9845f737?s=400&d=robohash&r=x',
+#   user_id: User.offset(8).first.id
+# )
 
-Avatar.create!(
-  image_url: 'https://gravatar.com/avatar/cbd6001caed43bee7244e1cddd86ac6b?s=400&d=robohash&r=x',
-  user_id: User.offset(9).first.id
-)
+# Avatar.create!(
+#   image_url: 'https://gravatar.com/avatar/cbd6001caed43bee7244e1cddd86ac6b?s=400&d=robohash&r=x',
+#   user_id: User.offset(9).first.id
+# )
 
 puts 'Avatars created successfully!'
 
