@@ -1,16 +1,28 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="menubar-container">
+  <div class="menubar-title-spacer">
+    <%= link_to root_path, class: "root-link-1" do%>
+      <h1 class="menubar-title">insite</h1>
+    <% end %>
   </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+<div class="authenticate-bg">
+  <div class="forgot-password-card">
+    <%= link_to 'javascript:history.back()', class: "back-btn" do %>
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    <% end %>
+    <h2 class="authenticate-header">Forgot password?</h2>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+
+      <div class="field forgot-form-container">
+        <%= f.text_field :email, autofocus: true, class: "forgot-form-field", placeholder: "Email", autocomplete: "email" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Send reset password instructions", class: "forgot-btn" %>
+      </div>
+    <% end %>
+
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
