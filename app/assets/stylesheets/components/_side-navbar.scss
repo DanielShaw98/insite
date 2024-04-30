@@ -1,0 +1,73 @@
+.side-navbar-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  float: left;
+  background-color: $green;
+  height: 100vh; // This might need changing
+  width: 300px;
+  z-index: 1;
+}
+
+.side-links {
+  text-decoration: none;
+  font-family: $sub-header-font;
+  color: $white;
+  font-size: 22px;
+  transition: all 0.25s ease;
+}
+
+.side-navbar-container li {
+  list-style: none;
+  margin-top: 20px;
+}
+
+.profile-link,
+.courses-link,
+.subscriptions-link,
+.settings-link {
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  padding: 20px 60px;
+  position: relative;
+}
+
+.profile-link {
+  background-image: url('icons/navbar-profile-white.svg');
+  background-position: -50px center;
+  background-size: 32px;
+}
+
+.courses-link {
+  background-image: url('icons/navbar-courses-white.svg');
+  background-position: -50px -4px;
+  background-size: 34px;
+}
+
+.subscriptions-link {
+  background-image: url('icons/navbar-subscriptions-white.svg');
+  background-position: -55px center;
+  background-size: 50px;
+}
+
+.settings-link {
+  background-image: url('icons/navbar-settings-white.svg');
+  background-position: -50px center;
+  background-size: 32px;
+}
+
+.side-links:hover {
+  margin-left: 10px;
+}
+
+.link-active {
+  width: 50px;
+  height: 25px;
+  background-color: $white;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  transform: rotate(90deg);
+  position: absolute;
+  left: -60px;
+  margin-top: 0px;
+}

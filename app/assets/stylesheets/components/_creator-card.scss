@@ -1,0 +1,57 @@
+.creator-card-container {
+  margin-top: 10px;
+}
+
+.creator-card {
+  width: 150px;
+  height: 250px;
+  border-radius: 8px;
+  border: 2px solid $dark-gray;
+  background-color: $light-gray;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease-in-out;
+  flex: 0 0 auto;
+}
+
+.creator-card:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+.creator-avatar img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid $green;
+  background-color: $white;
+  margin-top: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.creator-card:hover .creator-avatar img {
+  transform: scale(1.05);
+}
+
+.creator-card a {
+  text-decoration: none;
+  color: $black;
+}
+
+.creator-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.creator-card-info {
+  text-align: center;
+  padding: 10px;
+}
+
+.creator-username,
+.creator-specialisation {
+  font-family: $sub-header-font;
+  font-size: 18px;
+  word-wrap: break-word;
+  padding-bottom: 10px;
+}

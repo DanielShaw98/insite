@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  purchase_cost: 1
+  purchase_status: MyString
+  payment_details: MyString
+  user: one
+  video: one
+
+two:
+  purchase_cost: 1
+  purchase_status: MyString
+  payment_details: MyString
+  user: two
+  video: two

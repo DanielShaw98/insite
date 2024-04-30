@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subscription_cost: 1
+  subscription_status: MyString
+  payment_details: MyString
+  start_date: 2024-04-30
+  end_date: 2024-04-30
+  user: one
+  creator: one
+
+two:
+  subscription_cost: 1
+  subscription_status: MyString
+  payment_details: MyString
+  start_date: 2024-04-30
+  end_date: 2024-04-30
+  user: two
+  creator: two

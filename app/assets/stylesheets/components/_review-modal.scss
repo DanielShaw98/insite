@@ -1,0 +1,130 @@
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+}
+
+.close {
+  color: $dark-gray;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: $black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+// Review Form Styling
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-label-content,
+.form-label-rating {
+  font-family: $sub-header-font;
+  font-size: 32px;
+  color: $black;
+}
+
+.form-control-content {
+  font-family: $body-font;
+  height: 4rem;
+  border: 1px solid $light-gray;
+  border-radius: 4px;
+  font-size: 20px;
+  resize: vertical;
+}
+
+.form-control-rating {
+  font-family: $body-font;
+  height: 1.5rem;
+  width: 100px;
+  border: 1px solid $light-gray;
+  border-radius: 4px;
+  font-size: 20px;
+}
+
+.form-control-rating::-webkit-inner-spin-button,
+.form-control-rating::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.form-control-content:focus,
+.form-control-rating:focus {
+  outline: none;
+  border: 1px solid $green;
+}
+
+.submit-review-button {
+  cursor: pointer;
+  font-family: $body-font;
+  font-size: 18px;
+  color: $white;
+  width: 30%;
+  margin: 0 auto;
+  background-color: $black;
+  border: 1px solid black;
+  padding: 10px 40px 10px 20px;
+  border-radius: 50px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  background-image: url("icons/submit-review-arrow-white.svg");
+  background-position: 170px 4px;
+  background-size: 12px;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  transition: all 0.25s ease;
+}
+
+.submit-review-button:hover {
+  background-position: 180px 4px;
+}
+
+.review-content-layout,
+.review-rating-layout {
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 0px auto 0px 0px;
+  align-items: baseline;
+}
+
+.review-error-message {
+  font-family: $body-font;
+  font-size: 16px;
+  color: $error;
+  margin-left: 1rem;
+}
+
+.shake-animation {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(5px); }
+  50% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}

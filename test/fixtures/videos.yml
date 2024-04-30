@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  requirements: MyText
+  learning: MyText
+  audience: MyText
+  includes: MyText
+  external_video_url: MyString
+  accessibility: MyString
+  views: 1
+  average_rating: 1.5
+  thumbnail_url: MyString
+  creator: one
+  category: one
+
+two:
+  title: MyString
+  description: MyText
+  requirements: MyText
+  learning: MyText
+  audience: MyText
+  includes: MyText
+  external_video_url: MyString
+  accessibility: MyString
+  views: 1
+  average_rating: 1.5
+  thumbnail_url: MyString
+  creator: two
+  category: two

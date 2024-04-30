@@ -1,0 +1,43 @@
+.subscriptions-page-container {
+  min-height: 100vh;
+  max-height: 100vh;
+  position: relative;
+  overflow-y: auto;
+}
+
+.subscription-row {
+  display: flex;
+  align-items: flex-start;
+  margin: 10px 0px 0px 20px;
+}
+
+.video-card-container-subscriptions {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  margin-left: 20px;
+  padding: 10px 10px 20px 0px;
+  gap: 20px;
+}
+
+.no-subscriptions-position {
+  margin: 36px 36px 0px 36px;
+}
+
+.no-subscriptions-message {
+  font-family: $body-font;
+  font-size: 24px;
+  color: $dark-gray;
+}
+
+.no-subscriptions-message a {
+  color: $green-75;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  line-height: 24px;
+}
+
+.no-subscriptions-message a:hover {
+  font-size: 26px;
+  line-height: 24px;
+}

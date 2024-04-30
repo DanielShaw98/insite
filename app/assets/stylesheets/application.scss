@@ -1,0 +1,16 @@
+// Graphical variables
+@import "config/fonts";
+@import "config/colors";
+
+// External libraries
+// @import "font-awesome";
+
+// Your CSS partials
+@import "components/index";
+@import "pages/index";
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}

@@ -1,0 +1,230 @@
+.login-card {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  height: fit-content;
+  width: 400px;
+  background-color: white;
+  border-radius: 50px;
+  padding: 40px;
+  box-shadow: 5px 5px 3px 0px rgba(155, 155, 155, 0.74);
+}
+
+.back-btn {
+  width: 27px;
+  height: 27px;
+  border-style: solid;
+  border-color: $black;
+  color: $black;
+  font-size: larger;
+  display: inline-flex;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  background-color: $black;
+  color: $white;
+}
+
+.authenticate-header {
+  font-family: $sub-header-font;
+  font-weight: 400;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-container {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field {
+  background-color: $background-gray;
+  height: 2rem;
+  border-style: solid;
+  border-color: $background-gray;
+  border-radius: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  padding-inline-start: 1rem;
+  padding-inline-end: 1rem;
+  font-family: $body-font;
+}
+
+.form-field:focus {
+  outline: 0;
+}
+
+.login-success {
+  border-color: $green !important;
+}
+
+.login-failure {
+  border-color: $error !important;
+}
+
+.login-error {
+  color: $error;
+  font-family: $body-font;
+  font-size: 0.8rem;
+  height: 0.5rem;
+  display: none;
+  margin-left: 0.7rem;
+  margin-top: 0.3rem;
+}
+
+.remember-forgot-password-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+
+.remember-me-container {
+  font-family: $body-font;
+  font-size: 0.8rem;
+  color: $dark-gray;
+  line-height: 1.1;
+  display: grid;
+  grid-template-columns: 1em auto;
+  gap: 0.8em;
+  margin-left: 0.5rem;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.1em solid currentColor;
+  border-color: $light-gray;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  transition: 0.1s;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  opacity: 0;
+  transition: 0.1s;
+  box-shadow: inset 1em 1em var(--form-control-color);
+  background-color: $white;
+}
+
+input[type="checkbox"]:checked {
+  background-color: $green;
+  border-color: $green;
+}
+
+input[type="checkbox"]:checked::before {
+  opacity: 1;
+}
+
+.forgot-password-container {
+  display: flex;
+  align-items: top;
+  margin-right: 0.5rem;
+}
+
+.forgot-password-text {
+  text-decoration: none;
+  font-family: $body-font;
+  color: $dark-gray;
+  font-size: 0.8rem;
+  transition: 0.2s;
+}
+
+.forgot-password-text:hover {
+  color: $green;
+}
+
+.login-btn {
+  background-color: $black;
+  color: $white;
+  height: 2rem;
+  border-style: none;
+  border-radius: 20px;
+  width: 100%;
+  font-family: $body-font;
+  transition: all 0.5s;
+  cursor: pointer;
+  box-shadow: 2px 2px 3px 0px rgba(155, 155, 155, 0.74);
+  position: relative;
+}
+
+.login-btn-text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.login-btn-icon {
+  display: inline-block;
+  vertical-align: middle;
+  position: absolute;
+  top: 32%;
+  margin-left: 7px;
+  transform: translateX(-130%);
+  transition: 0.5s;
+  opacity: 0;
+}
+
+.login-btn:hover {
+  padding-right: 20px;
+  padding-left: 8px;
+}
+
+.login-btn:hover .login-btn-icon {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sign-up-link-container {
+  display: flex;
+  align-items: center;
+  font-family: $body-font;
+  margin-left: 2rem;
+  font-size: 0.8rem;
+}
+
+#sign-up-question {
+  color: rgba(126, 126, 126, 0.74);
+}
+
+.sign-up-link {
+  height:fit-content;
+  text-decoration: none;
+  font-weight: 700;
+  color: $green;
+  margin-left: 0.6rem;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.sign-up-link::after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  background: $green;
+  transition: width 0.5s;
+}
+
+.sign-up-link:hover:after {
+  width: 100%;
+}

@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  platform: MyString
+  link: MyString
+  icon_path: MyString
+  user: one
+  creator: one
+
+two:
+  platform: MyString
+  link: MyString
+  icon_path: MyString
+  user: two
+  creator: two

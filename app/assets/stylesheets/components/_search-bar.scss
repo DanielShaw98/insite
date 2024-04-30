@@ -1,0 +1,82 @@
+.search-bar-container {
+  margin-left: 60px;
+}
+
+.form-control {
+  height: 50px;
+  width: 30vw;
+  font-family: $body-font;
+  font-size: 24px;
+  color: $dark-gray;
+  background-color: $background-gray;
+  border: 1px solid $black;
+  border-radius: 30px;
+}
+
+.form-control::placeholder {
+  background-image: url('icons/search-icon-black.svg');
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  background-position: calc(100% - 30px) center;
+  background-size: 24px;
+}
+
+.form-control[type="text"] {
+  padding-left: 30px;
+}
+
+.form-control:focus {
+  outline: none;
+  border: 1px solid $green;
+}
+
+.search-dropdown {
+  position: absolute;
+  top: 81px;
+  width: 30vw;
+  background-color: #FFFFFF;
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  list-style: none;
+  padding-left: 24px;
+  padding-right: 8px;
+}
+
+.search-dropdown a {
+  text-decoration: none;
+  font-family: $body-font;
+  font-size: 24px;
+  color: $dark-gray;
+  line-height: 2;
+  transition: all 0.25s ease;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.search-dropdown li {
+  display: flex;
+  align-items: center;
+}
+
+.search-dropdown img {
+  margin-right: 10px;
+}
+
+.search-dropdown a:hover {
+  color: $green;
+  padding-left: 10px;
+}
+
+.search-video-thumbnail {
+  width: 50px;
+  object-fit: cover;
+}
+
+.search-creator-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  padding: 4px 0px;
+}

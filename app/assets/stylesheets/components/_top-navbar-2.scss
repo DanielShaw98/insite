@@ -1,0 +1,117 @@
+.top-navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 130px;
+  border-bottom: 1px solid $black;
+  box-shadow: 0px 1px 3px -1px rgba(0, 0, 0, 0.3);
+}
+
+.top-navbar-title {
+  font-family: $main-header-font;
+  font-size: 72px;
+  font-weight: 700;
+  color: $green;
+  margin: 0;
+}
+
+.top-navbar-title-spacer {
+  margin-left: 60px;
+}
+
+.root-link-2 {
+  text-decoration: none;
+}
+
+.discover-avatar-container {
+  display: flex;
+  align-items: center;
+  margin-right: 100px;
+}
+
+.discover-avatar-container ul {
+  list-style: none;
+}
+
+.discover-button {
+  font-family: $body-font;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  color: $white;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  border-radius: 50px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease;
+  background-color: $green;
+  background-image: url("icons/discover-icon-white.svg");
+  background-position: 80px center;
+  background-size: 30px;
+  padding: 15px 65px 15px 30px;
+  border: 1px solid $green;
+  margin-right: 142px;
+}
+
+.discover-button:hover {
+  color: $black;
+  background-color: $white;
+  background-image: url("icons/discover-icon-black.svg");
+  background-position: 80px center;
+  background-size: 30px;
+  padding: 15px 65px 15px 30px;
+}
+
+.avatar-image {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: 1px solid $black;
+  cursor: pointer;
+}
+
+.avatar-dropdown {
+  display: none;
+  position: absolute;
+  background: #FFFFFF;
+  z-index: 1;
+  right: 42px;
+  width: 15vw;
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-dropdown ul {
+  list-style: none;
+}
+
+.dropdown-links {
+  font-family: $body-font;
+  font-size: 24px;
+  color: $dark-gray;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.profile-dropdown {
+  background-image: url('icons/avatar-profile-green.svg');
+  background-position: -40px center;
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  padding: 20px 40px;
+}
+
+.logout-dropdown {
+  background-image: url('icons/avatar-logout-green.svg');
+  background-position: -40px center;
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  padding: 20px 40px;
+}
+
+.dropdown-links:hover {
+  margin-left: 10px;
+  color: $green;
+}

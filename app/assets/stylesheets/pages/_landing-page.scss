@@ -1,0 +1,98 @@
+.landing-container {
+  overflow: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+.left-section-landing {
+  width: calc(100% - 320px);
+}
+
+.right-section-landing {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 320px;
+}
+
+.slogan {
+  font-family: $main-header-font;
+  font-size: 72px;
+  font-weight: 700;
+  color: $black;
+  margin-left: 60px;
+  margin-bottom: 0;
+}
+
+.slogan::after {
+  content: '';
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-image: url('icons/star-slogan-green.svg');
+  background-position: right center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 20px;
+}
+
+.trending {
+  font-family: $sub-header-font;
+  font-size: 48px;
+  font-weight: 400;
+  color: $black;
+  margin: 20px 0px 0px 60px;
+}
+
+.popular {
+  font-family: $sub-header-font;
+  font-size: 48px;
+  font-weight: 400;
+  color: $black;
+  margin: 20px 0px 0px 60px;
+}
+
+.recently-added {
+  font-family: $sub-header-font;
+  font-size: 48px;
+  font-weight: 400;
+  color: $black;
+  margin: 20px 0px 0px 60px;
+}
+
+.particle-container {
+  height: 100%;
+}
+
+// Media queries
+
+@media (max-width: 1000px) {
+  .slogan {
+    font-size: 48px;
+  }
+
+  .trending {
+    font-size: 32px;
+  }
+
+  .popular {
+    font-size: 32px;
+  }
+
+  .recently-added {
+    font-size: 32px;
+  }
+
+  .left-section {
+    width: calc(100% - 180px);
+  }
+
+  .right-section {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 180px;
+  }
+}

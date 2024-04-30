@@ -1,0 +1,122 @@
+.user-profile-container {
+  min-height: 100vh;
+  position: relative;
+  overflow-y: hidden;
+}
+
+.user-profile-banner {
+  display: flex;
+  width: 90%;
+  height: 200px;
+  margin: 40px auto 5px auto;
+  background-image: linear-gradient(to bottom, $green, $white);
+  border-radius: 50px;
+}
+
+.user-profile-avatar img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  border: 6px solid #FFFFFF;
+  background-color: $white;
+  margin-top: 50%;
+  margin-left: 40%;
+}
+
+.name-title-position {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.username-title,
+.user-full-name {
+  font-family: $main-header-font;
+  color: $black;
+  margin-left: 32%;
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.username-title {
+  font-size: 42px;
+}
+
+.user-full-name {
+  font-size: 32px;
+}
+
+.left-right-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.user-profile-left {
+  margin-top: 60px;
+  width: 50%;
+}
+
+.user-profile-links {
+  margin-left: 10%;
+}
+
+.user-profile-reviews,
+.user-profile-pledges,
+.user-profile-subscriptions {
+  font-family: $sub-header-font;
+  font-size: 32px;
+  color: $black;
+  margin-bottom: 10%;
+  text-decoration: none;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+}
+
+.user-profile-reviews {
+  background-image: url("icons/user-profile-reviews-black.svg");
+  background-position: -80px center;
+  background-size: 40px;
+  padding-left: 80px;
+}
+
+.user-profile-pledges {
+  background-image: url("icons/user-profile-pledges-black.svg");
+  background-position: -80px center;
+  background-size: 40px;
+  padding-left: 80px;
+}
+
+.user-profile-subscriptions {
+  background-image: url("icons/user-profile-subscriptions-black.svg");
+  background-position: -80px center;
+  background-size: 40px;
+  padding-left: 80px;
+}
+
+.user-profile-right {
+  margin-top: 60px;
+  margin-right: 5%;
+  width: 50%;
+  border-radius: 50px;
+  background-color: $light-gray;
+}
+
+.analytics-title {
+  font-family: $sub-header-font;
+  font-size: 32px;
+  color: $black;
+  margin-top: 6%;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  background-image: url("icons/user-profile-analytics-black.svg");
+  background-position: -80px center;
+  background-size: 35px;
+  padding-left: 120px;
+}
+
+.analytics-content {
+  padding-left: 40px;
+  font-family: $body-font;
+  font-size: 18px;
+  color: $black;
+}
