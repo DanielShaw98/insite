@@ -6,25 +6,10 @@
     <h1 class="username-title"><%= @user.username %></h1>
     <h2 class="user-full-name"><%= @user.first_name%> <%= @user.last_name %></h2>
   </div>
-  <div class="left-right-container">
-    <div class="user-profile-left">
-      <div class="user-profile-links">
-        <h3 class="user-profile-reviews">Your Reviews</h3>
-        <h3 class="user-profile-pledges">Your Pledges</h3>
-        <h3 class="user-profile-subscriptions">Manage Subscriptions</h3>
-      </div>
-    </div>
-    <div class="user-profile-right">
-      <div class="user-analytics-container">
-        <h3 class="analytics-title">Analytics</h3>
-        <div class="analytics-content">
-          <p><%= (Date.today - current_user.created_at.to_date).to_i %> <%= (Date.today - current_user.created_at.to_date).to_i == 1 ? "day" : "days" %> since joining niche</p>
-          <p><%= @courses_watched %> <%= @courses_watched == 1 ? "course" : "courses" %> watched</p>
-          <p><%= @total_subscriptions %> <%= @total_subscriptions == 1 ? "subscription" : "subscriptions" %></p>
-          <p><%= @reviews_left %> <%= @reviews_left == 1 ? "review" : "reviews" %> left</p>
-          <p><%= @pledges_made %> <%= @pledges_made == 1 ? "pledge" : "pledges" %> made</p>
-        </div>
-      </div>
-    </div>
+  <div class="user-title-toggle-container" data-controller="user-profile-toggle">
+    <div id="user-title-purchases" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Purchases</div>
+    <div id="user-title-subscriptions" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Subscriptions</div>
+    <div id="user-title-pledges" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Pledges</div>
+    <div id="user-title-reviews" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Reviews</div>
   </div>
 </div>

@@ -9,6 +9,49 @@
   flex: 1;
 }
 
+.video-player-background {
+  width: 80%;
+  height: 50%;
+  background-color: $dark-gray;
+  border-radius: 20px;
+  margin: 40px auto;
+}
+
+.review-purchase-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  margin: 40px auto;
+}
+
+.video-purchase-button {
+  cursor: pointer;
+  font-family: $body-font;
+  font-size: 18px;
+  color: $white;
+  background-color: $green;
+  border: 2px solid $green;
+  border-radius: 20px;
+  padding: 10px 50px 10px 20px;
+  margin-top: 40px;
+  background-image: url("icons/purchase-cart-white.svg");
+  background-position: 215px center;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease;
+}
+
+.video-purchase-button:hover {
+  color: $black;
+  background-color: $white;
+  background-image: url("icons/purchase-cart-black.svg");
+  background-position: 215px center;
+  background-size: 20px;
+}
+
 .right-section-video {
   flex: 1;
 }
@@ -78,33 +121,4 @@
   font-family: $body-font;
   font-size: 18px;
   color: $white;
-}
-
-.open-reviews-button {
-  cursor: pointer;
-  font-family: $body-font;
-  font-size: 18px;
-  color: $black;
-  background-color: $white;
-  border: 2px solid $black;
-  border-radius: 20px;
-  padding: 10px 40px 10px 20px;
-  margin-top: 40px;
-  background-image: url("icons/review-book-black.svg");
-  background-position: 68px 1px;
-  background-size: 20px;
-  background-repeat: no-repeat;
-  background-origin: content-box;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.25s ease;
-  margin-left: 60px;
-}
-
-.open-reviews-button:hover {
-  color: $green;
-  background-color: $white;
-  background-image: url("icons/review-book-green.svg");
-  background-position: 68px 1px;
-  background-size: 20px;
-  border: 2px solid $green;
 }

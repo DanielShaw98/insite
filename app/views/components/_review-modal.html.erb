@@ -1,0 +1,64 @@
+<div data-controller="review-modal">
+  <button class="open-reviews-button" data-action="click->review-modal#toggleOuterModal">Reviews</button>
+  <div class="outer-modal" data-review-modal-target="outerModal">
+    <div class="modal-content-outer">
+      <div class="video-review-title-close">
+        <h3 class="video-review-title">Reviews</h3>
+        <span class="close" data-action="click->review-modal#toggleOuterModal">&times;</span>
+      </div>
+      <div class="leave-review-button-container">
+        <% if user_signed_in? && current_user.purchases.exists?(video_id: @video.id) %>
+          <button class="leave-review-button" data-action="click->review-modal#toggleInnerModal">Leave Review</button>
+        <% end %>
+      </div>
+
+      <div class="inner-modal" data-review-modal-target="innerModal">
+        <div class="modal-content-inner">
+          <span class="close" data-action="click->review-modal#toggleInnerModal">&times;</span>
+          <div class="review-form">
+            <%= form_with(model: [@video, Review.new], url: video_reviews_path(@video), method: :post, class: "review-form", data: { "review-modal-target": "form" }) do |form| %>
+              <div class="review-content-layout">
+                <div data-review-modal-target="contentMessage"></div>
+                <%= form.label :content, class: "form-label-content" %>
+              </div>
+              <%= form.text_area :content, class: "form-control-content" %>
+              <div class="review-rating-layout">
+                <div data-review-modal-target="ratingMessage"></div>
+                <%= form.label :rating, class: "form-label-rating" %>
+              </div>
+              <%= form.number_field :rating, class: "form-control-rating" %>
+              <%= form.submit "Submit Review", class: "submit-review-button", data: { action: "click->review-modal#submitForm" } %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-review-section" data-controller="review" data-review-url-value="<%= video_reviews_video_path(@video) %>" data-review-offset-value="3" data-video-id="<%= @video.id %>">
+        <% @reviews.each do |review| %>
+          <div class="video-review">
+            <div class="video-review-user-info">
+              <div class="video-review-username-date">
+                <div class="video-review-username"><%= review.user.username %></div>
+                <div class="video-review-date"><%= review.created_at.strftime("%d/%m/%y") %></div>
+              </div>
+              <div class="video-review-avatar"><%= image_tag review.user.avatar_image_url %></div>
+            </div>
+            <div class="video-review-rating-info">
+              <div class="video-review-rating"><%= display_average_rating(review.rating) %></div>
+              <div data-controller="rating" data-rating="<%= review.rating %>" class="rating">
+                <div class="stars" data-rating-target="rating"></div>
+              </div>
+            </div>
+            <div class="video-review-content"><%= review.content %></div>
+          </div>
+        <% end %>
+        <div data-review-target="container">
+        </div>
+
+        <% if @has_more %>
+          <button class="show-more-button" data-action="click->review#showMore" data-review-target="showMoreButton">More Reviews</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
