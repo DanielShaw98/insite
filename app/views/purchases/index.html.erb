@@ -1,9 +1,9 @@
 <%= render "components/top-navbar-2" %>
 <%= render "components/side-navbar" %>
 
-<div class="courses-page-container">
-  <div class="courses-title-position">
-    <h1 class="courses-title">Purchased Videos:</h1>
+<div class="guides-page-container">
+  <div class="guides-title-position">
+    <h1 class="guides-title">Purchased Videos:</h1>
       <% if current_user.purchases.any? %>
         <div class="video-card-container-purchases">
           <% @purchases.each do |purchase| %>
@@ -31,7 +31,7 @@
         </div>
       <% end %>
 
-    <h1 class="courses-title">Bookmarked Videos:</h1>
+    <h1 class="guides-title">Bookmarked Videos:</h1>
       <div class="no-purchases-position">
         <h3 class="no-purchases-message">You currently have no bookmarked videos, please checkout our <a href="/pages/discover">discover page</a></h3>
       </div>

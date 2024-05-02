@@ -5,10 +5,10 @@
   margin-right: 3rem;
   height: fit-content;
   width: 400px;
-  background-color: white;
+  background-color: $white;
   border-radius: 50px;
   padding: 40px;
-  box-shadow: 5px 5px 3px 0px rgba(155, 155, 155, 0.74);
+  box-shadow: 4px 4px 2px 0px $black;
 }
 
 .back-btn {
@@ -119,6 +119,7 @@ input[type="checkbox"]::before {
   width: 0.65em;
   height: 0.65em;
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: rotate(8deg);
   opacity: 0;
   transition: 0.1s;
   box-shadow: inset 1em 1em var(--form-control-color);

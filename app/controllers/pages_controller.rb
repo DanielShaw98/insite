@@ -1,10 +1,10 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index search]
+  skip_before_action :authenticate_user!, only: %i[index search discover]
 
   def index
-    @trending_videos = Video.where('created_at >= ?', 7.days.ago).order(views: :desc).limit(6)
-    @popular_videos = Video.order(views: :desc).limit(6)
-    @recent_videos = Video.order(created_at: :desc).limit(6)
+    @trending_videos = Video.where('created_at >= ?', 7.days.ago).order(views: :desc).limit(10)
+    @popular_videos = Video.order(views: :desc).limit(10)
+    @recent_videos = Video.order(created_at: :desc).limit(10)
   end
 
   def discover

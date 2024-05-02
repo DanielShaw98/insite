@@ -2,27 +2,17 @@
   overflow: hidden;
   min-height: 100vh;
   position: relative;
-}
-
-.left-section-landing {
-  width: calc(100% - 320px);
-}
-
-.right-section-landing {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 320px;
+  background-color: $black;
 }
 
 .slogan {
   font-family: $main-header-font;
   font-size: 72px;
   font-weight: 700;
-  color: $black;
+  color: $white;
   margin-left: 60px;
   margin-bottom: 0;
+  text-align: center;
 }
 
 .slogan::after {
@@ -37,28 +27,35 @@
   margin-left: 20px;
 }
 
+.landing-discover-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px -142px 20px 0px;
+}
+
 .trending {
   font-family: $sub-header-font;
   font-size: 48px;
   font-weight: 400;
-  color: $black;
-  margin: 20px 0px 0px 60px;
+  color: $white;
+  margin: 0px 0px 0px 60px;
 }
 
 .popular {
   font-family: $sub-header-font;
   font-size: 48px;
   font-weight: 400;
-  color: $black;
-  margin: 20px 0px 0px 60px;
+  color: $white;
+  margin: 0px 0px 0px 60px;
 }
 
 .recently-added {
   font-family: $sub-header-font;
   font-size: 48px;
   font-weight: 400;
-  color: $black;
-  margin: 20px 0px 0px 60px;
+  color: $white;
+  margin: 0px 0px 0px 60px;
 }
 
 .particle-container {
@@ -82,17 +79,5 @@
 
   .recently-added {
     font-size: 32px;
-  }
-
-  .left-section {
-    width: calc(100% - 180px);
-  }
-
-  .right-section {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 180px;
   }
 }
