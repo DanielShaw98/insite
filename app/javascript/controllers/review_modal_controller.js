@@ -1,11 +1,18 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["modal", "form", "contentMessage", "ratingMessage"];
+  static targets = ["outerModal", "innerModal", "form", "contentMessage", "ratingMessage"];
 
-  // Method to toggle the visibility of the modal
-  toggleModal(event) {
-    this.modalTarget.style.display = this.modalTarget.style.display === "block" ? "none" : "block";
+  // Method to toggle the visibility of the outer modal
+  toggleOuterModal(event) {
+    this.outerModalTarget.style.display = this.outerModalTarget.style.display === "block" ? "none" : "block";
+  }
+
+  // Method to toggle the visibility of the inner modal
+  toggleInnerModal(event) {
+    // Prevent event propagation to avoid closing the outer modal when clicking inside the inner modal
+    event.stopPropagation();
+    this.innerModalTarget.style.display = this.innerModalTarget.style.display === "block" ? "none" : "block";
   }
 
   // Method to handle form submission

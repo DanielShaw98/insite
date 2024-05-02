@@ -1,4 +1,8 @@
-<%= render "components/top-navbar-2" %>
+<% if user_signed_in? %>
+  <%= render "components/top-navbar-2" %>
+<% else %>
+  <%= render "components/top-navbar-1" %>
+<% end %>
 
 <div class="discover-page-container">
   <h1>Pages#discover</h1>

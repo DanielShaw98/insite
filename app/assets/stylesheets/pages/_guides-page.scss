@@ -1,15 +1,15 @@
-.courses-page-container {
+.guides-page-container {
   min-height: 100vh;
   position: relative;
 }
 
-.courses-title-position {
+.guides-title-position {
   display: flex;
   justify-content: left;
   flex-direction: column;
 }
 
-.courses-title {
+.guides-title {
   font-family: $sub-header-font;
   font-size: 42px;
   color: $black;

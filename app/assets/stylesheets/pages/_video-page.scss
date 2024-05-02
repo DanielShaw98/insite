@@ -1,21 +1,23 @@
 .video-page-container {
   min-height: 100vh;
   position: relative;
+  display: flex;
+  background-color: $black;
 }
 
 .left-section-video {
-  width: 50%;
+  flex: 1;
 }
 
 .right-section-video {
-  width: 50%;
+  flex: 1;
 }
 
 .video-page-title {
   font-family: $sub-header-font;
   font-size: 40px;
   font-weight: 700;
-  color: $black;
+  color: $white;
   margin: 0px auto 0px 60px;
 }
 
@@ -36,14 +38,25 @@
 .video-page-reviews  {
   font-family: $body-font;
   font-size: 18px;
-  color: $black;
+  color: $white;
+}
+
+.stars-white::before {
+  content: url('icons/star-rating-white.svg');
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.stars-white {
+  width: 100%;
 }
 
 .video-page-avatar img {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  border: 1px solid $black;
+  border: 2px solid $white;
+  margin-right: 20px;
 }
 
 .video-page-bottom-info {
@@ -54,7 +67,7 @@
   font-family: $sub-header-font;
   font-size: 24px;
   font-weight: 700;
-  color: $black;
+  color: $white;
   margin-bottom: 10px;
 }
 
@@ -64,135 +77,34 @@
 .video-requirements {
   font-family: $body-font;
   font-size: 18px;
-  color: $black;
+  color: $white;
 }
 
-.video-review-section {
-  margin: 0px 20px 20px 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.video-review-title-button {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 65%;
-}
-
-.leave-review-button {
+.open-reviews-button {
   cursor: pointer;
   font-family: $body-font;
   font-size: 18px;
-  color: $white;
-  background-color: $black;
-  border: 1px solid $black;
+  color: $black;
+  background-color: $white;
+  border: 2px solid $black;
   border-radius: 20px;
   padding: 10px 40px 10px 20px;
   margin-top: 40px;
-  background-image: url("icons/leave-review-pen-white.svg");
-  background-position: 115px center;
-  background-size: 16px;
+  background-image: url("icons/review-book-black.svg");
+  background-position: 68px 1px;
+  background-size: 20px;
   background-repeat: no-repeat;
   background-origin: content-box;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.25s ease;
+  margin-left: 60px;
 }
 
-.leave-review-button:hover {
+.open-reviews-button:hover {
   color: $green;
   background-color: $white;
-  background-image: url("icons/leave-review-pen-green.svg");
-  background-position: 115px center;
-  background-size: 16px;
-}
-
-.video-review-title {
-  font-family: $sub-header-font;
-  font-size: 24px;
-  font-weight: 700;
-  color: $black;
-  margin: 40px 0px 0px 60px;
-}
-
-.video-review {
-  border: 1px solid $light-gray;
-  border-radius: 20px;
-  margin-top: 20px;
-}
-
-.video-review-user-info {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.video-review-username-date {
-  display: flex;
-  flex-direction: column;
-}
-
-.video-review-avatar {
-  padding: 5px;
-}
-
-.video-review-avatar img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: 1px solid $light-gray;
-}
-
-.video-review-username,
-.video-review-rating,
-.video-review-content {
-  font-family: $body-font;
-  font-size: 18px;
-  color: $black;
-  padding: 5px;
-}
-
-.video-review-date {
-  font-family: $body-font;
-  font-size: 14px;
-  color: $dark-gray;
-  padding: 5px;
-}
-
-.video-review-content {
-  padding-bottom: 10px;
-}
-
-.video-review-rating-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.show-more-button {
-  cursor: pointer;
-  font-family: $body-font;
-  font-size: 18px;
-  color: $white;
-  background-color: $green;
-  border: 1px solid $green;
-  border-radius: 20px;
-  padding: 10px 35px 10px 20px;
-  margin-top: 20px;
-  background-image: url("icons/show-more-arrow-white.svg");
-  background-position: 115px 4px;
-  background-size: 12px;
-  background-repeat: no-repeat;
-  background-origin: content-box;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.25s ease;
-}
-
-.show-more-button:hover {
-  color: $black;
-  background-color: $white;
-  background-image: url("icons/show-more-arrow-black.svg");
-  background-position: 115px 4px;
-  background-size: 12px;
+  background-image: url("icons/review-book-green.svg");
+  background-position: 68px 1px;
+  background-size: 20px;
+  border: 2px solid $green;
 }

@@ -1,8 +1,8 @@
-.footer-container-2 {
+.footer-container {
   background-color: $black;
   color: $white;
   height: 180px;
-  border-top:  1px solid $black;
+  border-top:  1px solid $white;
   position: relative;
   display: flex;
   flex: none;
@@ -23,7 +23,7 @@
   row-gap: 20px;
 }
 
-.footer-link-2 {
+.footer-link {
   font-family: $body-font;
   font-size: 18px;
   font-weight: 500;
@@ -33,7 +33,7 @@
   height: 20px;
 }
 
-.footer-link-2:hover {
+.footer-link:hover {
   color: $green;
 }
 

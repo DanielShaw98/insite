@@ -1,4 +1,4 @@
-.modal {
+.outer-modal {
   display: none;
   position: fixed;
   z-index: 1;
@@ -10,12 +10,34 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal-content {
+.modal-content-outer {
   background-color: #fefefe;
-  margin: 15% auto;
+  margin: 131px auto;
   padding: 20px;
   border: 1px solid #888;
   width: 60%;
+  border-radius: 20px;
+}
+
+.inner-modal {
+  display: none;
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content-inner {
+  background-color: #fefefe;
+  margin: 131px auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+  border-radius: 20px;
 }
 
 .close {
@@ -30,6 +52,140 @@
   color: $black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.video-review-section {
+  margin: 0px 20px 20px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-review-title-close {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.video-review-title {
+  font-family: $sub-header-font;
+  font-size: 24px;
+  font-weight: 700;
+  color: $black;
+  margin: 0px;
+}
+
+.leave-review-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.leave-review-button {
+  cursor: pointer;
+  font-family: $body-font;
+  font-size: 18px;
+  color: $white;
+  background-color: $black;
+  border: 1px solid $black;
+  border-radius: 20px;
+  padding: 10px 40px 10px 20px;
+  margin-top: 10px;
+  background-image: url("icons/leave-review-pen-white.svg");
+  background-position: 115px center;
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease;
+}
+
+.leave-review-button:hover {
+  color: $green;
+  background-color: $white;
+  background-image: url("icons/leave-review-pen-green.svg");
+  background-position: 115px center;
+  background-size: 16px;
+}
+
+.video-review {
+  border: 1px solid $light-gray;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.video-review-user-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.video-review-username-date {
+  display: flex;
+  flex-direction: column;
+}
+
+.video-review-avatar {
+  padding: 5px;
+}
+
+.video-review-avatar img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid $light-gray;
+}
+
+.video-review-username,
+.video-review-rating,
+.video-review-content {
+  font-family: $body-font;
+  font-size: 18px;
+  color: $black;
+  padding: 5px;
+}
+
+.video-review-date {
+  font-family: $body-font;
+  font-size: 14px;
+  color: $dark-gray;
+  padding: 5px;
+}
+
+.video-review-content {
+  padding-bottom: 10px;
+}
+
+.video-review-rating-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.show-more-button {
+  cursor: pointer;
+  font-family: $body-font;
+  font-size: 18px;
+  color: $white;
+  background-color: $green;
+  border: 1px solid $green;
+  border-radius: 20px;
+  padding: 10px 35px 10px 20px;
+  margin-top: 20px;
+  background-image: url("icons/show-more-arrow-white.svg");
+  background-position: 115px 4px;
+  background-size: 12px;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease;
+}
+
+.show-more-button:hover {
+  color: $black;
+  background-color: $white;
+  background-image: url("icons/show-more-arrow-black.svg");
+  background-position: 115px 4px;
+  background-size: 12px;
 }
 
 // Review Form Styling
