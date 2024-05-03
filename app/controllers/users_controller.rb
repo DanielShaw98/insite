@@ -14,6 +14,9 @@ class UsersController < ApplicationController
   end
 
   def subscriptions
+    @subscriptions = current_user.subscriptions
+    subscribed_creator_ids = current_user.subscriptions.pluck(:creator_id)
+    @subscription_videos = Video.joins(creator: :subscriptions).where(subscriptions: { creator_id: subscribed_creator_ids }).order(created_at: :desc)
   end
 
   def pledges

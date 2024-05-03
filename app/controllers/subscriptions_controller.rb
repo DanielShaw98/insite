@@ -2,9 +2,6 @@ class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: %i[show edit update destroy]
 
   def index
-    @subscriptions = current_user.subscriptions
-    subscribed_creator_ids = current_user.subscriptions.pluck(:creator_id)
-    @subscription_videos = Video.joins(creator: :subscriptions).where(subscriptions: { creator_id: subscribed_creator_ids }).order(created_at: :desc)
   end
 
   def show
