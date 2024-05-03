@@ -15,7 +15,9 @@
 
   <body>
     <%= yield %>
-    <%= render "components/footer" %>
+    <% unless controller.controller_name == 'users' && action_name.in?(%w[purchases subscriptions reviews pledges]) %>
+      <%= render "components/footer" %>
+    <% end %>
   </body>
 
 </html>

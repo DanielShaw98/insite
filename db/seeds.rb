@@ -738,6 +738,46 @@ Purchase.create!(
 )
 
 Purchase.create!(
+  purchase_cost: 20,
+  purchase_status: 'Completed',
+  payment_details: 'Credit Card ending in 5678',
+  user_id: User.offset(8).first.id,
+  video_id: Video.second.id
+)
+
+Purchase.create!(
+  purchase_cost: 20,
+  purchase_status: 'Completed',
+  payment_details: 'Credit Card ending in 5678',
+  user_id: User.offset(8).first.id,
+  video_id: Video.offset(2).first.id
+)
+
+Purchase.create!(
+  purchase_cost: 20,
+  purchase_status: 'Completed',
+  payment_details: 'Credit Card ending in 5678',
+  user_id: User.offset(8).first.id,
+  video_id: Video.offset(3).first.id
+)
+
+Purchase.create!(
+  purchase_cost: 20,
+  purchase_status: 'Completed',
+  payment_details: 'Credit Card ending in 5678',
+  user_id: User.offset(8).first.id,
+  video_id: Video.offset(4).first.id
+)
+
+Purchase.create!(
+  purchase_cost: 20,
+  purchase_status: 'Completed',
+  payment_details: 'Credit Card ending in 5678',
+  user_id: User.offset(8).first.id,
+  video_id: Video.offset(5).first.id
+)
+
+Purchase.create!(
   purchase_cost: 25,
   purchase_status: 'Completed',
   payment_details: 'PayPal',

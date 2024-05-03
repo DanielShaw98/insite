@@ -12,6 +12,7 @@ export default class extends Controller {
   toggle(event) {
     const clickedTitle = event.target;
     const titles = this.titleTargets;
+    const userId = this.element.dataset.userId;
 
     titles.forEach(title => {
       if (title === clickedTitle) {
@@ -20,22 +21,22 @@ export default class extends Controller {
           case "user-profile-purchases":
             title.classList.remove("user-title-purchases");
             title.classList.add("purchases-focus");
-            this.fetchAndRenderPartial("<%= purchases_user_path(@user) %>", document.getElementById("partial-container"));
+            this.fetchAndRenderPartial(`/users/${userId}/purchases`, document.getElementById("partial-container"));
             break;
           case "user-profile-subscriptions":
             title.classList.remove("user-title-subscriptions");
             title.classList.add("subscriptions-focus");
-            this.fetchAndRenderPartial("/path_to_user_subscriptions_component", document.getElementById("partial-container"));
+            this.fetchAndRenderPartial(`/users/${userId}/subscriptions`, document.getElementById("partial-container"));
             break;
           case "user-profile-pledges":
             title.classList.remove("user-title-pledges");
             title.classList.add("pledges-focus");
-            this.fetchAndRenderPartial("/path_to_user_pledges_component", document.getElementById("partial-container"));
+            this.fetchAndRenderPartial(`/users/${userId}/pledges`, document.getElementById("partial-container"));
             break;
           case "user-profile-reviews":
             title.classList.remove("user-title-reviews");
             title.classList.add("reviews-focus");
-            this.fetchAndRenderPartial("/path_to_user_reviews_component", document.getElementById("partial-container"));
+            this.fetchAndRenderPartial(`/users/${userId}/reviews`, document.getElementById("partial-container"));
             break;
           default:
             break;

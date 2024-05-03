@@ -1,3 +1,30 @@
 <div id="user-purchases-container">
-  <h1>User Purchases</h1>
+  <div class="guides-container">
+    <% if current_user.purchases.any? %>
+      <div class="video-card-container-purchases">
+        <% @purchases.each do |purchase| %>
+          <div class="video-card">
+            <%= link_to video_path(purchase.video) do %>
+              <div class="video-thumbnail">
+                <%= image_tag purchase.video.thumbnail_url %>
+              </div>
+              <div class="video-info">
+                <div class="video-title"><%= purchase.video.title %></div>
+                <div class="video-creator"><%= purchase.video.creator.user.username %></div>
+                <div class="video-rating"><%= display_average_rating(purchase.video.average_rating) %>
+                  <div data-controller="rating" data-rating="<%= purchase.video.average_rating %>" class="rating">
+                    <div class="stars" data-rating-target="rating"></div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="no-purchases-position">
+        <h3 class="no-purchases-message">You currently have no guides, please checkout our <a href="../pages/discover">discover page</a></h3>
+      </div>
+    <% end %>
+  </div>
 </div>

@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   end
 
   def purchases
+    @purchases = current_user.purchases.order(created_at: :desc)
   end
 
   def subscriptions
