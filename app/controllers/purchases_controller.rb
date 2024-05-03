@@ -2,7 +2,6 @@ class PurchasesController < ApplicationController
   before_action :set_purchase, only: %i[show destroy]
 
   def index
-    @purchases = current_user.purchases
   end
 
   def show
