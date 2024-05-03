@@ -1,16 +1,24 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[show check_username_availability check_email_availability check_email_exists check_password_correct]
-  before_action :set_user, only: %i[show destroy settings]
+  before_action :set_user, only: %i[show purchases subscriptions pledges reviews destroy settings]
 
   def index
     @users = User.all
   end
 
   def show
-    @courses_watched = @user.purchases.count
-    @reviews_left = @user.reviews.count
-    @total_subscriptions = @user.subscriptions.count
-    @pledges_made = @user.pledges.count
+  end
+
+  def purchases
+  end
+
+  def subscriptions
+  end
+
+  def pledges
+  end
+
+  def reviews
   end
 
   def check_username_availability

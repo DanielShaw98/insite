@@ -55,43 +55,72 @@
   margin: 60px 80px;
 }
 
-#user-title-purchases,
-#user-title-subscriptions,
-#user-title-pledges,
-#user-title-reviews {
+#user-profile-purchases,
+#user-profile-subscriptions,
+#user-profile-pledges,
+#user-profile-reviews {
+  cursor: pointer;
   font-family: $sub-header-font;
   font-size: 32px;
   color: $white;
-  margin-bottom: 10%;
+  margin-bottom: 20px;
   text-decoration: none;
   background-repeat: no-repeat;
   background-origin: content-box;
   font-weight: 500;
 }
 
-#user-title-purchases {
+.user-title-purchases {
   background-image: url("icons/user-title-purchases-white.svg");
   background-position: -80px center;
   background-size: 60px;
   padding-left: 80px;
 }
 
-#user-title-subscriptions {
+.purchases-focus {
+  background-image: url("icons/user-title-purchases-white-focus.svg");
+  background-position: -80px center;
+  background-size: 60px;
+  padding-left: 80px;
+}
+
+.user-title-subscriptions {
   background-image: url("icons/user-title-subscriptions-white.svg");
   background-position: -90px center;
   background-size: 60px;
   padding-left: 90px;
 }
 
-#user-title-pledges {
+.subscriptions-focus {
+  background-image: url("icons/user-title-subscriptions-white-focus.svg");
+  background-position: -90px center;
+  background-size: 60px;
+  padding-left: 90px;
+}
+
+.user-title-pledges {
   background-image: url("icons/user-title-pledges-white.svg");
   background-position: -70px center;
   background-size: 40px;
   padding-left: 70px;
 }
 
-#user-title-reviews {
+.pledges-focus {
+  background-image: url("icons/user-title-pledges-white-focus.svg");
+  background-position: -70px center;
+  background-size: 40px;
+  padding-left: 70px;
+}
+
+.user-title-reviews {
   background-image: url("icons/user-title-reviews-white.svg");
+  background-position: -70px center;
+  background-size: 40px;
+  padding-left: 70px;
+}
+
+.reviews-focus {
+  background-image: url("icons/user-title-reviews-white-focus.svg");
   background-position: -70px center;
   background-size: 40px;
   padding-left: 70px;
