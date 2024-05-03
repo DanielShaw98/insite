@@ -6,10 +6,14 @@
     <h1 class="username-title"><%= @user.username %></h1>
     <h2 class="user-full-name"><%= @user.first_name%> <%= @user.last_name %></h2>
   </div>
-  <div class="user-title-toggle-container" data-controller="user-profile-toggle">
-    <div id="user-title-purchases" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Purchases</div>
-    <div id="user-title-subscriptions" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Subscriptions</div>
-    <div id="user-title-pledges" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Pledges</div>
-    <div id="user-title-reviews" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Reviews</div>
+  <div data-controller="user-profile-toggle">
+    <div class="user-title-toggle-container">
+      <div id="user-profile-purchases" class="user-title-purchases" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Purchases</div>
+      <div id="user-profile-subscriptions" class="user-title-subscriptions" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Subscriptions</div>
+      <div id="user-profile-pledges" class="user-title-pledges" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Pledges</div>
+      <div id="user-profile-reviews" class="user-title-reviews" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Reviews</div>
+    </div>
+    <div id="partial-container">
+    </div>
   </div>
 </div>

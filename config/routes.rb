@@ -28,6 +28,10 @@ Rails.application.routes.draw do
   resources :users, only: %i[index show destroy] do
     member do
       get :settings
+      get :purchases
+      get :subscriptions
+      get :pledges
+      get :reviews
     end
     resources :creators
     resources :avatars
