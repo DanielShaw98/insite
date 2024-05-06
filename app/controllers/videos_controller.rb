@@ -9,6 +9,11 @@ class VideosController < ApplicationController
   def show
     @reviews = @video.reviews.limit(3)
     @has_more = @video.reviews.count > 3
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @video }
+    end
   end
 
   def video_reviews

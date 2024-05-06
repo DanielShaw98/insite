@@ -32,6 +32,10 @@ class User < ApplicationRecord
   validates :encrypted_password, format: { with: PASSWORD_FORMAT }
   validates :encrypted_password, confirmation: true
 
+  def reviewed?(video)
+    reviews.exists?(video_id: video.id)
+  end
+
   def avatar_image_url
     avatar&.image_url
   end
