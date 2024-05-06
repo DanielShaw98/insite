@@ -14,14 +14,18 @@ class ReviewsController < ApplicationController
 
   def create
     @video = Video.find(params[:video_id])
-    @review = @video.reviews.build(review_params)
-    @review.user = current_user
-
-    if @review.save
-      redirect_to @video, notice: 'Review submitted successfully.'
+    if user_signed_in? && !current_user.reviewed?(@video)
+      @review = current_user.reviews.build(review_params)
+      @review.video = @video
+      @review.user = current_user
+      if @review.save
+        redirect_to @video, notice: 'Review was successfully created.'
+      else
+        @reviews = @video.reviews.limit(3)
+        render json: { errors: @review.errors.full_messages }, status: :unprocessable_entity
+      end
     else
-      @reviews = @video.reviews.limit(3)
-      render 'videos/show', alert: 'Failed to submit review.'
+      render json: { error: 'You have already left a review for this guide.' }, status: :unprocessable_entity
     end
   end
 
