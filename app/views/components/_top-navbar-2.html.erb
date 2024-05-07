@@ -1,18 +1,16 @@
 <div class="top-navbar-container">
-  <div class="top-navbar-title-spacer">
-    <%= link_to root_path, class: "root-link-2" do%>
-      <h1 class="top-navbar-title">insite</h1>
-    <% end %>
-  </div>
+  <%= link_to root_path, class: "root-link-2" do%>
+    <h1 class="top-navbar-title">insite</h1>
+  <% end %>
 
   <%= render 'components/search-form' %>
 
   <div class="discover-avatar-container">
-    <ul>
-      <li>
-        <%= link_to "Discover", discover_pages_path, class: "discover-button" %>
-      </li>
-    </ul>
+  <% if current_page?(root_path) %>
+    <div class="discover-button-replacement"></div>
+  <% else %>
+    <%= link_to "Discover", discover_pages_path, class: "discover-button" %>
+  <% end %>
 
     <div data-controller="avatar">
       <% if current_user.avatar.present? %>
