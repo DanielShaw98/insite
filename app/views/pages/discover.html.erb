@@ -57,8 +57,8 @@
     <% end %>
 
     <div class="video-card-container">
-      <% if @filtered_videosvideos.present? %>
-        <% @filtered_videos.each do |video| %>
+      <% if @filter_videos.present? %>
+        <% @filter_videos.each do |video| %>
           <div class="video-card">
             <%= link_to video_path(video) do %>
               <div class="video-thumbnail">
