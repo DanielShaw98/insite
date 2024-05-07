@@ -17,10 +17,6 @@
   margin: 0;
 }
 
-.menubar-title-spacer {
-  // margin-left: 60px;
-}
-
 .root-link-1 {
   text-decoration: none;
 }
@@ -28,8 +24,6 @@
 .button-container {
   display: contents;
   list-style: none;
-  // display: flex;
-  // margin-right: 42px;
 }
 
 .login-button,
@@ -52,7 +46,6 @@
   background-position: calc(100% + 20px) calc(100% - 2px);
   background-size: 12px;
   padding: 15px 45px 15px 30px;
-  // margin-right: 50px;
   border: 2px solid $green;
 }
 
@@ -63,7 +56,6 @@
   background-size: 24px;
   padding: 15px 55px 15px 30px;
   border: 2px solid $dark-gray;
-  // margin-right: 72px;
 }
 
 .login-button:hover {

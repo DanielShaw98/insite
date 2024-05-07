@@ -17,20 +17,12 @@
   margin: 0;
 }
 
-.top-navbar-title-spacer {
-  // margin-left: 60px;
-}
-
 .root-link-2 {
   text-decoration: none;
 }
 
 .discover-avatar-container {
   display: contents;
-  // display: flex;
-  // align-items: center;
-  // justify-content: space-between;
-  // margin-right: 100px;
 }
 
 .discover-button {
@@ -50,7 +42,6 @@
   background-size: 30px;
   padding: 15px 65px 15px 30px;
   border: 2px solid $green;
-  // margin-right: 142px;
 }
 
 .discover-button:hover {
@@ -64,7 +55,6 @@
 
 .discover-button-replacement {
   width: 171px;
-  // margin-right: 142px;
 }
 
 .avatar-image {
