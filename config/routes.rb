@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :pages do
     collection do
       get :discover
+      get :filter
     end
   end
 

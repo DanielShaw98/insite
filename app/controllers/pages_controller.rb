@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index search discover]
+  skip_before_action :authenticate_user!, only: %i[index search discover filter]
 
   def index
     @trending_videos = Video.where('created_at >= ?', 7.days.ago).order(views: :desc).limit(10)
@@ -8,6 +8,24 @@ class PagesController < ApplicationController
   end
 
   def discover
+  end
+
+  def filter
+    @filter_videos = Video.all
+
+    if params[:category].present?
+      @filter_videos = @filter_videos.where(category: params[:category])
+    end
+
+    sort_options = {
+      views: params[:sort_by_views].to_sym,
+      average_rating: params[:sort_by_rating].to_sym,
+      created_at: params[:sort_by_date].to_sym
+    }
+
+    @filter_videos = @filter_videos.order(sort_options)
+
+    render 'discover'
   end
 
   def show
