@@ -1,0 +1,22 @@
+<% if @filtered_videosvideos.present? %>
+  <% @filtered_videos.each do |video| %>
+    <div class="video-card">
+      <%= link_to video_path(video) do %>
+        <div class="video-thumbnail">
+          <%= image_tag video.thumbnail_url %>
+        </div>
+        <div class="video-info">
+          <div class="video-title"><%= video.title %></div>
+          <div class="video-creator"><%= video.creator.user.username %></div>
+          <div class="video-rating"><%= display_average_rating(video.average_rating) %>
+            <div data-controller="rating" data-rating="<%= video.average_rating %>" class="rating">
+              <div class="stars" data-rating-target="rating"></div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <p>No videos found.</p>
+<% end %>
