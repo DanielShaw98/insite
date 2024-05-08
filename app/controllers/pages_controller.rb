@@ -11,17 +11,28 @@ class PagesController < ApplicationController
   end
 
   def filter
-    @filter_videos = Video.all
+    @category = params[:category]
+    @sort_by = params[:sort_by]
 
-    if params[:category].present?
-      @filter_videos = @filter_videos.where(category: params[:category])
+    category_name = params[:category].downcase if params[:category].present?
+    @filter_videos = Video.includes(:category)
+
+    if category_name.present?
+      @filter_videos = @filter_videos.joins(:category).where('LOWER(categories.name) = ?', category_name)
     end
 
-    sort_options = {
-      views: params[:sort_by_views].to_sym,
-      average_rating: params[:sort_by_rating].to_sym,
-      created_at: params[:sort_by_date].to_sym
-    }
+    sort_options = {}
+
+    if params[:sort_by].present?
+      case params[:sort_by]
+      when 'views'
+        sort_options[:views] = params[:sort_direction].to_sym if params[:sort_direction].present?
+      when 'rating'
+        sort_options[:average_rating] = params[:sort_direction].to_sym if params[:sort_direction].present?
+      when 'date'
+        sort_options[:created_at] = params[:sort_direction].to_sym if params[:sort_direction].present?
+      end
+    end
 
     @filter_videos = @filter_videos.order(sort_options)
 
