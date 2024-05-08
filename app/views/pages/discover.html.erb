@@ -38,7 +38,7 @@
         <fieldset>
           <legend>Sort Direction:</legend>
           <label>
-            <%= form.select :sort_direction, [["Highest", "desc"], ["Lowest", "asc"]] %>
+            <%= form.select :sort_direction, [["Highest", "desc"], ["Lowest", "asc"]], selected: @sort_direction_selection %>
           </label>
         </fieldset>
       </div>

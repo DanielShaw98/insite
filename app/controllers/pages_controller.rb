@@ -13,6 +13,7 @@ class PagesController < ApplicationController
   def filter
     @category = params[:category]
     @sort_by = params[:sort_by]
+    @sort_direction_selection = params[:sort_direction]
 
     category_name = params[:category].downcase if params[:category].present?
     @filter_videos = Video.includes(:category)

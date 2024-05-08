@@ -16,7 +16,7 @@ export default class extends Controller {
     const avatarImage = this.avatarImageTarget;
 
     dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-    avatarImage.style.border = dropdown.style.display === 'block' ? '2px solid #00A693' : '2px solid #000';
+    avatarImage.style.border = dropdown.style.display === 'block' ? '2px solid #00A693' : '2px solid #FFF';
   }
 
   hideDropdown(event) {
@@ -25,7 +25,7 @@ export default class extends Controller {
 
     if (!dropdown.contains(event.target) && !avatarImage.contains(event.target)) {
       dropdown.style.display = 'none';
-      avatarImage.style.border = '2px solid #000';
+      avatarImage.style.border = '2px solid #FFF';
     }
   }
 }
