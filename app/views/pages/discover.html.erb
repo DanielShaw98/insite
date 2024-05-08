@@ -7,78 +7,68 @@
 <div class="discover-page-container">
   <h1>Pages#discover</h1>
 
-  <div>
+  <div data-controller="filter-form">
     <%= form_with(url: filter_pages_path, method: "get", id: "filterForm") do |form| %>
       <%= form.label :category, "Category:" %>
       <%= form.select :category, options_for_select([["All", "all"], ["Art & Photography", "art & photography"], ["Business", "business"],
       ["Crafts", "crafts"], ["Fashion", "fashion"], ["Gaming", "gaming"], ["Gardening", "gardening"], ["Health & Fitness", "health & fitness"],
-      ["Music", "music"], ["Sports", "sports"], ["Technology", "technology"]]), include_blank: true %>
+      ["Music", "music"], ["Sports", "sports"], ["Technology", "technology"]], selected: @category), include_blank: true %>
 
       <div>
         <h3>Sort By:</h3>
         <fieldset>
-          <legend>Views</legend>
+          <legend>Sort By:</legend>
           <label>
-            <%= form.radio_button :sort_by_views, "asc", checked: true %>
-            Highest
+            <%= form.radio_button :sort_by, "views", checked: @sort_by == "views", data: { action: "change->filter-form#toggleSortDirectionField" } %>
+            Views
           </label>
           <label>
-            <%= form.radio_button :sort_by_views, "desc" %>
-            Lowest
-          </label>
-        </fieldset>
-
-        <fieldset>
-          <legend>Rating</legend>
-          <label>
-            <%= form.radio_button :sort_by_rating, "asc", checked: true %>
-            Highest
+            <%= form.radio_button :sort_by, "rating", checked: @sort_by == "rating", data: { action: "change->filter-form#toggleSortDirectionField" } %>
+            Rating
           </label>
           <label>
-            <%= form.radio_button :sort_by_rating, "desc" %>
-            Lowest
+            <%= form.radio_button :sort_by, "date", checked: @sort_by == "date", data: { action: "change->filter-form#toggleSortDirectionField" } %>
+            Date
           </label>
         </fieldset>
+      </div>
 
+      <div id="sortDirectionField" data-filter-form-target="sortDirectionField">
+        <h3>Sort Direction:</h3>
         <fieldset>
-          <legend>Date</legend>
+          <legend>Sort Direction:</legend>
           <label>
-            <%= form.radio_button :sort_by_date, "asc", checked: true %>
-            Recent
-          </label>
-          <label>
-            <%= form.radio_button :sort_by_date, "desc" %>
-            Oldest
+            <%= form.select :sort_direction, [["Highest", "desc"], ["Lowest", "asc"]] %>
           </label>
         </fieldset>
       </div>
 
       <%= form.submit "Apply" %>
     <% end %>
+  </div>
 
-    <div class="video-card-container">
-      <% if @filter_videos.present? %>
-        <% @filter_videos.each do |video| %>
-          <div class="video-card">
-            <%= link_to video_path(video) do %>
-              <div class="video-thumbnail">
-                <%= image_tag video.thumbnail_url %>
-              </div>
-              <div class="video-info">
-                <div class="video-title"><%= video.title %></div>
-                <div class="video-creator"><%= video.creator.user.username %></div>
-                <div class="video-rating"><%= display_average_rating(video.average_rating) %>
-                  <div data-controller="rating" data-rating="<%= video.average_rating %>" class="rating">
-                    <div class="stars" data-rating-target="rating"></div>
-                  </div>
+  <div class="video-card-container">
+    <% if @filter_videos.present? %>
+      <% @filter_videos.each do |video| %>
+        <div class="video-card">
+          <%= link_to video_path(video) do %>
+            <div class="video-thumbnail">
+              <%= image_tag video.thumbnail_url %>
+            </div>
+            <div class="video-info">
+              <div class="video-title"><%= video.title %></div>
+              <div class="video-creator"><%= video.creator.user.username %></div>
+              <div class="video-rating"><%= display_average_rating(video.average_rating) %>
+                <div data-controller="rating" data-rating="<%= video.average_rating %>" class="rating">
+                  <div class="stars" data-rating-target="rating"></div>
                 </div>
               </div>
-            <% end %>
-          </div>
-        <% end %>
-      <% else %>
-        <p>No videos found.</p>
+            </div>
+          <% end %>
+        </div>
       <% end %>
-    </div>
+    <% else %>
+      <p>No videos found.</p>
+    <% end %>
   </div>
 </div>

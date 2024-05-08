@@ -119,6 +119,8 @@ Category.create!(name: 'Crafts')
 Category.create!(name: 'Gaming')
 Category.create!(name: 'Gardening')
 Category.create!(name: 'Fashion')
+Category.create!(name: 'Music')
+Category.create!(name: 'Sports')
 
 puts 'Categories created successfully!'
 
