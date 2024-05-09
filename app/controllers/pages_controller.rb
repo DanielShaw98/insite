@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  include Pagy::Backend
   skip_before_action :authenticate_user!, only: %i[index search discover filter]
 
   def index
@@ -8,18 +9,25 @@ class PagesController < ApplicationController
   end
 
   def discover
+    Pagy::DEFAULT[:items] = 10
+    Pagy::DEFAULT[:size]  = [1, 4, 4, 1]
+    @pagy, @filter_videos = pagy(Video.all)
   end
 
   def filter
     @category = params[:category]
     @sort_by = params[:sort_by]
-    @sort_direction_selection = params[:sort_direction]
+    @sort_direction = params[:sort_direction]
 
-    category_name = params[:category].downcase if params[:category].present?
-    @filter_videos = Video.includes(:category)
+    if @category.present? && @category.downcase == 'all'
+      @filter_videos = Video.all
+    else
+      category_name = @category.downcase if @category.present?
+      @filter_videos = Video.includes(:category)
 
-    if category_name.present?
-      @filter_videos = @filter_videos.joins(:category).where('LOWER(categories.name) = ?', category_name)
+      if category_name.present?
+        @filter_videos = @filter_videos.joins(:category).where('LOWER(categories.name) = ?', category_name)
+      end
     end
 
     sort_options = {}
@@ -35,7 +43,7 @@ class PagesController < ApplicationController
       end
     end
 
-    @filter_videos = @filter_videos.order(sort_options)
+    @pagy, @filter_videos = pagy(@filter_videos.order(sort_options))
 
     render 'discover'
   end
