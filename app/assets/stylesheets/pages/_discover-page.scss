@@ -1,9 +1,144 @@
-.discover-page-container {
+.discover-page {
+  background-color: $black;
   min-height: 100vh;
   position: relative;
 }
 
-.discover-page-container h1 {
+.discover-page-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.discover-title-filter-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.discover-title {
+  font-family: $sub-header-font;
+  font-size: 48px;
+  font-weight: 400;
+  color: $white;
+  margin: 0px;
+}
+
+.filter-form-with {
+  display: flex;
+  align-items: center;
+}
+
+.filter-form-group {
+  display: flex;
+  border: none;
+  padding: 0px;
+}
+
+.filter-form-label {
+  color: $white;
+  font-size: 16px;
+  font-family: $body-font;
+  padding: 0px 6px;
+  padding-top: 8px;
+}
+
+.filter-label-spacer,
+.filter-legend-spacer {
+  margin: 0px 10px;
+}
+
+.filter-form-legend,
+.filter-form-category {
+  color: $white;
+  font-size: 20px;
+  font-family: $sub-header-font;
+  display: contents;
+  font-weight: 500;
+}
+
+.filter-form-check-input {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
   margin: 0;
-  padding: 0;
+  font: inherit;
+  color: currentColor;
+  width: 0.75em;
+  height: 0.75em;
+  border: 0.1em solid currentColor;
+  border-color: $light-gray;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  transition: 0.1s;
+  display: inline-block;
+}
+
+.filter-form-check-input:checked {
+  background-color: $green;
+  border-color: $green;
+}
+
+.filter-form-button {
+  cursor: pointer;
+  font-family: $body-font;
+  font-size: 18px;
+  color: $black;
+  background-color: $white;
+  border: 2px solid $black;
+  border-radius: 20px;
+  padding: 10px 40px 10px 20px;
+  background-image: url("icons/filter-black.svg");
+  background-position: 60px 1px;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease;
+}
+
+.filter-form-button:hover {
+  color: $green;
+  background-color: $white;
+  background-image: url("icons/filter-green.svg");
+  background-position: 60px 1px;
+  background-size: 20px;
+  border: 2px solid $green;
+}
+
+.video-card-container-discover {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+  padding: 20px 0px;
+}
+
+.filter-no-videos {
+  font-family: $body-font;
+  font-size: 24px;
+  color: $light-gray;
+}
+
+.pagy-nav {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: $black;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.pagy-nav a {
+  font-family: $body-font;
+  color: $black;
+  background-color: $white;
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 2px solid $green;
+  border-radius: 5px;
+  margin: 0 5px;
 }
