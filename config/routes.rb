@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     member do
       get :settings
       get :purchases
-      get :subscriptions
+      get :followings
       get :pledges
       get :reviews
     end
@@ -44,8 +44,9 @@ Rails.application.routes.draw do
     end
     resources :reviews
   end
+  resources :bookmarks, only: %i[index create destroy]
+  resources :followings, only: %i[index create destroy]
   resources :categories, only: %i[index show create update destroy]
-  resources :subscriptions
   resources :purchases, only: %i[index create new show destroy]
   resources :pledges, only: %i[index create new show destroy]
 end

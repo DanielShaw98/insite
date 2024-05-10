@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_30_154210) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_10_145412) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_30_154210) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_avatars_on_user_id"
+  end
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "video_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+    t.index ["video_id"], name: "index_bookmarks_on_video_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -35,6 +44,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_30_154210) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_creators_on_user_id"
+  end
+
+  create_table "followings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "creator_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_followings_on_creator_id"
+    t.index ["user_id"], name: "index_followings_on_user_id"
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
@@ -58,7 +76,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_30_154210) do
   end
 
   create_table "purchases", force: :cascade do |t|
-    t.integer "purchase_cost"
     t.string "purchase_status"
     t.string "payment_details"
     t.bigint "user_id", null: false
@@ -92,20 +109,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_30_154210) do
     t.index ["user_id"], name: "index_socials_on_user_id"
   end
 
-  create_table "subscriptions", force: :cascade do |t|
-    t.integer "subscription_cost"
-    t.string "subscription_status"
-    t.string "payment_details"
-    t.date "start_date"
-    t.date "end_date"
-    t.bigint "user_id", null: false
-    t.bigint "creator_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["creator_id"], name: "index_subscriptions_on_creator_id"
-    t.index ["user_id"], name: "index_subscriptions_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -129,7 +132,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_30_154210) do
     t.text "audience"
     t.text "includes"
     t.string "external_video_url"
-    t.string "accessibility"
     t.integer "views"
     t.float "average_rating"
     t.string "thumbnail_url"
@@ -137,12 +139,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_30_154210) do
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "free"
+    t.decimal "price", precision: 10, scale: 2
     t.index ["category_id"], name: "index_videos_on_category_id"
     t.index ["creator_id"], name: "index_videos_on_creator_id"
   end
 
   add_foreign_key "avatars", "users"
+  add_foreign_key "bookmarks", "users"
+  add_foreign_key "bookmarks", "videos"
   add_foreign_key "creators", "users"
+  add_foreign_key "followings", "creators"
+  add_foreign_key "followings", "users"
   add_foreign_key "pledges", "creators"
   add_foreign_key "pledges", "users"
   add_foreign_key "purchases", "users"
@@ -151,8 +159,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_30_154210) do
   add_foreign_key "reviews", "videos"
   add_foreign_key "socials", "creators"
   add_foreign_key "socials", "users"
-  add_foreign_key "subscriptions", "creators"
-  add_foreign_key "subscriptions", "users"
   add_foreign_key "videos", "categories"
   add_foreign_key "videos", "creators"
 end

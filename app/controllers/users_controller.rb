@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[show check_username_availability check_email_availability check_email_exists check_password_correct]
-  before_action :set_user, only: %i[show purchases subscriptions pledges reviews destroy settings]
+  before_action :set_user, only: %i[show purchases followings pledges reviews destroy settings]
 
   def index
     @users = User.all
@@ -13,10 +13,10 @@ class UsersController < ApplicationController
     @purchases = current_user.purchases.order(created_at: :desc)
   end
 
-  def subscriptions
-    @subscriptions = current_user.subscriptions
-    subscribed_creator_ids = current_user.subscriptions.pluck(:creator_id)
-    @subscription_videos = Video.joins(creator: :subscriptions).where(subscriptions: { creator_id: subscribed_creator_ids }).order(created_at: :desc)
+  def followings
+    @followings = current_user.followings
+    followed_creator_ids = current_user.followings.pluck(:creator_id)
+    @following_videos = Video.joins(creator: :followings).where(followings: { creator_id: followed_creator_ids }).order(created_at: :desc)
   end
 
   def pledges

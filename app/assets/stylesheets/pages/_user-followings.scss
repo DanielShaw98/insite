@@ -1,11 +1,11 @@
-.subscriptions-container {
+.followings-container {
   position: relative;
   width: 90%;
   margin: 0 auto;
   margin-top: 30px;
 }
 
-.video-card-container-subscriptions {
+.video-card-container-followings {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
@@ -14,29 +14,29 @@
   gap: 20px;
 }
 
-.subscription-row {
+.following-row {
   display: flex;
   align-items: flex-start;
 }
 
-.no-subscriptions-position {
+.no-followings-position {
   margin-top: 120px;
 }
 
-.no-subscriptions-message {
+.no-followings-message {
   font-family: $body-font;
   font-size: 24px;
   color: $light-gray;
 }
 
-.no-subscriptions-message a {
+.no-followings-message a {
   color: $green-75;
   text-decoration: none;
   transition: all 0.25s ease;
   line-height: 24px;
 }
 
-.no-subscriptions-message a:hover {
+.no-followings-message a:hover {
   font-size: 26px;
   line-height: 24px;
 }

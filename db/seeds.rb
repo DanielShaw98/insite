@@ -19,8 +19,9 @@ Category.destroy_all
 Review.destroy_all
 Social.destroy_all
 Pledge.destroy_all
-Subscription.destroy_all
+Following.destroy_all
 Purchase.destroy_all
+Bookmark.destroy_all
 
 puts 'Existing data deleted successfully!'
 
@@ -108,6 +109,38 @@ User.create!(
   password: 'password'
 )
 
+User.create!(
+  username: 'user_dennis',
+  email: 'dennis@example.com',
+  first_name: 'Dennis',
+  last_name: 'Smith',
+  password: 'password'
+)
+
+User.create!(
+  username: 'user_denise',
+  email: 'denise@example.com',
+  first_name: 'Denise',
+  last_name: 'Smith',
+  password: 'password'
+)
+
+User.create!(
+  username: 'user_chris',
+  email: 'chris@example.com',
+  first_name: 'Chris',
+  last_name: 'Smith',
+  password: 'password'
+)
+
+User.create!(
+  username: 'user_cat',
+  email: 'cat@example.com',
+  first_name: 'Cat',
+  last_name: 'Smith',
+  password: 'password'
+)
+
 puts 'Users created successfully!'
 
 # Seed data for categories
@@ -185,7 +218,8 @@ Video.create!(
   includes: 'Video lectures, exercises, and quizzes.',
   external_video_url: 'https://www.youtube.com/watch?v=Ke90Tje7VS0',
   thumbnail_url: 'https://img.youtube.com/vi/Ke90Tje7VS0/mqdefault.jpg',
-  accessibility: 'purchase',
+  free: false,
+  price: 9.99,
   views: 1000,
   average_rating: 4.5,
   creator_id: Creator.first.id,
@@ -201,7 +235,8 @@ Video.create!(
   includes: 'Step-by-step video tutorials and exercises.',
   external_video_url: 'https://www.youtube.com/watch?v=LDB4uaJ87e0',
   thumbnail_url: 'https://i3.ytimg.com/vi/LDB4uaJ87e0/maxresdefault.jpg',
-  accessibility: 'purchase',
+  free: false,
+  price: 9.99,
   views: 900,
   average_rating: 4.8,
   creator_id: Creator.first.id,
@@ -217,7 +252,8 @@ Video.create!(
   includes: 'In-depth video tutorials and coding exercises.',
   external_video_url: 'https://www.youtube.com/watch?v=MSq_DCRxOxw',
   thumbnail_url: 'https://i3.ytimg.com/vi/MSq_DCRxOxw/maxresdefault.jpg',
-  accessibility: 'purchase',
+  free: false,
+  price: 7.99,
   views: 800,
   average_rating: 4.3,
   creator_id: Creator.first.id,
@@ -233,7 +269,8 @@ Video.create!(
   includes: 'Comprehensive video walkthroughs and project files.',
   external_video_url: 'https://www.youtube.com/watch?v=b9eMGE7QtTk',
   thumbnail_url: 'https://i3.ytimg.com/vi/b9eMGE7QtTk/maxresdefault.jpg',
-  accessibility: 'purchase',
+  free: false,
+  price: 7.99,
   views: 850,
   average_rating: 4.7,
   creator_id: Creator.first.id,
@@ -249,7 +286,8 @@ Video.create!(
   includes: 'Expert-led video tutorials and performance profiling tools.',
   external_video_url: 'https://www.youtube.com/watch?v=CaShN6mCJB0',
   thumbnail_url: 'https://i3.ytimg.com/vi/CaShN6mCJB0/maxresdefault.jpg',
-  accessibility: 'purchase',
+  free: false,
+  price: 6.99,
   views: 700,
   average_rating: 4.9,
   creator_id: Creator.first.id,
@@ -265,7 +303,8 @@ Video.create!(
   includes: 'Comprehensive video lectures, case studies, and actionable tips.',
   external_video_url: 'https://www.youtube.com/watch?v=UEngvxZ11sw',
   thumbnail_url: 'https://img.youtube.com/vi/UEngvxZ11sw/mqdefault.jpg',
-  accessibility: 'subscription',
+  free: true,
+  price: 0,
   views: 500,
   average_rating: 4,
   creator_id: Creator.second.id,
@@ -281,7 +320,8 @@ Video.create!(
   includes: 'Step-by-step instructions, modifications for beginners and advanced users.',
   external_video_url: 'https://www.youtube.com/watch?v=8ef7FhmMcLU',
   thumbnail_url: 'https://img.youtube.com/vi/8ef7FhmMcLU/mqdefault.jpg',
-  accessibility: 'subscription',
+  free: true,
+  price: 0,
   views: 800,
   average_rating: 4.8,
   creator_id: Creator.offset(2).first.id,
@@ -297,7 +337,8 @@ Video.create!(
   includes: 'Comprehensive video tutorials, practical assignments, and feedback from professional photographers.',
   external_video_url: 'https://www.youtube.com/watch?v=KDml1ISUD_o',
   thumbnail_url: 'https://img.youtube.com/vi/KDml1ISUD_o/mqdefault.jpg',
-  accessibility: 'subscription',
+  free: true,
+  price: 0,
   views: 900,
   average_rating: 4.6,
   creator_id: Creator.offset(3).first.id,
@@ -313,7 +354,8 @@ Video.create!(
   includes: 'Step-by-step tutorials, practice exercises, and project ideas for beginners.',
   external_video_url: 'https://www.youtube.com/watch?v=GEoINJcJVSE',
   thumbnail_url: 'https://img.youtube.com/vi/GEoINJcJVSE/mqdefault.jpg',
-  accessibility: 'purchase',
+  free: false,
+  price: 10.99,
   views: 750,
   average_rating: 4.2,
   creator_id: Creator.offset(4).first.id,
@@ -329,7 +371,8 @@ Video.create!(
   includes: 'Step-by-step tutorials, practical exercises, and insights from industry professionals.',
   external_video_url: 'https://www.youtube.com/watch?v=7C92ZCnlmQo',
   thumbnail_url: 'https://img.youtube.com/vi/7C92ZCnlmQo/mqdefault.jpg',
-  accessibility: 'subscription',
+  free: true,
+  price: 0,
   views: 600,
   average_rating: 3.9,
   creator_id: Creator.offset(5).first.id,
@@ -345,7 +388,8 @@ Video.create!(
   includes: 'Practical demonstrations, troubleshooting guides, and recommendations for popular houseplants.',
   external_video_url: 'https://www.youtube.com/watch?v=16TPT4IaRhc',
   thumbnail_url: 'https://img.youtube.com/vi/16TPT4IaRhc/mqdefault.jpg',
-  accessibility: 'subscription',
+  free: true,
+  price: 0,
   views: 1100,
   average_rating: 4.4,
   creator_id: Creator.offset(6).first.id,
@@ -361,7 +405,8 @@ Video.create!(
   includes: 'Fashion lookbooks, trend analysis, and expert advice from top stylists and influencers.',
   external_video_url: 'https://www.youtube.com/watch?v=NUF7TtBUQzM',
   thumbnail_url: 'https://img.youtube.com/vi/NUF7TtBUQzM/mqdefault.jpg',
-  accessibility: 'subscription',
+  free: true,
+  price: 0,
   views: 1350,
   average_rating: 4.7,
   creator_id: Creator.offset(7).first.id,
@@ -443,33 +488,32 @@ Review.create!(
 Review.create!(
   content: 'This course is excellent! I found it very informative and helpful. It provided valuable insights and knowledge that I can apply.',
   rating: 5,
-  user_id: User.offset(8).first.id,
+  user_id: User.offset(10).first.id,
   video_id: Video.first.id
 )
 
 Review.create!(
   content: 'I thoroughly enjoyed this course! The material was well-organized and presented in a way that was easy to follow. The instructors explanations were clear, and the hands-on exercises were very helpful. I feel much more confident in my skills after completing this course. Highly recommended!',
   rating: 4,
-  user_id: User.offset(9).first.id,
+  user_id: User.offset(11).first.id,
   video_id: Video.first.id
 )
 
 Review.create!(
   content: 'This course is excellent! I found it very informative and helpful. It provided valuable insights and knowledge that I can apply.',
   rating: 5,
-  user_id: User.offset(8).first.id,
+  user_id: User.offset(12).first.id,
   video_id: Video.first.id
 )
 
 Review.create!(
   content: 'I thoroughly enjoyed this course! The material was well-organized and presented in a way that was easy to follow. The instructors explanations were clear, and the hands-on exercises were very helpful. I feel much more confident in my skills after completing this course. Highly recommended!',
   rating: 4,
-  user_id: User.offset(9).first.id,
+  user_id: User.offset(13).first.id,
   video_id: Video.first.id
 )
 
 # Remaining reviews
-
 Review.create!(
   content: 'I highly recommend this course, especially for beginners. It offers valuable insights and practical knowledge, making it a great starting point for those new to the subject.',
   rating: 4,
@@ -480,28 +524,28 @@ Review.create!(
 Review.create!(
   content: 'This health and fitness video exceeded my expectations! The workouts were challenging yet enjoyable, and I appreciated the clear instructions and modifications provided. The content was informative and motivating, making it easy to stay engaged throughout the session. Highly recommend for anyone looking to kickstart their fitness journey!',
   rating: 5,
-  user_id: User.offset(8).first.id,
+  user_id: User.offset(10).first.id,
   video_id: Video.offset(2).first.id
 )
 
 Review.create!(
   content: 'I found this photography video incredibly helpful! The tips and techniques shared were practical and easy to follow, even for beginners like myself. The instructor provided insightful guidance on composition, lighting, and editing, which significantly improved my photography skills.',
   rating: 4,
-  user_id: User.offset(9).first.id,
+  user_id: User.offset(11).first.id,
   video_id: Video.offset(3).first.id
 )
 
 Review.create!(
   content: 'This knitting video is a treasure trove of knowledge! As someone new to knitting, I was amazed by the clarity and simplicity of the instructions. The instructors teaching style is engaging and easy to understand, making even complex techniques feel achievable. I appreciated the variety of projects covered, from basic stitches to advanced patterns, catering to knitters of all skill levels. ',
   rating: 5,
-  user_id: User.offset(8).first.id,
+  user_id: User.offset(12).first.id,
   video_id: Video.offset(4).first.id
 )
 
 Review.create!(
   content: 'This game design video is a game-changer! Whether youre a seasoned developer or a novice enthusiast, this comprehensive guide covers everything you need to know about game design. From conceptualizing game mechanics to creating captivating narratives, the content is both informative and inspiring.',
   rating: 4,
-  user_id: User.offset(9).first.id,
+  user_id: User.offset(13).first.id,
   video_id: Video.offset(5).first.id
 )
 
@@ -606,28 +650,28 @@ Pledge.create!(
 Pledge.create!(
   content: 'Im excited to suggest a dynamic CrossFit exercise tutorial as the next video! With CrossFit gaining popularity and being an effective full-body workout, I pledge my interest in learning more about various CrossFit exercises, techniques, and training routines.',
   votes: 25,
-  user_id: User.offset(8).first.id,
+  user_id: User.offset(10).first.id,
   creator_id: Creator.offset(2).first.id
 )
 
 Pledge.create!(
   content: 'Id love to see a captivating video exploring advanced photography techniques and creative composition ideas! As an aspiring photographer, Im eager to enhance my skills and unleash my creativity behind the lens. A tutorial on advanced techniques like long exposure, creative lighting setups, or composition principles would be incredibly valuable.',
   votes: 15,
-  user_id: User.offset(9).first.id,
+  user_id: User.offset(11).first.id,
   creator_id: Creator.offset(3).first.id
 )
 
 Pledge.create!(
   content: 'Im really interested in expanding my crocheting skills and would love to see a video tutorial on creating intricate crochet patterns or advanced stitching techniques. It would be amazing to learn how to crochet complex designs like lacework or amigurumi animals.',
   votes: 28,
-  user_id: User.offset(8).first.id,
+  user_id: User.offset(12).first.id,
   creator_id: Creator.offset(4).first.id
 )
 
 Pledge.create!(
   content: 'Im passionate about game development and eager to dive into the world of creating my own games. It would be fantastic to have a video tutorial on game design principles, covering topics like level design, character development, and gameplay mechanics.',
   votes: 17,
-  user_id: User.offset(9).first.id,
+  user_id: User.offset(13).first.id,
   creator_id: Creator.offset(5).first.id
 )
 
@@ -647,92 +691,51 @@ Pledge.create!(
 
 puts 'Pledges created successfully!'
 
-# Seed data for subscriptions
-Subscription.create!(
-  subscription_cost: 10,
-  subscription_status: 'Active',
-  payment_details: 'Credit Card ending in 1234',
-  start_date: Date.today,
-  end_date: Date.today + 1.year,
+# Seed data for followings
+Following.create!(
   user_id: User.offset(8).first.id,
   creator_id: Creator.first.id
 )
 
-Subscription.create!(
-  subscription_cost: 15,
-  subscription_status: 'Active',
-  payment_details: 'PayPal',
-  start_date: Date.today,
-  end_date: Date.today + 1.year,
+Following.create!(
   user_id: User.offset(9).first.id,
   creator_id: Creator.second.id
 )
 
-Subscription.create!(
-  subscription_cost: 8,
-  subscription_status: 'Active',
-  payment_details: 'Credit Card ending in 1234',
-  start_date: Date.today,
-  end_date: Date.today + 1.year,
+Following.create!(
   user_id: User.offset(8).first.id,
   creator_id: Creator.offset(2).first.id
 )
 
-Subscription.create!(
-  subscription_cost: 6,
-  subscription_status: 'Active',
-  payment_details: 'PayPal',
-  start_date: Date.today,
-  end_date: Date.today + 1.year,
+Following.create!(
   user_id: User.offset(9).first.id,
   creator_id: Creator.offset(3).first.id
 )
 
-Subscription.create!(
-  subscription_cost: 9,
-  subscription_status: 'Active',
-  payment_details: 'Credit Card ending in 1234',
-  start_date: Date.today,
-  end_date: Date.today + 1.year,
-  user_id: User.offset(8).first.id,
+Following.create!(
+  user_id: User.offset(9).first.id,
   creator_id: Creator.offset(4).first.id
 )
 
-Subscription.create!(
-  subscription_cost: 11,
-  subscription_status: 'Active',
-  payment_details: 'PayPal',
-  start_date: Date.today,
-  end_date: Date.today + 1.year,
+Following.create!(
   user_id: User.offset(9).first.id,
   creator_id: Creator.offset(5).first.id
 )
 
-Subscription.create!(
-  subscription_cost: 7,
-  subscription_status: 'Active',
-  payment_details: 'Credit Card ending in 1234',
-  start_date: Date.today,
-  end_date: Date.today + 1.year,
+Following.create!(
   user_id: User.offset(8).first.id,
   creator_id: Creator.offset(6).first.id
 )
 
-Subscription.create!(
-  subscription_cost: 12,
-  subscription_status: 'Active',
-  payment_details: 'PayPal',
-  start_date: Date.today,
-  end_date: Date.today + 1.year,
+Following.create!(
   user_id: User.offset(9).first.id,
   creator_id: Creator.offset(7).first.id
 )
 
-puts 'Subscriptions created successfully!'
+puts 'Followings created successfully!'
 
 # Seed data for purchases
 Purchase.create!(
-  purchase_cost: 20,
   purchase_status: 'Completed',
   payment_details: 'Credit Card ending in 5678',
   user_id: User.offset(8).first.id,
@@ -740,7 +743,6 @@ Purchase.create!(
 )
 
 Purchase.create!(
-  purchase_cost: 20,
   purchase_status: 'Completed',
   payment_details: 'Credit Card ending in 5678',
   user_id: User.offset(8).first.id,
@@ -748,7 +750,6 @@ Purchase.create!(
 )
 
 Purchase.create!(
-  purchase_cost: 20,
   purchase_status: 'Completed',
   payment_details: 'Credit Card ending in 5678',
   user_id: User.offset(8).first.id,
@@ -756,7 +757,6 @@ Purchase.create!(
 )
 
 Purchase.create!(
-  purchase_cost: 20,
   purchase_status: 'Completed',
   payment_details: 'Credit Card ending in 5678',
   user_id: User.offset(8).first.id,
@@ -764,7 +764,6 @@ Purchase.create!(
 )
 
 Purchase.create!(
-  purchase_cost: 20,
   purchase_status: 'Completed',
   payment_details: 'Credit Card ending in 5678',
   user_id: User.offset(8).first.id,
@@ -772,19 +771,74 @@ Purchase.create!(
 )
 
 Purchase.create!(
-  purchase_cost: 20,
   purchase_status: 'Completed',
-  payment_details: 'Credit Card ending in 5678',
+  payment_details: 'PayPal',
+  user_id: User.offset(9).first.id,
+  video_id: Video.offset(8).first.id
+)
+
+puts 'Purchases created successfully!'
+
+# Seed data for bookmarks
+
+Bookmark.create!(
+  user_id: User.offset(9).first.id,
+  video_id: Video.first.id
+)
+
+Bookmark.create!(
+  user_id: User.offset(10).first.id,
+  video_id: Video.second.id
+)
+
+Bookmark.create!(
+  user_id: User.offset(11).first.id,
+  video_id: Video.offset(2).first.id
+)
+
+Bookmark.create!(
+  user_id: User.offset(12).first.id,
+  video_id: Video.offset(3).first.id
+)
+
+Bookmark.create!(
+  user_id: User.offset(13).first.id,
+  video_id: Video.offset(4).first.id
+)
+
+Bookmark.create!(
   user_id: User.offset(8).first.id,
   video_id: Video.offset(5).first.id
 )
 
-Purchase.create!(
-  purchase_cost: 25,
-  purchase_status: 'Completed',
-  payment_details: 'PayPal',
-  user_id: User.offset(9).first.id,
-  video_id: Video.offset(4).first.id
+Bookmark.create!(
+  user_id: User.offset(8).first.id,
+  video_id: Video.offset(6).first.id
 )
 
-puts 'Purchases created successfully!'
+Bookmark.create!(
+  user_id: User.offset(8).first.id,
+  video_id: Video.offset(7).first.id
+)
+
+Bookmark.create!(
+  user_id: User.offset(8).first.id,
+  video_id: Video.offset(8).first.id
+)
+
+Bookmark.create!(
+  user_id: User.offset(9).first.id,
+  video_id: Video.offset(9).first.id
+)
+
+Bookmark.create!(
+  user_id: User.offset(8).first.id,
+  video_id: Video.offset(10).first.id
+)
+
+Bookmark.create!(
+  user_id: User.offset(9).first.id,
+  video_id: Video.offset(11).first.id
+)
+
+puts 'Bookmarks created successfully!'
