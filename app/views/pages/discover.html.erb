@@ -6,57 +6,35 @@
 
 <div class="discover-page">
   <div class="discover-page-container">
-    <div class="discover-title-filter-container">
+    <div class="discover-title-container">
       <h1 class="discover-title">Discover</h1>
+    </div>
 
-      <div data-controller="filter-form">
-        <%= form_with(url: filter_pages_path, method: "get", id: "filterForm", class: "filter-form-with") do |form| %>
+    <div data-controller="filter-form">
+      <%= form_with(url: filter_pages_path, method: "get", id: "filterForm", class: "filter-form-with") do |form| %>
+        <div class="filter-label-spacer">
+          <%= form.label :category, "Category", class: "filter-form-label" %>
+        </div>
+        <%= form.select :category, options_for_select([["All", "all"], ["Art & Photography", "art & photography"], ["Business", "business"],
+        ["Crafts", "crafts"], ["Fashion", "fashion"], ["Gaming", "gaming"], ["Gardening", "gardening"], ["Health & Fitness", "health & fitness"],
+        ["Music", "music"], ["Sports", "sports"], ["Technology", "technology"]], selected: @category), class: "filter-form-select" %>
+
+        <div class="filter-form-group">
           <div class="filter-label-spacer">
-            <%= form.label :category, "Category", class: "filter-form-category" %>
+            <%= form.label :sort_by, "Sort By", class: "filter-form-label" %>
           </div>
-          <%= form.select :category, options_for_select([["All", "all"], ["Art & Photography", "art & photography"], ["Business", "business"],
-          ["Crafts", "crafts"], ["Fashion", "fashion"], ["Gaming", "gaming"], ["Gardening", "gardening"], ["Health & Fitness", "health & fitness"],
-          ["Music", "music"], ["Sports", "sports"], ["Technology", "technology"]], selected: @category), class: "filter-form-select" %>
+          <%= form.select :sort_by, options_for_select([["Views", "views"], ["Rating", "rating"], ["Date", "date"]], selected: @sort_by), class: "filter-form-select", data: { action: "change->filter-form#toggleSortDirectionField" } %>
+        </div>
 
-          <div>
-            <fieldset class="filter-form-group">
-              <div class="filter-legend-spacer">
-                <h6 class="filter-form-legend">Sort By:</h6>
-              </div>
-              <label class="filter-form-label">
-                <%= form.radio_button :sort_by, "views", checked: @sort_by == "views", class: "filter-form-check-input", data: { action: "change->filter-form#toggleSortDirectionField" } %>
-                Views
-              </label>
-              <label class="filter-form-label">
-                <%= form.radio_button :sort_by, "rating", checked: @sort_by == "rating", class: "filter-form-check-input", data: { action: "change->filter-form#toggleSortDirectionField" } %>
-                Rating
-              </label>
-              <label class="filter-form-label">
-                <%= form.radio_button :sort_by, "date", checked: @sort_by == "date", class: "filter-form-check-input", data: { action: "change->filter-form#toggleSortDirectionField" } %>
-                Date
-              </label>
-            </fieldset>
+        <div id="sortDirectionField" data-filter-form-target="sortDirectionField" class="filter-form-group">
+          <div class="filter-label-spacer">
+            <%= form.label :sort_direction, "Sort Direction", class: "filter-form-label" %>
           </div>
+            <%= form.select :sort_direction, options_for_select([["Highest", "desc"], ["Lowest", "asc"]], selected: @sort_direction), class: "filter-form-select" %>
+        </div>
 
-          <div id="sortDirectionField" data-filter-form-target="sortDirectionField">
-            <fieldset class="filter-form-group">
-              <div class="filter-legend-spacer">
-                <h6 class="filter-form-legend">Sort Direction:</h6>
-              </div>
-              <label class="filter-form-label">
-                <%= form.radio_button :sort_direction, "desc", checked: @sort_direction == "desc", class: "filter-form-check-input" %>
-                Highest
-              </label>
-              <label class="filter-form-label">
-                <%= form.radio_button :sort_direction, "asc", checked: @sort_direction == "asc", class: "filter-form-check-input" %>
-                Lowest
-              </label>
-            </fieldset>
-          </div>
-
-          <%= form.submit "Filter", class: "filter-form-button" %>
-        <% end %>
-      </div>
+        <%= form.submit "Filter", class: "filter-form-button" %>
+      <% end %>
     </div>
 
     <div class="video-card-container-discover">
