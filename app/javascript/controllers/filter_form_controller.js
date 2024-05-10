@@ -5,59 +5,34 @@ export default class extends Controller {
 
   connect() {
     this.toggleSortDirectionField();
-    this.lastClickedRadioButton = null;
-    this.lastClickedSortByRadioButton = null;
-    this.setupRadioButtons();
-  }
-
-  setupRadioButtons() {
-    const sortByRadioButtons = this.element.querySelectorAll("[name='sort_by']");
-    const sortDirectionRadioButtons = this.element.querySelectorAll("[name='sort_direction']");
-
-    sortByRadioButtons.forEach(sortByRadioButton => {
-      sortByRadioButton.addEventListener('click', () => {
-        if (sortByRadioButton === this.lastClickedSortByRadioButton) {
-          this.lastClickedSortByRadioButton.checked = false;
-          this.lastClickedSortByRadioButton = null;
-        } else {
-          this.lastClickedSortByRadioButton = sortByRadioButton;
-        }
-      });
-    });
-
-    sortDirectionRadioButtons.forEach(sortDirectionRadioButton => {
-      sortDirectionRadioButton.addEventListener('click', () => {
-        if (sortDirectionRadioButton === this.lastClickedSortDirectionRadioButton) {
-          this.lastClickedSortDirectionRadioButton.checked = false;
-          this.lastClickedSortDirectionRadioButton = null;
-        } else {
-          this.lastClickedSortDirectionRadioButton = sortDirectionRadioButton;
-        }
-      });
-    });
   }
 
   toggleSortDirectionField() {
-    const checkedRadioButton = this.element.querySelector("[name='sort_by']:checked");
-    if (!checkedRadioButton) return;
+    const sortBySelect = this.element.querySelector("[name='sort_by']");
+    const sortDirectionSelect = this.sortDirectionFieldTarget.querySelector('select');
 
-    const sortBy = checkedRadioButton.value;
-    const sortDirectionLabels = this.sortDirectionFieldTarget.querySelectorAll('label');
+    sortBySelect.addEventListener('change', () => {
+      const sortBy = sortBySelect.value;
 
-    if (sortBy === "date") {
-      sortDirectionLabels[0].innerHTML = `
-        <input type="radio" name="sort_direction" value="desc" class="filter-form-check-input" ${this.element.querySelector("[name='sort_direction']:checked") == 'desc' ? 'checked' : ''}> Newest
-      `;
-      sortDirectionLabels[1].innerHTML = `
-        <input type="radio" name="sort_direction" value="asc" class="filter-form-check-input" ${this.element.querySelector("[name='sort_direction']:checked") == 'asc' ? 'checked' : ''}> Oldest
-      `;
-    } else {
-      sortDirectionLabels[0].innerHTML = `
-        <input type="radio" name="sort_direction" value="desc" class="filter-form-check-input" ${this.element.querySelector("[name='sort_direction']:checked") == 'desc' ? 'checked' : ''}> Highest
-      `;
-      sortDirectionLabels[1].innerHTML = `
-        <input type="radio" name="sort_direction" value="asc" class="filter-form-check-input" ${this.element.querySelector("[name='sort_direction']:checked") == 'asc' ? 'checked' : ''}> Lowest
-      `;
-    }
+      // Clear existing options
+      sortDirectionSelect.innerHTML = '';
+
+      if (sortBy === "date") {
+        // Add options for date sorting
+        sortDirectionSelect.innerHTML += `
+          <option value="desc">Newest</option>
+          <option value="asc">Oldest</option>
+        `;
+      } else {
+        // Add options for other sorting types
+        sortDirectionSelect.innerHTML += `
+          <option value="desc">Highest</option>
+          <option value="asc">Lowest</option>
+        `;
+      }
+    });
+
+    // Trigger the change event initially to set initial options
+    sortBySelect.dispatchEvent(new Event('change'));
   }
 }
