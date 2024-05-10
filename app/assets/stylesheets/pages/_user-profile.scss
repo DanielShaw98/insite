@@ -74,7 +74,7 @@
 }
 
 #user-profile-purchases,
-#user-profile-subscriptions,
+#user-profile-followings,
 #user-profile-pledges,
 #user-profile-reviews {
   cursor: pointer;
@@ -102,15 +102,15 @@
   padding-left: 80px;
 }
 
-.user-title-subscriptions {
-  background-image: url("icons/user-title-subscriptions-white.svg");
+.user-title-followings {
+  background-image: url("icons/user-title-followings-white.svg");
   background-position: -90px center;
   background-size: 60px;
   padding-left: 90px;
 }
 
-.subscriptions-focus {
-  background-image: url("icons/user-title-subscriptions-white-focus.svg");
+.followings-focus {
+  background-image: url("icons/user-title-followings-white-focus.svg");
   background-position: -90px center;
   background-size: 60px;
   padding-left: 90px;

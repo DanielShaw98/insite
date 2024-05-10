@@ -7,8 +7,16 @@
         <span class="close" data-action="click->review-modal#toggleOuterModal">&times;</span>
       </div>
       <div class="leave-review-button-container">
-        <% if user_signed_in? && (current_user.purchases.where(video_id: @video.id).exists? || current_user.subscriptions.where(creator_id: @video.creator_id).exists?) %>
-          <button class="leave-review-button" data-action="click->review-modal#toggleInnerModal">Leave Review</button>
+        <% if user_signed_in? %>
+          <% if @video.free? %>
+            <% if current_user.followings.where(creator_id: @video.creator_id).exists? %>
+              <button class="leave-review-button" data-action="click->review-modal#toggleInnerModal">Leave Review</button>
+            <% end %>
+          <% else %>
+            <% if current_user.purchases.where(video_id: @video.id).exists? %>
+              <button class="leave-review-button" data-action="click->review-modal#toggleInnerModal">Leave Review</button>
+            <% end %>
+          <% end %>
         <% end %>
       </div>
 

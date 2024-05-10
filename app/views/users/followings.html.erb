@@ -1,23 +1,23 @@
-<div id="user-subscriptions-container">
-  <div class="subscriptions-container">
-    <% if current_user.subscriptions.any? %>
-      <% @subscriptions.each do |subscription| %>
-        <div class="subscription-row">
+<div id="user-followings-container">
+  <div class="followings-container">
+    <% if current_user.followings.any? %>
+      <% @followings.each do |following| %>
+        <div class="following-row">
           <div class="creator-card-container">
             <div class="creator-card">
-              <%= link_to user_path(subscription.creator.user) do %>
+              <%= link_to user_path(following.creator.user) do %>
                 <div class="creator-avatar">
-                  <%= image_tag subscription.creator.user.avatar_image_url %>
+                  <%= image_tag following.creator.user.avatar_image_url %>
                 </div>
                 <div class="creator-card-info">
-                  <div class="creator-username"><%= subscription.creator.user.username %></div>
-                  <div class="creator-specialisation"><%= subscription.creator.specialisation %></div>
+                  <div class="creator-username"><%= following.creator.user.username %></div>
+                  <div class="creator-specialisation"><%= following.creator.specialisation %></div>
                 </div>
               <% end %>
             </div>
           </div>
-          <div class="video-card-container-subscriptions">
-            <% subscription.creator.videos.each do |video| %>
+          <div class="video-card-container-followings">
+            <% following.creator.videos.each do |video| %>
               <div class="video-card">
                 <%= link_to video_path(video) do %>
                   <div class="video-thumbnail">
@@ -39,8 +39,8 @@
         </div>
       <% end %>
     <% else %>
-      <div class="no-subscriptions-position">
-        <h3 class="no-subscriptions-message">You are currently not subscribed to any creators, please checkout our <a href="../pages/discover">discover page</a></h3>
+      <div class="no-followings-position">
+        <h3 class="no-followings-message">You are currently not subscribed to any creators, please checkout our <a href="../pages/discover">discover page</a></h3>
       </div>
     <% end %>
   </div>

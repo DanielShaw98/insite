@@ -52,7 +52,10 @@ class VideosController < ApplicationController
   private
 
   def video_params
-    params.require(:video).permit(:title, :description, :requirements, :learning, :audience, :includes, :external_video_url, :thumbnail_url, :accessibility)
+    if params[:video][:free] == 'true'
+      params[:video][:price] = 0
+    end
+    params.require(:video).permit(:title, :description, :requirements, :learning, :audience, :includes, :external_video_url, :thumbnail_url, :free, :price)
   end
 
   def set_video

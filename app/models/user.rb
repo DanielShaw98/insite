@@ -12,7 +12,8 @@ class User < ApplicationRecord
   has_many :purchases, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :socials, dependent: :destroy
-  has_many :subscriptions, dependent: :destroy
+  has_many :followings, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   after_create :generate_placeholder_avatar
 
