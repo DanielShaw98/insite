@@ -1,0 +1,30 @@
+<div id="user-bookmarks-container">
+    <div class="bookmarks-container">
+    <% if current_user.bookmarks.any? %>
+      <div class="video-card-container-bookmarks">
+        <% @bookmarks.each do |bookmark| %>
+          <div class="video-card">
+            <%= link_to video_path(bookmark.video) do %>
+              <div class="video-thumbnail">
+                <%= image_tag bookmark.video.thumbnail_url %>
+              </div>
+              <div class="video-info">
+                <div class="video-title"><%= bookmark.video.title %></div>
+                <div class="video-creator"><%= bookmark.video.creator.user.username %></div>
+                <div class="video-rating"><%= display_average_rating(bookmark.video.average_rating) %>
+                  <div data-controller="rating" data-rating="<%= bookmark.video.average_rating %>" class="rating">
+                    <div class="stars" data-rating-target="rating"></div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="no-bookmarks-position">
+        <h3 class="no-bookmarks-message">You currently have no bookmarks, please checkout our <a href="../pages/discover">discover page</a></h3>
+      </div>
+    <% end %>
+  </div>
+</div>

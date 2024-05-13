@@ -41,24 +41,18 @@ export default class extends Controller {
             title.classList.add("followings-focus");
             this.fetchAndRenderPartial(`/users/${userId}/followings`, document.getElementById("partial-container"));
             break;
-          case "user-profile-pledges":
+          case "user-profile-bookmarks":
             localStorage.setItem("selectedTab", id);
-            title.classList.remove("user-title-pledges");
-            title.classList.add("pledges-focus");
-            this.fetchAndRenderPartial(`/users/${userId}/pledges`, document.getElementById("partial-container"));
-            break;
-          case "user-profile-reviews":
-            localStorage.setItem("selectedTab", id);
-            title.classList.remove("user-title-reviews");
-            title.classList.add("reviews-focus");
-            this.fetchAndRenderPartial(`/users/${userId}/reviews`, document.getElementById("partial-container"));
+            title.classList.remove("user-title-bookmarks");
+            title.classList.add("bookmarks-focus");
+            this.fetchAndRenderPartial(`/users/${userId}/bookmarks`, document.getElementById("partial-container"));
             break;
           default:
             break;
         }
         titles.forEach(otherTitle => {
           if (otherTitle !== clickedTitle) {
-            otherTitle.classList.remove("purchases-focus", "followings-focus", "pledges-focus", "reviews-focus");
+            otherTitle.classList.remove("purchases-focus", "followings-focus", "bookmarks-focus");
             const otherId = otherTitle.id;
             const className = otherId.replace("user-profile-", "");
             otherTitle.classList.add("user-title-" + className);
