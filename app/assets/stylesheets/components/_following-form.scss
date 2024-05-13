@@ -1,0 +1,28 @@
+.following-add-icon {
+  cursor: pointer;
+  background-image: url('icons/following-add-white.svg');
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  background-position: center;
+  background-size: 24px;
+  padding: 20px;
+  background-color: $black;
+  border: none;
+}
+
+.following-remove-icon {
+  cursor: pointer;
+  background-image: url('icons/following-check-white.svg');
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  background-position: center;
+  background-size: 24px;
+  padding: 20px;
+  background-color: $black;
+  border: none;
+  transition: all 0.25s ease-in-out;
+}
+
+.following-remove-icon:hover {
+  background-image: url('icons/following-uncheck-white.svg');
+}
