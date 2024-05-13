@@ -7,7 +7,11 @@
 <% if @user == current_user %>
   <div class="user-profile-container">
     <div class="user-profile-banner">
-      <%= link_to "", settings_user_path, class: "user-profile-settings-icon" %>
+      <div class="user-profile-pledges-reviews-settings">
+        <%= render "components/user-pledges" %>
+        <%= render "components/user-reviews" %>
+        <%= link_to "", settings_user_path, class: "user-profile-settings-icon" %>
+      </div>
       <div class="user-profile-avatar"><%= image_tag @user.avatar_image_url %></div>
     </div>
     <div class="name-title-position">
@@ -18,8 +22,7 @@
       <div class="user-title-toggle-container">
         <div id="user-profile-purchases" class="user-title-purchases" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Guides</div>
         <div id="user-profile-followings" class="user-title-followings" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Followings</div>
-        <div id="user-profile-pledges" class="user-title-pledges" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Pledges</div>
-        <div id="user-profile-reviews" class="user-title-reviews" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Reviews</div>
+        <div id="user-profile-bookmarks" class="user-title-bookmarks" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Bookmarks</div>
       </div>
       <div id="partial-container">
       </div>
