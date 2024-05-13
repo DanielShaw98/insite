@@ -34,7 +34,9 @@ Rails.application.routes.draw do
       get :pledges
       get :reviews
     end
-    resources :creators
+    resources :creators do
+      resources :followings, only: %i[index create destroy]
+    end
     resources :avatars
     resources :socials
   end
@@ -43,9 +45,8 @@ Rails.application.routes.draw do
       get :video_reviews
     end
     resources :reviews
+    resources :bookmarks, only: %i[index create destroy]
   end
-  resources :bookmarks, only: %i[index create destroy]
-  resources :followings, only: %i[index create destroy]
   resources :categories, only: %i[index show create update destroy]
   resources :purchases, only: %i[index create new show destroy]
   resources :pledges, only: %i[index create new show destroy]

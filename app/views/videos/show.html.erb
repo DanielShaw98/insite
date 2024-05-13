@@ -7,6 +7,18 @@
 <div class="video-page-container">
 
   <div class="left-section-video">
+    <div class="video-page-top-info">
+      <%= link_to user_path(@video.creator.user) do %>
+        <div class="video-page-avatar"><%= image_tag @video.creator.user.avatar.image_url %></div>
+      <% end %>
+      <%= link_to user_path(@video.creator.user) do %>
+        <div class="video-page-creator-username"><%= @video.creator.user.username %></div>
+      <% end %>
+      <div class="video-page-follow-bookmark">
+        <div class="video-page-follow"><%= render "components/following-form" %></div>
+        <div class="video-page-bookmark"><%= render "components/bookmark-form" %></div>
+      </div>
+    </div>
     <div class="video-player-background"></div>
       <div class="review-purchase-button-container">
       <%= render "components/review-modal" %>
@@ -14,12 +26,11 @@
     </div>
   </div>
 
+  <div class="middle-vertical-line"></div>
+
   <div class="right-section-video">
-    <div class="video-page-top-info">
+    <div class="video-page-title-container">
       <div class="video-page-title"><%= @video.title %></div>
-      <%= link_to user_path(@video.creator.user) do %>
-        <div class="video-page-avatar"><%= image_tag @video.creator.user.avatar.image_url %></div>
-      <% end %>
     </div>
     <div class="video-page-top-info-2">
       <div class="video-page-rating"><%= display_average_rating(@video.average_rating) %>
@@ -28,6 +39,7 @@
         </div>
       </div>
       <div class="video-page-reviews">Reviews (<%= @video.reviews.count %>)</div>
+      <div class="video-page-views">Views (<%= @video.views %>)</div>
     </div>
 
     <div class="video-page-bottom-info">

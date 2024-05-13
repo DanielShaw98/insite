@@ -1,6 +1,4 @@
 class FollowingsController < ApplicationController
-  before_action :set_following, only: %i[destroy]
-
   def index
     @followings = Following.all
   end
@@ -8,19 +6,20 @@ class FollowingsController < ApplicationController
   def create
     @following = Following.new(user_id: current_user.id, creator_id: params[:creator_id])
     if @following.save
-      flash[:notice] = "Successfully followed creator."
+      flash[:notice] = 'Successfully followed creator.'
     else
-      flash[:alert] = "Unable to follow creator."
+      flash[:alert] = 'Unable to follow creator.'
     end
     redirect_back(fallback_location: request.referer || root_path)
   end
 
   def destroy
-  end
-
-  private
-
-  def set_following
-    @following = Following.find(params[:id])
+    @following = Following.find_by(user_id: params[:user_id], creator_id: params[:creator_id])
+    if @following.destroy
+      flash[:notice] = 'Successfully unfollowed creator.'
+    else
+      flash[:alert] = 'Unable to unfollow creator.'
+    end
+    redirect_back(fallback_location: request.referer || root_path)
   end
 end

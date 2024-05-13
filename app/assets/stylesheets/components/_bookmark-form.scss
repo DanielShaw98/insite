@@ -1,0 +1,23 @@
+.bookmark-add-icon {
+  cursor: pointer;
+  background-image: url('icons/bookmark-white.svg');
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  background-position: center;
+  background-size: 24px;
+  padding: 20px;
+  background-color: $black;
+  border: none;
+}
+
+.bookmark-remove-icon {
+  cursor: pointer;
+  background-image: url('icons/bookmark-white-focus.svg');
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  background-position: center;
+  background-size: 24px;
+  padding: 20px;
+  background-color: $black;
+  border: none;
+}

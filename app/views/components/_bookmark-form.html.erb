@@ -1,0 +1,9 @@
+<% if current_user.bookmarks.exists?(video_id: @video.id) %>
+  <%= form_with(model: @bookmark, url: video_bookmark_path(@video), method: :delete, local: true) do |form| %>
+    <%= form.submit "", class: "bookmark-remove-icon" %>
+  <% end %>
+<% else %>
+  <%= form_with(model: @bookmark, url: video_bookmarks_path(@video), method: :post, local: true) do |form| %>
+    <%= form.submit "", class: "bookmark-add-icon" %>
+  <% end %>
+<% end %>
