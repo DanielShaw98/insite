@@ -23,7 +23,7 @@
   margin-left: 3rem;
   margin-right: 3rem;
   height: fit-content;
-  width: 400px;
+  width: 600px;
   background-color: $white;
   border-radius: 50px;
   padding: 40px;
@@ -31,8 +31,8 @@
 }
 
 .back-btn {
-  width: 27px;
-  height: 27px;
+  width: 40px;
+  height: 40px;
   border-style: solid;
   border-color: $black;
   color: $black;
@@ -53,6 +53,7 @@
 
 .authenticate-header {
   font-family: $sub-header-font;
+  font-size: 40px;
   font-weight: 400;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -75,6 +76,7 @@
   padding-inline-start: 1rem;
   padding-inline-end: 1rem;
   font-family: $body-font;
+  font-size: 1rem;
 }
 
 .form-field:focus {
@@ -102,12 +104,13 @@
 .remember-forgot-password-container {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.8rem;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
 .remember-me-container {
   font-family: $body-font;
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: $dark-gray;
   line-height: 1.1;
   display: grid;
@@ -164,7 +167,7 @@ input[type="checkbox"]:checked::before {
   text-decoration: none;
   font-family: $body-font;
   color: $dark-gray;
-  font-size: 0.8rem;
+  font-size: 1rem;
   transition: 0.2s;
 }
 
@@ -184,6 +187,7 @@ input[type="checkbox"]:checked::before {
   cursor: pointer;
   box-shadow: 2px 2px 3px 0px rgba(155, 155, 155, 0.74);
   position: relative;
+  font-size: 1rem;
 }
 
 .login-btn-text {
@@ -195,7 +199,7 @@ input[type="checkbox"]:checked::before {
   display: inline-block;
   vertical-align: middle;
   position: absolute;
-  top: 32%;
+  top: 28%;
   margin-left: 7px;
   transform: translateX(-130%);
   transition: 0.5s;
@@ -215,13 +219,15 @@ input[type="checkbox"]:checked::before {
 .sign-up-link-container {
   display: flex;
   align-items: center;
+  justify-content: center;
   font-family: $body-font;
-  margin-left: 2rem;
-  font-size: 0.8rem;
+  font-size: 1rem;
+  margin-top: 1rem;
 }
 
 #sign-up-question {
   color: rgba(126, 126, 126, 0.74);
+  margin: 0px;
 }
 
 .sign-up-link {
@@ -247,4 +253,8 @@ input[type="checkbox"]:checked::before {
 
 .sign-up-link:hover:after {
   width: 100%;
+}
+
+.sign-up-link:hover {
+  color: $green;
 }
