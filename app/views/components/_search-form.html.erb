@@ -1,12 +1,12 @@
 <div data-controller="search-form">
-  <%= form_with url: search_path, method: :get, class: "search-form", data: { action: "input->search-form#input" } do %>
+  <%= form_with url: search_path, method: :get, class: "insite-search-form", data: { action: "input->search-form#input" } do %>
     <%= text_field :query,
       params[:query],
       data: { "search-form-target": "input" },
-      class: "form-control",
+      class: "insite-form-control",
       placeholder: "Search..."
     %>
-    <ul data-search-form-target="dropdown" class="search-dropdown">
+    <ul data-search-form-target="dropdown" class="insite-search-dropdown">
     </ul>
   <% end %>
 </div>
