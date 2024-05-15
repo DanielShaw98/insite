@@ -1,12 +1,19 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[show check_username_availability check_email_availability check_email_exists check_password_correct]
-  before_action :set_user, only: %i[show purchases followings bookmarks destroy settings]
+  before_action :set_user, only: %i[show purchases followings bookmarks user_reviews destroy settings]
 
   def index
     @users = User.all
   end
 
   def show
+    @reviews = @user.reviews.limit(3).order(created_at: :desc)
+    @has_more = @user.reviews.count > 3
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @user }
+    end
   end
 
   def purchases
@@ -21,6 +28,20 @@ class UsersController < ApplicationController
 
   def bookmarks
     @bookmarks = current_user.bookmarks
+  end
+
+  def user_reviews
+    @reviews = @user.reviews.offset(params[:offset].to_i).limit(3).order(created_at: :desc)
+    @has_more = @user.reviews.count > params[:offset].to_i + @reviews.count
+
+    respond_to do |format|
+      format.json {
+        render json: {
+          reviews: @reviews.as_json(include: { user: { only: %i[id username], methods: [:avatar_image_url] } }),
+          has_more: @has_more
+        }
+      }
+    end
   end
 
   def check_username_availability

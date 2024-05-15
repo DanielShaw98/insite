@@ -1,10 +1,43 @@
-<div data-controller="user-reviews-modal">
-  <div class="user-reviews-button" data-action="click->user-reviews-modal#toggleModal"></div>
-  <div class="user-reviews-modal" data-user-reviews-modal-target="reviewsModal">
+<div data-controller="user-reviews" data-user-reviews-url-value="<%= user_reviews_user_path(@user) %>" data-user-reviews-offset-value="3">
+  <div class="user-reviews-button" data-action="click->user-reviews#toggleModal"></div>
+  <div class="user-reviews-modal" data-user-reviews-target="reviewsModal">
     <div class="user-reviews-modal-content">
       <div class="user-review-title-close">
         <h3 class="user-review-title">Reviews</h3>
-        <span class="user-review-close" data-action="click->review-modal#toggleOuterModal">&times;</span>
+        <span class="user-review-close" data-action="click->user-reviews#toggleModal">&times;</span>
+      </div>
+
+      <div class="user-review-section">
+        <% if @reviews.present? %>
+          <% @reviews.each do |review| %>
+            <div class="video-review">
+              <div class="video-review-user-info">
+                <div class="video-review-username-date">
+                  <div class="video-review-username"><%= review.user.username %></div>
+                  <div class="video-review-date"><%= review.created_at.strftime("%d/%m/%y") %></div>
+                </div>
+                <div class="video-review-avatar"><%= image_tag review.user.avatar_image_url %></div>
+              </div>
+              <div class="video-review-rating-info">
+                <div class="video-review-rating"><%= review.rating %></div>
+                <div data-controller="rating" data-rating="<%= review.rating %>" class="rating">
+                  <div class="stars" data-rating-target="rating"></div>
+                </div>
+              </div>
+              <div class="video-review-content"><%= review.content %></div>
+            </div>
+          <% end %>
+          <% else %>
+            <div class="user-no-reviews-position">
+              <h3 class="user-no-reviews-message">You currently have no reviews.</h3>
+            </div>
+          <% end %>
+        <div data-user-reviews-target="container">
+        </div>
+
+        <% if @has_more %>
+          <button class="show-more-button" data-action="click->user-reviews#showMore" data-user-reviews-target="showMoreButton">More Reviews</button>
+        <% end %>
       </div>
     </div>
   </div>
