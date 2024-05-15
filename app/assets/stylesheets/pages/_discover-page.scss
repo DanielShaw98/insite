@@ -38,6 +38,14 @@
   margin: 0px 10px;
 }
 
+.form-select select {
+  font-family: $body-font;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 0.25rem;
+  border-radius: 10px;
+}
+
 .filter-form-label {
   color: $white;
   font-size: 20px;

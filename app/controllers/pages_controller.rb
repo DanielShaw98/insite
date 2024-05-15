@@ -9,7 +9,7 @@ class PagesController < ApplicationController
   end
 
   def discover
-    Pagy::DEFAULT[:items] = 10
+    Pagy::DEFAULT[:items] = 16
     Pagy::DEFAULT[:size]  = [1, 4, 4, 1]
     @pagy, @filter_videos = pagy(Video.all)
   end
