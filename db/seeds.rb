@@ -543,9 +543,23 @@ Review.create!(
 )
 
 Review.create!(
+  content: 'This knitting video is a treasure trove of knowledge! As someone new to knitting, I was amazed by the clarity and simplicity of the instructions. The instructors teaching style is engaging and easy to understand, making even complex techniques feel achievable. I appreciated the variety of projects covered, from basic stitches to advanced patterns, catering to knitters of all skill levels. ',
+  rating: 5,
+  user_id: User.offset(8).first.id,
+  video_id: Video.offset(4).first.id
+)
+
+Review.create!(
   content: 'This game design video is a game-changer! Whether youre a seasoned developer or a novice enthusiast, this comprehensive guide covers everything you need to know about game design. From conceptualizing game mechanics to creating captivating narratives, the content is both informative and inspiring.',
   rating: 4,
   user_id: User.offset(13).first.id,
+  video_id: Video.offset(5).first.id
+)
+
+Review.create!(
+  content: 'This game design video is a game-changer! Whether youre a seasoned developer or a novice enthusiast, this comprehensive guide covers everything you need to know about game design. From conceptualizing game mechanics to creating captivating narratives, the content is both informative and inspiring.',
+  rating: 4,
+  user_id: User.offset(8).first.id,
   video_id: Video.offset(5).first.id
 )
 
@@ -560,6 +574,13 @@ Review.create!(
   content: 'This 2024 fashion design video is a game-changer! Its filled with cutting-edge trends and innovative styles that are sure to inspire any fashion enthusiast. From bold color palettes to avant-garde silhouettes, this video showcases the latest looks straight from the runway.',
   rating: 4,
   user_id: User.offset(9).first.id,
+  video_id: Video.offset(7).first.id
+)
+
+Review.create!(
+  content: 'This 2024 fashion design video is a game-changer! Its filled with cutting-edge trends and innovative styles that are sure to inspire any fashion enthusiast. From bold color palettes to avant-garde silhouettes, this video showcases the latest looks straight from the runway.',
+  rating: 4,
+  user_id: User.offset(8).first.id,
   video_id: Video.offset(7).first.id
 )
 

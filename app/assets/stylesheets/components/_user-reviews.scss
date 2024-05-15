@@ -33,6 +33,13 @@
   transform: scale(1.2);
 }
 
+.user-review-section {
+  margin: 0px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .user-review-title-close {
   display: flex;
   align-items: center;
@@ -59,4 +66,14 @@
   color: $black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.user-no-reviews-position {
+  margin: 60px 0px;
+}
+
+.user-no-reviews-message {
+  font-family: $body-font;
+  font-size: 24px;
+  color: $dark-gray;
 }

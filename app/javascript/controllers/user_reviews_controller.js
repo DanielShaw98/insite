@@ -1,8 +1,12 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["container", "showMoreButton"];
+  static targets = ["reviewsModal", "rating", "container", "showMoreButton"];
   static values = { url: String, offset: Number };
+
+  toggleModal(event) {
+    this.reviewsModalTarget.style.display = this.reviewsModalTarget.style.display === "block" ? "none" : "block";
+  }
 
   async showMore() {
     try {

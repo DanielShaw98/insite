@@ -7,7 +7,7 @@ class VideosController < ApplicationController
   end
 
   def show
-    @reviews = @video.reviews.limit(3)
+    @reviews = @video.reviews.limit(3).order(created_at: :desc)
     @has_more = @video.reviews.count > 3
 
     respond_to do |format|
@@ -17,10 +17,8 @@ class VideosController < ApplicationController
   end
 
   def video_reviews
-    @reviews = @video.reviews.offset(params[:offset].to_i).limit(3)
+    @reviews = @video.reviews.offset(params[:offset].to_i).limit(3).order(created_at: :desc)
     @has_more = @video.reviews.count > params[:offset].to_i + @reviews.count
-
-    puts @has_more
 
     respond_to do |format|
       format.json {
