@@ -15,22 +15,28 @@
         <div class="filter-label-spacer">
           <%= form.label :category, "Category", class: "filter-form-label" %>
         </div>
-        <%= form.select :category, options_for_select([["All", "all"], ["Art & Photography", "art & photography"], ["Business", "business"],
-        ["Crafts", "crafts"], ["Fashion", "fashion"], ["Gaming", "gaming"], ["Gardening", "gardening"], ["Health & Fitness", "health & fitness"],
-        ["Music", "music"], ["Sports", "sports"], ["Technology", "technology"]], selected: @category), class: "form-select" %>
+        <div class="form-select">
+          <%= form.select :category, options_for_select([["All", "all"], ["Art & Photography", "art & photography"], ["Business", "business"],
+          ["Crafts", "crafts"], ["Fashion", "fashion"], ["Gaming", "gaming"], ["Gardening", "gardening"], ["Health & Fitness", "health & fitness"],
+          ["Music", "music"], ["Sports", "sports"], ["Technology", "technology"]], selected: @category) %>
+        </div>
 
         <div class="filter-form-group">
           <div class="filter-label-spacer">
             <%= form.label :sort_by, "Sort By", class: "filter-form-label" %>
           </div>
-          <%= form.select :sort_by, options_for_select([["Views", "views"], ["Rating", "rating"], ["Date", "date"]], selected: @sort_by), class: "form-select", data: { action: "change->filter-form#toggleSortDirectionField" } %>
+          <div class="form-select">
+            <%= form.select :sort_by, options_for_select([["Views", "views"], ["Rating", "rating"], ["Date", "date"]], selected: @sort_by), data: { action: "change->filter-form#toggleSortDirectionField" } %>
+          </div>
         </div>
 
         <div id="sortDirectionField" data-filter-form-target="sortDirectionField" class="filter-form-group">
           <div class="filter-label-spacer">
             <%= form.label :sort_direction, "Sort Direction", class: "filter-form-label" %>
           </div>
-            <%= form.select :sort_direction, options_for_select([["Highest", "desc"], ["Lowest", "asc"]], selected: @sort_direction), class: "form-select" %>
+          <div class="form-select">
+            <%= form.select :sort_direction, options_for_select([["Highest", "desc"], ["Lowest", "asc"]], selected: @sort_direction) %>
+          </div>
         </div>
 
         <%= form.submit "Filter", class: "filter-form-button" %>
