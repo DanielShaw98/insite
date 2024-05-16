@@ -1,9 +1,10 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["outerModal", "innerModal", "form", "contentMessage", "ratingMessage"];
+  static targets = ["outerModal", "innerModal", "form", "contentMessage", "ratingMessage", "ratingReview"];
 
   connect() {
+    this.adjustRatings();
     const showOuterModal = localStorage.getItem("showOuterModal");
     if (showOuterModal === "true") {
       // Toggle outer modal
@@ -22,6 +23,16 @@ export default class extends Controller {
   toggleInnerModal(event) {
     // Prevent event propagation to avoid closing the outer modal when clicking inside the inner modal
     this.innerModalTarget.style.display = this.innerModalTarget.style.display === "block" ? "none" : "block";
+  }
+
+  adjustRatings() {
+    this.ratingReviewTargets.forEach(target => {
+      const rating = parseFloat(target.dataset.rating);
+      const width = Math.round((rating / 5) * 80);
+      if (width > 0) {
+        target.style.width = `${width}px`;
+      }
+    });
   }
 
   submitForm(event) {

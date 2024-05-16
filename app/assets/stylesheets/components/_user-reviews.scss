@@ -40,6 +40,70 @@
   align-items: center;
 }
 
+.user-video-review-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.review-video-card {
+  width: 260px;
+  height: 200px;
+  border-radius: 8px;
+  border: 2px solid $dark-gray;
+  box-shadow: 4px 4px 0px $green;
+  background-color: $light-gray;
+  transition: all 0.25s ease;
+  margin-top: 20px;
+}
+
+.review-video-card:hover {
+  box-shadow: 6px 6px 0px $green;
+  transform: translateY(-2px);
+}
+
+.review-video-card a {
+  text-decoration: none;
+  color: $black;
+}
+
+.review-video-title,
+.review-video-creator,
+.review-video-rating {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 250px;
+  margin-left: 10px;
+  font-family: $body-font;
+}
+
+.review-video-title,
+.review-video-creator {
+  line-height: 1.1;
+}
+
+.review-video-creator,
+.review-video-rating {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.review-video-title {
+  font-size: 14px;
+}
+
+.review-stars::before {
+  content: url('icons/star-rating-review-navy.svg');
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.review-stars {
+  width: 100%;
+}
+
 .user-review-title-close {
   display: flex;
   align-items: center;
@@ -66,6 +130,30 @@
   color: $black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.user-review-user-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.user-review-delete {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image: url('icons/delete-review-bin-black.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: all 0.25s ease;
+  margin-right: 20px;
+  background-color: #fefefe;
+  border: none;
+}
+
+.user-review-delete:hover {
+  background-image: url('icons/delete-review-bin-red.svg');
 }
 
 .user-no-reviews-position {
