@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :set_review, only: %i[show edit update destroy]
+  before_action :set_review, only: %i[show edit update]
 
   def index
     @reviews = Review.all
@@ -36,6 +36,14 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    @video = Video.find(params[:video_id])
+    @review = @video.reviews.find(params[:id])
+    if @review.destroy
+      flash[:notice] = 'Review was successfully deleted.'
+    else
+      flash[:alert] = 'Failed to delete the review.'
+    end
+    redirect_back(fallback_location: request.referer || root_path)
   end
 
   private

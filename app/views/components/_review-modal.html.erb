@@ -53,8 +53,8 @@
             </div>
             <div class="video-review-rating-info">
               <div class="video-review-rating"><%= display_average_rating(review.rating) %></div>
-              <div data-controller="rating" data-rating="<%= review.rating %>" class="rating">
-                <div class="stars" data-rating-target="rating"></div>
+              <div data-rating="<%= review.rating %>" class="rating" data-review-modal-target="ratingReview">
+                <div class="stars"></div>
               </div>
             </div>
             <div class="video-review-content"><%= review.content %></div>

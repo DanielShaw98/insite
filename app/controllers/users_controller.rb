@@ -37,7 +37,15 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.json {
         render json: {
-          reviews: @reviews.as_json(include: { user: { only: %i[id username], methods: [:avatar_image_url] } }),
+          reviews: @reviews.as_json(include: {
+            user: { only: %i[id username], methods: [:avatar_image_url] },
+            video: {
+              only: %i[id title thumbnail_url average_rating],
+              include: {
+                creator: { only: [], include: { user: { only: %i[id username] } } }
+              }
+            }
+          }),
           has_more: @has_more
         }
       }

@@ -3,28 +3,48 @@
   <div class="user-reviews-modal" data-user-reviews-target="reviewsModal">
     <div class="user-reviews-modal-content">
       <div class="user-review-title-close">
-        <h3 class="user-review-title">Reviews</h3>
+        <h3 class="user-review-title">Your Reviews</h3>
         <span class="user-review-close" data-action="click->user-reviews#toggleModal">&times;</span>
       </div>
 
       <div class="user-review-section">
         <% if @reviews.present? %>
           <% @reviews.each do |review| %>
-            <div class="video-review">
-              <div class="video-review-user-info">
-                <div class="video-review-username-date">
-                  <div class="video-review-username"><%= review.user.username %></div>
-                  <div class="video-review-date"><%= review.created_at.strftime("%d/%m/%y") %></div>
-                </div>
-                <div class="video-review-avatar"><%= image_tag review.user.avatar_image_url %></div>
+            <div class="user-video-review-container">
+              <div class="review-video-card">
+                <%= link_to video_path(review.video) do %>
+                  <div class="video-thumbnail">
+                    <%= image_tag review.video.thumbnail_url %>
+                  </div>
+                  <div class="video-info">
+                    <div class="review-video-title"><%= review.video.title %></div>
+                    <div class="review-video-creator"><%= review.video.creator.user.username %></div>
+                    <div class="review-video-rating"><%= display_average_rating(review.video.average_rating) %>
+                      <div data-rating="<%= review.video.average_rating %>" class="rating" data-user-reviews-target="ratingVideo">
+                        <div class="review-stars"></div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
               </div>
-              <div class="video-review-rating-info">
-                <div class="video-review-rating"><%= review.rating %></div>
-                <div data-controller="rating" data-rating="<%= review.rating %>" class="rating">
-                  <div class="stars" data-rating-target="rating"></div>
+              <div class="video-review">
+                <div class="user-review-user-info">
+                  <div class="video-review-username-date">
+                    <div class="video-review-username"><%= review.user.username %></div>
+                    <div class="video-review-date"><%= review.created_at.strftime("%d/%m/%y") %></div>
+                  </div>
+                  <%= form_with(model: [review.video, review], url: [review.video, review], method: :delete, local: true) do |form| %>
+                    <%= form.submit "", data: { confirm: 'Are you sure?' }, class: "user-review-delete" %>
+                  <% end %>
                 </div>
+                <div class="video-review-rating-info">
+                  <div class="video-review-rating"><%= review.rating %></div>
+                  <div data-rating="<%= review.rating %>" class="rating" data-user-reviews-target="ratingReview">
+                    <div class="stars"></div>
+                  </div>
+                </div>
+                <div class="video-review-content"><%= review.content %></div>
               </div>
-              <div class="video-review-content"><%= review.content %></div>
             </div>
           <% end %>
           <% else %>
