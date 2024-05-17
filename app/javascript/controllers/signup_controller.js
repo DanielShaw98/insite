@@ -74,7 +74,13 @@ export default class extends Controller {
   }
 
   toggleValidationsDisplay() {
-    this.validationsTarget.style.display = this.passwordTarget.value === "" ? "none" : "block";
+    if (this.passwordTarget.value === "") {
+      this.validationsTarget.style.opacity = "0";
+      this.validationsTarget.style.height = "0";
+    } else {
+      this.validationsTarget.style.opacity = "1";
+      this.validationsTarget.style.height = "112px"; // Fixed height for the validations container
+    }
   }
 
   clearFieldError(field) {
@@ -191,19 +197,6 @@ export default class extends Controller {
     } catch (error) {
       console.error("Error checking email availability:", error);
     }
-  }
-
-  clearFieldError(field) {
-    const input = field.querySelector("input");
-    const inputControl = field.firstElementChild;
-    const passwordControl = field.firstElementChild.firstElementChild;
-    const errorDisplay = field.querySelector(".error");
-
-    inputControl.classList.remove("success", "failure");
-    if (passwordControl !== null) {
-      passwordControl.classList.remove("success", "failure");
-    }
-    errorDisplay.style.display = "none";
   }
 
   isValidEmail(email) {

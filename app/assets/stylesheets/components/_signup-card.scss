@@ -28,7 +28,9 @@
   border-radius: 50px;
   padding: 40px;
   box-shadow: 4px 4px 2px 0px $black;
+  transition: height 0.3s ease; /* Smooth transition */
 }
+
 
 .name-input-container {
   display: flex;
@@ -105,7 +107,10 @@
   padding-left: 1rem;
   width: calc(100% - 2rem);
   pointer-events: none;
-  display: none;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, height 0.3s ease;
 }
 
 .password-checklist {
@@ -187,12 +192,12 @@
 .sign-up-btn:hover {
   font-weight: 500;
   width: 100%;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
 }
 
 .sign-up-btn:hover::before {
-  width: 600px;
-  height: 600px;
+  width: 620px;
+  height: 620px;
 }
 
 .sign-up-btn:active {
