@@ -14,10 +14,12 @@
       <%= link_to user_path(@video.creator.user) do %>
         <div class="video-page-creator-username"><%= @video.creator.user.username %></div>
       <% end %>
+      <% if user_signed_in? %>
       <div class="video-page-follow-bookmark">
         <div class="video-page-follow"><%= render "components/following-form" %></div>
         <div class="video-page-bookmark"><%= render "components/bookmark-form" %></div>
       </div>
+      <% end %>
     </div>
     <div class="video-player-background"></div>
     <div class="review-purchase-button-container">
