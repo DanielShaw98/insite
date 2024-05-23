@@ -23,6 +23,12 @@ class PledgesController < ApplicationController
   end
 
   def destroy
+    if @pledge.destroy
+      flash[:notice] = 'Review was successfully deleted.'
+    else
+      flash[:alert] = 'Failed to delete the review.'
+    end
+    redirect_back(fallback_location: request.referer || root_path)
   end
 
   private

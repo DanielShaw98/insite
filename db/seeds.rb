@@ -663,6 +663,13 @@ Pledge.create!(
 
 Pledge.create!(
   content: 'Im seeking guidance in developing a comprehensive business plan for my startup venture. Im looking for assistance in structuring and refining my ideas into a strategic roadmap for success.',
+  votes: 30,
+  user_id: User.offset(8).first.id,
+  creator_id: Creator.second.id
+)
+
+Pledge.create!(
+  content: 'Im seeking guidance in developing a comprehensive business plan for my startup venture. Im looking for assistance in structuring and refining my ideas into a strategic roadmap for success.',
   votes: 20,
   user_id: User.offset(9).first.id,
   creator_id: Creator.second.id
@@ -673,6 +680,13 @@ Pledge.create!(
   votes: 25,
   user_id: User.offset(10).first.id,
   creator_id: Creator.offset(2).first.id
+)
+
+Pledge.create!(
+  content: 'Id love to see a captivating video exploring advanced photography techniques and creative composition ideas! As an aspiring photographer, Im eager to enhance my skills and unleash my creativity behind the lens. A tutorial on advanced techniques like long exposure, creative lighting setups, or composition principles would be incredibly valuable.',
+  votes: 22,
+  user_id: User.offset(8).first.id,
+  creator_id: Creator.offset(3).first.id
 )
 
 Pledge.create!(
@@ -701,6 +715,13 @@ Pledge.create!(
   votes: 22,
   user_id: User.offset(8).first.id,
   creator_id: Creator.offset(6).first.id
+)
+
+Pledge.create!(
+  content: 'Im passionate about fashion and always eager to stay updated on the latest trends and styles. For the next video, I would love to see a comprehensive guide to the top fashion trends of 2024. From statement pieces to wardrobe essentials, Im excited to learn about the must-have items for the upcoming seasons.',
+  votes: 15,
+  user_id: User.offset(8).first.id,
+  creator_id: Creator.offset(7).first.id
 )
 
 Pledge.create!(

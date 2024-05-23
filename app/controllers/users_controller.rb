@@ -14,6 +14,8 @@ class UsersController < ApplicationController
       format.html
       format.json { render json: @user }
     end
+
+    @pledges = @user.pledges.limit(3).order(created_at: :desc)
   end
 
   def purchases
