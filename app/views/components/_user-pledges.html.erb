@@ -1,10 +1,57 @@
-<div data-controller="user-pledges-modal">
-  <div class="user-pledges-button" data-action="click->user-pledges-modal#toggleModal"></div>
-  <div class="user-pledges-modal" data-user-pledges-modal-target="pledgesModal">
+<div data-controller="user-pledges">
+  <div class="user-pledges-button" data-action="click->user-pledges#toggleModal"></div>
+  <div class="user-pledges-modal" data-user-pledges-target="pledgesModal">
     <div class="user-pledges-modal-content">
       <div class="user-pledge-title-close">
-        <h3 class="user-pledge-title">Pledges</h3>
-        <span class="user-pledge-close" data-action="click->pledge-modal#toggleOuterModal">&times;</span>
+        <h3 class="user-pledge-title">Your Pledges</h3>
+        <span class="user-pledge-close" data-action="click->user-pledges#toggleModal">&times;</span>
+      </div>
+
+      <div class="user-pledge-section">
+        <% if @pledges.present? %>
+          <% @pledges.each do |pledge| %>
+            <div class="pledge-creator-card-container">
+              <div class="pledge-creator-card">
+                <%= link_to user_path(pledge.creator.user) do %>
+                  <div class="creator-avatar">
+                    <%= image_tag pledge.creator.user.avatar_image_url %>
+                  </div>
+                  <div class="creator-card-info">
+                    <div class="creator-username"><%= pledge.creator.user.username %></div>
+                    <div class="creator-specialisation"><%= pledge.creator.specialisation %></div>
+                  </div>
+                <% end %>
+              </div>
+              <div class="user-pledge-container">
+                <div class="user-pledge">
+                  <div class="user-pledge-user-info">
+                    <div class="pledge-username-date">
+                      <div class="pledge-username"><%= pledge.user.username %></div>
+                      <div class="pledge-date"><%= pledge.created_at.strftime("%d/%m/%y") %></div>
+                    </div>
+                    <%= form_with(model: [pledge], url: [pledge], method: :delete, local: true) do |form| %>
+                      <%= form.submit "", data: { confirm: 'Are you sure?' }, class: "user-pledge-delete" %>
+                    <% end %>
+                  </div>
+                  <div class="pledge-votes-info">
+                    <div class="pledge-votes"><%= pledge.votes %></div>
+                  </div>
+                  <div class="pledge-content"><%= pledge.content %></div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <% else %>
+          <div class="user-no-pledges-position">
+            <h3 class="user-no-pledges-message">You currently have no pledges.</h3>
+          </div>
+        <% end %>
+        <div data-user-pledges-target="container">
+        </div>
+
+        <% if @has_more_pledges %>
+          <button class="show-more-button" data-action="click->user-pledges#showMore" data-user-pledges-target="showMoreButton">More Reviews</button>
+        <% end %>
       </div>
     </div>
   </div>

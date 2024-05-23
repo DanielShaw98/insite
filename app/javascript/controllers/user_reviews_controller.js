@@ -7,7 +7,7 @@ export default class extends Controller {
   connect() {
     this.adjustRatings();
     // Check if the modal was open before refreshing the page
-    const modalOpen = localStorage.getItem("modalOpen");
+    const modalOpen = localStorage.getItem("reviewModalOpen");
     if (modalOpen === "true") {
       this.reviewsModalTarget.style.display = "block";
     }
@@ -16,9 +16,9 @@ export default class extends Controller {
   toggleModal(event) {
     const isOpen = this.reviewsModalTarget.style.display === "block";
     if (!isOpen) {
-      localStorage.setItem("modalOpen", "true");
+      localStorage.setItem("reviewModalOpen", "true");
     } else {
-      localStorage.removeItem("modalOpen");
+      localStorage.removeItem("reviewModalOpen");
     }
     this.reviewsModalTarget.style.display = isOpen ? "none" : "block";
   }

@@ -60,3 +60,105 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+.user-pledge-section {
+  margin: 0px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pledge-creator-card-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.pledge-creator-card {
+  width: 150px;
+  height: 250px;
+  border-radius: 8px;
+  border: 2px solid $dark-gray;
+  background-color: $light-gray;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease-in-out;
+  flex: 0 0 auto;
+}
+
+.pledge-creator-card a {
+  text-decoration: none;
+  color: $black;
+}
+
+.user-pledge {
+  border: 1px solid $light-gray;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.user-pledge-user-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.pledge-username-date {
+  display: flex;
+  flex-direction: column;
+}
+
+.pledge-username,
+.pledge-votes,
+.pledge-content {
+  font-family: $body-font;
+  font-size: 18px;
+  color: $black;
+  padding: 5px;
+}
+
+.pledge-date {
+  font-family: $body-font;
+  font-size: 14px;
+  color: $dark-gray;
+  padding: 5px;
+}
+
+.pledge-content {
+  padding-bottom: 10px;
+}
+
+.pledge-votes-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-pledge-delete {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-image: url('icons/delete-review-bin-black.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: all 0.25s ease;
+  margin-right: 20px;
+  background-color: #fefefe;
+  border: none;
+}
+
+.user-pledge-delete:hover {
+  background-image: url('icons/delete-review-bin-red.svg');
+}
+
+.user-no-pledges-position {
+  margin: 60px 0px;
+}
+
+.user-no-pledges-message {
+  font-family: $body-font;
+  font-size: 24px;
+  color: $dark-gray;
+}
