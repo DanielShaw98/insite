@@ -18,7 +18,9 @@
       </div>
 
       <div class="actions">
-        <%= f.submit "Send reset password instructions", class: "forgot-btn" %>
+        <%= button_tag type: 'submit', class: "login-btn" do %>
+          <span class="login-btn-text">Send reset password instructions</span><ion-icon class="login-btn-icon" name="arrow-forward-outline"></ion-icon>
+        <% end %>
       </div>
     <% end %>
 

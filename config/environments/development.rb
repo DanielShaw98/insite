@@ -41,6 +41,12 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  # Set the default URL host for generated URLs.
+  # This ensures that URL helpers like edit_password_url generate complete URLs
+  # with the correct host included. It's important for emails, redirects,
+  # and other situations where absolute URLs are needed.
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

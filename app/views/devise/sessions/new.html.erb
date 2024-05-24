@@ -18,9 +18,12 @@
         <div class="login-error" data-login-target="error"></div>
       </div>
 
-      <div class="field form-container" data-login-target="field">
-        <%= f.password_field :password, id: "user-password", class: "form-field", placeholder: "Password", autocomplete: "current-password" %>
-        <div class="login-error" data-login-target="error"></div>
+      <div class="form-container" data-login-target="field">
+        <div class="password-container">
+          <%= f.password_field :password, id: "user-password", class: "form-field", data: { "login-target": "password" }, placeholder: "Password", autocomplete: "current-password" %>
+          <div class="show-hide" data-login-target="showHide">show</div>
+          <div class="login-error" data-login-target="error"></div>
+        </div>
       </div>
 
       <div class="remember-forgot-password-container">

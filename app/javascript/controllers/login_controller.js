@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["field", "error"];
+  static targets = ["field", "error", "password", "showHide"];
   emailIsValid = false;
   passwordIsValid = false;
 
@@ -16,6 +16,15 @@ export default class extends Controller {
       event.preventDefault();
       this.validateInputs();
     });
+
+    this.showHideTarget.addEventListener("click", () => {
+      this.togglePasswordVisibility();
+    });
+  }
+
+  togglePasswordVisibility() {
+    this.passwordTarget.type = this.passwordTarget.type === "password" ? "text" : "password";
+    this.showHideTarget.textContent = this.passwordTarget.type === "password" ? "show" : "hide";
   }
 
   setError(element, message) {
@@ -26,6 +35,10 @@ export default class extends Controller {
     errorDisplay.innerText = message;
     element.classList.add("login-failure");
     element.classList.remove("login-success");
+
+    if (element.id === "user-password") {
+      this.showHideTarget.style.top = '35%';
+    }
   }
 
   setSuccess(element) {
@@ -35,6 +48,10 @@ export default class extends Controller {
     errorDisplay.style.display = "none";
     element.classList.add("login-success");
     element.classList.remove("login-failure");
+
+    if (element.id === "user-password") {
+      this.showHideTarget.style.top = '50%';
+    }
   }
 
   clearFieldError(field) {
@@ -47,6 +64,10 @@ export default class extends Controller {
       passwordControl.classList.remove("login-success", "login-failure");
     }
     errorDisplay.style.display = "none";
+
+    if (passwordControl && passwordControl.id === "user-password") {
+      this.showHideTarget.style.top = '50%';
+    }
   }
 
   validateInputs() {

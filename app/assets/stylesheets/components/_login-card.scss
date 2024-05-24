@@ -171,7 +171,8 @@ input[type="checkbox"]:checked::before {
   transition: 0.2s;
 }
 
-.forgot-password-text:hover {
+.forgot-password-text:hover,
+.forgot-password-text:focus {
   color: $green;
 }
 
@@ -206,12 +207,14 @@ input[type="checkbox"]:checked::before {
   opacity: 0;
 }
 
-.login-btn:hover {
+.login-btn:hover,
+.login-btn:focus {
   padding-right: 20px;
   padding-left: 8px;
 }
 
-.login-btn:hover .login-btn-icon {
+.login-btn:hover .login-btn-icon,
+.login-btn:focus .login-btn-icon {
   opacity: 1;
   transform: translateX(0);
 }
@@ -251,10 +254,12 @@ input[type="checkbox"]:checked::before {
   transition: width 0.5s;
 }
 
-.sign-up-link:hover:after {
+.sign-up-link:hover:after,
+.sign-up-link:focus:after {
   width: 100%;
 }
 
-.sign-up-link:hover {
+.sign-up-link:hover,
+.sign-up-link:focus {
   color: $green;
 }
