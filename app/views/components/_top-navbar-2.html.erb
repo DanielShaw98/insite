@@ -8,6 +8,8 @@
   <div class="discover-avatar-container">
   <% if current_page?(root_path) %>
     <div class="discover-button-replacement"></div>
+  <% elsif current_page?(discover_pages_path) %>
+    <div class="discover-button-replacement"></div>
   <% else %>
     <%= link_to "Discover", discover_pages_path, class: "discover-button" %>
   <% end %>

@@ -189,13 +189,15 @@
   z-index: 1;
 }
 
-.sign-up-btn:hover {
+.sign-up-btn:hover,
+.sign-up-btn:focus {
   font-weight: 500;
   width: 100%;
   font-size: 1.1rem;
 }
 
-.sign-up-btn:hover::before {
+.sign-up-btn:hover::before,
+.sign-up-btn:focus::before {
   width: 620px;
   height: 620px;
 }
