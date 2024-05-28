@@ -1,4 +1,4 @@
-<div data-controller="user-pledges">
+<div data-controller="user-pledges" data-user-pledges-url-value="<%= user_pledges_user_path(@user) %>" data-user-pledges-offset-value="3">
   <div class="user-pledges-button" data-action="click->user-pledges#toggleModal"></div>
   <div class="user-pledges-modal" data-user-pledges-target="pledgesModal">
     <div class="user-pledges-modal-content">
@@ -34,7 +34,7 @@
                     <% end %>
                   </div>
                   <div class="pledge-votes-info">
-                    <div class="pledge-votes"><%= pledge.votes %></div>
+                    <div class="pledge-votes"><%= pledge.votes %> Up-Votes</div>
                   </div>
                   <div class="pledge-content"><%= pledge.content %></div>
                 </div>
@@ -50,7 +50,7 @@
         </div>
 
         <% if @has_more_pledges %>
-          <button class="show-more-button" data-action="click->user-pledges#showMore" data-user-pledges-target="showMoreButton">More Reviews</button>
+          <button class="show-more-button" data-action="click->user-pledges#showMore" data-user-pledges-target="showMoreButton">More Pledges</button>
         <% end %>
       </div>
     </div>

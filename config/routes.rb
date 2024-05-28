@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       get :followings
       get :bookmarks
       get :user_reviews
+      get :user_pledges
     end
     resources :creators do
       resources :followings, only: %i[index create destroy]
