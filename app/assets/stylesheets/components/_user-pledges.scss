@@ -69,7 +69,7 @@
 }
 
 .pledge-creator-card-container {
-  margin-top: 10px;
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -78,13 +78,39 @@
 
 .pledge-creator-card {
   width: 150px;
-  height: 250px;
+  height: 200px;
   border-radius: 8px;
   border: 2px solid $dark-gray;
-  background-color: $light-gray;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease-in-out;
+  background-color: $white;
+  box-shadow: 4px 4px 0px $green;
+  transition: all 0.3s ease-in-out;
   flex: 0 0 auto;
+}
+
+.pledge-creator-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 6px 6px 0px $green;
+}
+
+.pledge-creator-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.pledge-creator-avatar img {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 2px solid $black;
+  background-color: $white;
+  margin-top: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.pledge-creator-card:hover .pledge-creator-avatar img {
+  transform: scale(1.05);
 }
 
 .pledge-creator-card a {
@@ -92,10 +118,17 @@
   color: $black;
 }
 
+.pledge-creator-username,
+.pledge-creator-specialisation {
+  font-family: $main-header-font;
+  font-size: 18px;
+  word-wrap: break-word;
+  padding-bottom: 10px;
+}
+
 .user-pledge {
   border: 1px solid $light-gray;
   border-radius: 20px;
-  margin-top: 20px;
 }
 
 .user-pledge-user-info {
