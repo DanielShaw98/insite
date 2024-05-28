@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[show check_username_availability check_email_availability check_email_exists check_password_correct]
-  before_action :set_user, only: %i[show purchases followings bookmarks user_reviews destroy settings]
+  before_action :set_user, only: %i[show purchases followings bookmarks user_reviews user_pledges destroy settings]
 
   def index
     @users = User.all
@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     end
 
     @pledges = @user.pledges.limit(3).order(created_at: :desc)
+    @has_more_pledges = @user.pledges.count > 3
   end
 
   def purchases
@@ -49,6 +50,23 @@ class UsersController < ApplicationController
             }
           }),
           has_more: @has_more
+        }
+      }
+    end
+  end
+
+  def user_pledges
+    @pledges = @user.pledges.offset(params[:offset].to_i).limit(3).order(created_at: :desc)
+    @has_more_pledges = @user.pledges.count > params[:offset].to_i + @pledges.count
+
+    respond_to do |format|
+      format.json {
+        render json: {
+          pledges: @pledges.as_json(include: {
+            user: { only: %i[id username], methods: [:avatar_image_url] },
+            creator: { only: %i[id specialisation], include: { user: { only: %i[id username], methods: [:avatar_image_url] } } }
+          }),
+          has_more: @has_more_pledges
         }
       }
     end
