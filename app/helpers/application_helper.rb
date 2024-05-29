@@ -8,4 +8,8 @@ module ApplicationHelper
       average_rating
     end
   end
+
+  def user_avatar(user, html_options = {})
+    image_tag user.avatar_image_url, html_options
+  end
 end

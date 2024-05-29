@@ -1,5 +1,61 @@
 <%= render "components/top-navbar-2" %>
 
 <div class="settings-page-container">
-  <h1>Users#settings</h1>
+  <div class="settings-page-width">
+    <h1 class="settings-title">Settings</h1>
+
+    <h2 class="settings-sub-title">Change Username</h2>
+    <div class="settings-change-section">
+      <%= form_with(model: @user, url: update_username_user_path(@user), local: true) do |form| %>
+        <div class="settings-field">
+          <%= form.label :username, "New Username" %>
+          <%= form.text_field :username, required: true, value: "" %>
+        </div>
+        <div class="settings-actions">
+          <%= form.submit "Change Username" %>
+        </div>
+      <% end %>
+    </div>
+
+    <h2 class="settings-sub-title">Change Password</h2>
+    <div class="settings-change-section">
+      <%= form_with(model: @user, url: update_password_user_path(@user), local: true) do |form| %>
+        <div class="settings-field">
+          <%= form.label :current_password, "Current Password" %>
+          <%= form.password_field :current_password, required: true %>
+        </div>
+        <div class="settings-field">
+          <%= form.label :password, "New Password" %>
+          <%= form.password_field :password, required: true %>
+        </div>
+        <div class="settings-field">
+          <%= form.label :password_confirmation, "Confirm New Password" %>
+          <%= form.password_field :password_confirmation, required: true %>
+        </div>
+        <div class="settings-actions">
+          <%= form.submit "Change Password" %>
+        </div>
+      <% end %>
+    </div>
+
+    <h2 class="settings-sub-title">Change Avatar</h2>
+    <div class="settings-change-section">
+      <%= form_with(model: @user.avatar || @user.build_avatar, url: update_avatar_user_path(@user), local: true, html: { multipart: true }) do |form| %>
+        <div class="settings-field">
+          <%= form.label :image, "New Avatar" %>
+          <%= form.file_field :image, required: true %>
+        </div>
+        <div class="settings-actions">
+          <%= form.submit "Change Avatar" %>
+        </div>
+      <% end %>
+      <% if @user.avatar&.image&.attached? %>
+        <%= form_with(url: destroy_avatar_user_path(@user), method: :delete, local: true) do %>
+          <div class="settings-actions">
+            <%= submit_tag "Delete Avatar", data: { confirm: "Are you sure you want to delete your avatar?" }, class: "delete-avatar-button" %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>

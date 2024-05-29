@@ -7,7 +7,7 @@
             <div class="creator-card">
               <%= link_to user_path(following.creator.user) do %>
                 <div class="creator-avatar">
-                  <%= image_tag following.creator.user.avatar_image_url %>
+                  <%= user_avatar(following.creator.user) %>
                 </div>
                 <div class="creator-card-info">
                   <div class="creator-username"><%= following.creator.user.username %></div>

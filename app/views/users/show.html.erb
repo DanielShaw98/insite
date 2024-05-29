@@ -13,7 +13,7 @@
           <%= render "components/user-reviews" %>
           <%= link_to "", settings_user_path, class: "user-profile-settings-icon" %>
         </div>
-        <div class="user-profile-avatar"><%= image_tag @user.avatar_image_url %></div>
+        <div class="user-profile-avatar"><%= user_avatar(@user) %></div>
       </div>
       <div class="name-title-position">
         <h1 class="username-title"><%= @user.username %></h1>

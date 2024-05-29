@@ -49,7 +49,7 @@
                 <div class="video-review-username"><%= review.user.username %></div>
                 <div class="video-review-date"><%= review.created_at.strftime("%d/%m/%y") %></div>
               </div>
-              <div class="video-review-avatar"><%= image_tag review.user.avatar_image_url %></div>
+              <div class="video-review-avatar"><%= user_avatar(review.user) %></div>
             </div>
             <div class="video-review-rating-info">
               <div class="video-review-rating"><%= display_average_rating(review.rating) %></div>

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[show check_username_availability check_email_availability check_email_exists check_password_correct]
-  before_action :set_user, only: %i[show purchases followings bookmarks user_reviews user_pledges destroy settings]
+  before_action :set_user, only: %i[show purchases followings bookmarks user_reviews user_pledges settings update_username update_password update_avatar destroy_avatar]
 
   def index
     @users = User.all
@@ -106,15 +106,59 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
+  def settings
   end
 
-  def settings
+  def update_username
+    if @user.update(user_params)
+      redirect_to settings_user_path(@user), notice: 'Username successfully changed.'
+    else
+      render :settings, alert: 'There was an error changing your username.'
+    end
+  end
+
+  def update_password
+    if @user.update_with_password(password_params)
+      bypass_sign_in(@user)
+      redirect_to settings_user_path(@user), notice: 'Password successfully changed.'
+    else
+      render :settings, alert: 'There was an error changing your password.'
+    end
+  end
+
+  def update_avatar
+    avatar = @user.avatar || @user.build_avatar
+    if avatar.update(avatar_params)
+      redirect_to settings_user_path(@user), notice: 'Avatar successfully changed.'
+    else
+      render :settings, alert: 'There was an error changing your avatar.'
+    end
+  end
+
+  def destroy_avatar
+    if @user.avatar
+      @user.avatar.image.purge
+      @user.avatar.destroy
+    end
+    @user.generate_placeholder_avatar
+    redirect_to settings_user_path(@user), notice: 'Avatar successfully removed and placeholder generated.'
   end
 
   private
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:username)
+  end
+
+  def password_params
+    params.require(:user).permit(:current_password, :password, :password_confirmation)
+  end
+
+  def avatar_params
+    params.require(:avatar).permit(:image)
   end
 end
