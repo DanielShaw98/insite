@@ -1,6 +1,8 @@
 require 'cgi'
 
 class User < ApplicationRecord
+  include Rails.application.routes.url_helpers
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -15,7 +17,7 @@ class User < ApplicationRecord
   has_many :followings, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
-  after_create :generate_placeholder_avatar
+  after_create :generate_placeholder_avatar, unless: :avatar_attached?
 
   PASSWORD_FORMAT = /\A
   (?=.{8,})          # Must contain 8 or more characters
@@ -37,10 +39,6 @@ class User < ApplicationRecord
     reviews.exists?(video_id: video.id)
   end
 
-  def avatar_image_url
-    avatar&.image_url
-  end
-
   COLORS = %w[#2596BE #E28743 #BE2596 #2C4251 #7DC95E #231942 #5A1807 #307351 #EF5B5B #1EFFBC].freeze
 
   def generate_placeholder_avatar
@@ -48,8 +46,28 @@ class User < ApplicationRecord
     color = COLORS.sample
     background_color = color.delete('#') # Remove '#' from the color code
     background_color_encoded = CGI.escape("##{background_color}") # URL-encode the background color
-    # avatar&.destroy # If the user already has an avatar, destroy it before creating a new one
     new_avatar = build_avatar(image_url: "https://ui-avatars.com/api/?name=#{initials}&background=#{background_color_encoded}&color=fff")
     new_avatar.save
+  end
+
+  def avatar_image_url
+    if avatar&.image&.attached?
+      url_for(avatar.image)
+    else
+      avatar&.image_url || '/app/assets/images/default_avatar.png'
+    end
+  end
+
+  attr_accessor :current_password
+
+  def update_with_password(params, *options)
+    current_password = params.delete(:current_password)
+
+    if valid_password?(current_password)
+      update(params, *options)
+    else
+      self.errors.add(:current_password, current_password.blank? ? :blank : :invalid)
+      false
+    end
   end
 end

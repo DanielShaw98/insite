@@ -75,7 +75,7 @@ class PagesController < ApplicationController
 
     suggestions = []
     suggestions += video_results.map { |video| { text: video.title, url: video_path(video), type: 'video', image: video.thumbnail_url } }
-    suggestions += creator_results.map { |creator| { text: creator.username, url: user_path(creator.user), type: 'avatar', image: creator.user.avatar.image_url } }
+    suggestions += creator_results.map { |creator| { text: creator.username, url: user_path(creator.user), type: 'avatar', image: creator.user.avatar_image_url } }
 
     suggestions
   end
