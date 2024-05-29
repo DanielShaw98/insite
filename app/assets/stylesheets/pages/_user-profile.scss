@@ -5,9 +5,13 @@
   background-color: $black;
 }
 
+.user-profile-width {
+  width: 90%;
+  margin: 0 auto;
+}
+
 .user-profile-banner {
   display: flex;
-  width: 90%;
   height: 200px;
   margin: 40px auto 5px auto;
   background-image: linear-gradient(to bottom, $green, $black);

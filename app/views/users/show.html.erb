@@ -6,27 +6,29 @@
 
 <% if @user == current_user %>
   <div class="user-profile-container">
-    <div class="user-profile-banner">
-      <div class="user-profile-pledges-reviews-settings">
-        <%= render "components/user-pledges" %>
-        <%= render "components/user-reviews" %>
-        <%= link_to "", settings_user_path, class: "user-profile-settings-icon" %>
+    <div class="user-profile-width">
+      <div class="user-profile-banner">
+        <div class="user-profile-pledges-reviews-settings">
+          <%= render "components/user-pledges" %>
+          <%= render "components/user-reviews" %>
+          <%= link_to "", settings_user_path, class: "user-profile-settings-icon" %>
+        </div>
+        <div class="user-profile-avatar"><%= image_tag @user.avatar_image_url %></div>
       </div>
-      <div class="user-profile-avatar"><%= image_tag @user.avatar_image_url %></div>
-    </div>
-    <div class="name-title-position">
-      <h1 class="username-title"><%= @user.username %></h1>
-      <h2 class="user-full-name"><%= @user.first_name%> <%= @user.last_name %></h2>
-    </div>
-    <div data-controller="user-profile-toggle" data-user-id="<%= current_user.id %>">
-      <div class="user-title-toggle-container">
-        <div id="user-profile-purchases" class="user-title-purchases" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Guides</div>
-        <div id="user-profile-followings" class="user-title-followings" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Followings</div>
-        <div id="user-profile-bookmarks" class="user-title-bookmarks" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Bookmarks</div>
+      <div class="name-title-position">
+        <h1 class="username-title"><%= @user.username %></h1>
+        <h2 class="user-full-name"><%= @user.first_name%> <%= @user.last_name %></h2>
       </div>
-      <div id="partial-container">
+      <div data-controller="user-profile-toggle" data-user-id="<%= current_user.id %>">
+        <div class="user-title-toggle-container">
+          <div id="user-profile-purchases" class="user-title-purchases" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Guides</div>
+          <div id="user-profile-followings" class="user-title-followings" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Followings</div>
+          <div id="user-profile-bookmarks" class="user-title-bookmarks" data-action="click->user-profile-toggle#toggle" data-user-profile-toggle-target="title">Bookmarks</div>
+        </div>
+        <div id="partial-container">
+        </div>
       </div>
-    </div>
+      </div>
   </div>
 <% else %>
   <%= render "components/creator-profile" %>
