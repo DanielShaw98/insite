@@ -8,10 +8,10 @@
 
   <div class="left-section-video">
     <div class="video-page-top-info">
-      <%= link_to user_path(@video.creator.user) do %>
+      <%= link_to user_creator_path(@video.creator) do %>
         <div class="video-page-avatar"><%= image_tag @video.creator.user.avatar.image_url %></div>
       <% end %>
-      <%= link_to user_path(@video.creator.user) do %>
+      <%= link_to user_creator_path(@video.creator) do %>
         <div class="video-page-creator-username"><%= @video.creator.user.username %></div>
       <% end %>
       <% if user_signed_in? %>

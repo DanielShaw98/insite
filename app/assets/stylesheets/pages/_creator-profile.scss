@@ -1,9 +1,111 @@
 .creator-profile-container {
   min-height: 100vh;
   position: relative;
+  overflow-y: hidden;
+  background-color: $black;
 }
 
-.creator-profile-container h1 {
-  margin: 0;
-  padding: 0;
+.creator-profile-card {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.creator-profile-banner {
+  display: flex;
+  justify-content: space-between;
+  height: 200px;
+  margin: 40px auto 5px auto;
+  background-image: linear-gradient(to bottom, $green, $black);
+  border-radius: 50px;
+}
+
+.creator-profile-social-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  right: 6.5%;
+  z-index: 1;
+  margin: 20px;
+  gap: 20px;
+}
+
+.creator-specialisation {
+  font-size: 20px;
+}
+
+.creator-subscribe-button {
+  cursor: pointer;
+  font-family: $body-font;
+  font-size: 18px;
+  color: $white;
+  background-color: $green;
+  border: 2px solid $green;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin-top: 40px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease;
+}
+
+.creator-subscribe-button:hover {
+  color: $black;
+  background-color: $white;
+}
+
+#creator-subscribe-button-container {
+  margin-top: 15rem;
+  margin-right: 4rem;
+  z-index: 2;
+}
+
+.creator-title-toggle-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 60px 0 20px 0;
+  padding-top: 20px;
+}
+
+#creator-profile-courses,
+#creator-profile-pledges {
+  cursor: pointer;
+  font-family: $sub-header-font;
+  font-size: 32px;
+  color: $white;
+  margin-bottom: 20px;
+  text-decoration: none;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  font-weight: 500;
+}
+
+.creator-title-courses {
+  background-image: url("icons/user-title-purchases-white.svg");
+  background-position: -80px center;
+  background-size: 60px;
+  padding-left: 80px;
+}
+
+.courses-focus {
+  background-image: url("icons/user-title-purchases-white-focus.svg");
+  background-position: -80px center;
+  background-size: 60px;
+  padding-left: 80px;
+}
+
+.creator-title-pledges {
+  background-image: url("icons/user-pledges-white.svg");
+  background-position: -80px center;
+  background-size: 40px;
+  padding-left: 80px;
+}
+
+.pledges-focus {
+  background-image: url("icons/user-pledges-white-focus.svg");
+  background-position: -80px center;
+  background-size: 40px;
+  padding-left: 80px;
 }
