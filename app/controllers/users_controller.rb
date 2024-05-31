@@ -111,37 +111,43 @@ class UsersController < ApplicationController
 
   def update_username
     if @user.update(user_params)
-      redirect_to settings_user_path(@user), notice: 'Username successfully changed.'
+      respond_to do |format|
+        format.json { render json: { status: 'success', message: 'Username successfully changed.' } }
+        format.html { redirect_to settings_user_path(@user) }
+      end
     else
-      render :settings, alert: 'There was an error changing your username.'
+      respond_to do |format|
+        format.json { render json: { status: 'error', message: @user.errors.full_messages.to_sentence }, status: :unprocessable_entity }
+        format.html { render :settings }
+      end
     end
   end
 
   def update_password
     if @user.update_with_password(password_params)
       bypass_sign_in(@user)
-      redirect_to settings_user_path(@user), notice: 'Password successfully changed.'
+      render json: { status: 'success', message: 'Password successfully changed.' }
     else
-      render :settings, alert: 'There was an error changing your password.'
+      render json: { status: 'error', message: @user.errors.full_messages.to_sentence }, status: :unprocessable_entity
     end
   end
 
   def update_avatar
-    avatar = @user.avatar || @user.build_avatar
-    if avatar.update(avatar_params)
-      redirect_to settings_user_path(@user), notice: 'Avatar successfully changed.'
+    if @user.update(avatar_params)
+      render json: { status: 'success', message: 'Avatar successfully changed.' }
     else
-      render :settings, alert: 'There was an error changing your avatar.'
+      render json: { status: 'error', message: @user.errors.full_messages.to_sentence }, status: :unprocessable_entity
     end
   end
 
   def destroy_avatar
-    if @user.avatar
-      @user.avatar.image.purge
-      @user.avatar.destroy
+    if @user.avatar&.attached?
+      @user.avatar.purge
+      @user.generate_placeholder_avatar if @user.needs_placeholder_avatar?
+      render json: { status: 'success', message: 'Avatar successfully removed and placeholder generated.' }
+    else
+      render json: { status: 'error', message: 'No avatar to remove.' }, status: :unprocessable_entity
     end
-    @user.generate_placeholder_avatar
-    redirect_to settings_user_path(@user), notice: 'Avatar successfully removed and placeholder generated.'
   end
 
   private
