@@ -11,7 +11,7 @@ export default class extends Controller {
 
   initialize() {
     const coursesTitle = this.titleTargets.find(title => title.id === "creator-profile-courses");
-    const selectedTab = localStorage.getItem("selectedTab");
+    const selectedTab = localStorage.getItem("selectedCreatorTab");
     const selectedTitle = this.titleTargets.find(title => title.id === selectedTab);
     if (selectedTitle) {
       this.toggle({ target: selectedTitle });
@@ -24,22 +24,23 @@ export default class extends Controller {
     const clickedTitle = event.target;
     const titles = this.titleTargets;
     const userId = this.element.dataset.userId;
+    const creatorId = this.element.dataset.creatorId;
 
     titles.forEach(title => {
       if (title === clickedTitle) {
         const id = title.id;
         switch (id) {
           case "creator-profile-courses":
-            localStorage.setItem("selectedTab", id);
+            localStorage.setItem("selectedCreatorTab", id);
             title.classList.remove("creator-title-courses");
             title.classList.add("courses-focus");
-            this.fetchAndRenderPartial(`/users/${userId}/videos`, document.getElementById("partial-container"));
+            this.fetchAndRenderPartial(`/users/${userId}/creators/${creatorId}/videos`, document.getElementById("partial-container"));
             break;
           case "creator-profile-pledges":
-            localStorage.setItem("selectedTab", id);
+            localStorage.setItem("selectedCreatorTab", id);
             title.classList.remove("creator-title-pledges");
             title.classList.add("pledges-focus");
-            this.fetchAndRenderPartial(`/users/${userId}/pledges`, document.getElementById("partial-container"));
+            this.fetchAndRenderPartial(`/users/${userId}/creators/${creatorId}/pledges`, document.getElementById("partial-container"));
             break;
           default:
             break;

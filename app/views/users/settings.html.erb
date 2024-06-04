@@ -4,7 +4,6 @@
   <div class="settings-page-width">
     <h1 class="settings-title">Settings</h1>
 
-    <!-- Change Username Section -->
     <h2 class="settings-sub-title">Change Username</h2>
     <div class="settings-change-section">
       <%= form_with(model: @user, url: update_username_user_path(@user), local: true, data: { action: "submit->settings-form#validateUsername" }) do |form| %>
@@ -24,7 +23,6 @@
       <% end %>
     </div>
 
-    <!-- Change Password Section -->
     <h2 class="settings-sub-title">Change Password</h2>
     <div class="settings-change-section">
       <%= form_with(model: @user, url: update_password_user_path(@user), local: true, data: { action: "submit->settings-form#validatePassword" }) do |form| %>
@@ -57,7 +55,6 @@
       <% end %>
     </div>
 
-    <!-- Change Avatar Section -->
     <h2 class="settings-sub-title">Change Avatar</h2>
     <div class="settings-change-section">
       <%= form_with(model: @user.avatar || @user.build_avatar, url: update_avatar_user_path(@user), local: true, html: { multipart: true }) do |form| %>

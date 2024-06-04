@@ -40,14 +40,14 @@ Rails.application.routes.draw do
       delete :destroy_avatar
     end
     resources :creators do
+      member do
+        get :videos
+        get :pledges
+      end
       resources :followings, only: %i[index create destroy]
     end
     resources :avatars
     resources :socials
-    member do
-      get :videos, to: 'creators#videos'
-      get :pledges, to: 'creators#pledges'
-    end
   end
   resources :videos do
     member do

@@ -12,7 +12,7 @@
           <% @pledges.each do |pledge| %>
             <div class="pledge-creator-card-container">
               <div class="pledge-creator-card">
-                <%= link_to user_path(pledge.creator.user) do %>
+                <%= link_to user_creator_path(pledge.creator.user, pledge.creator) do %>
                   <div class="pledge-creator-avatar">
                     <%= user_avatar(pledge.creator.user) %>
                   </div>

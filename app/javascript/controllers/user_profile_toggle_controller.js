@@ -11,7 +11,7 @@ export default class extends Controller {
 
   initialize() {
     const purchasesTitle = this.titleTargets.find(title => title.id === "user-profile-purchases");
-    const selectedTab = localStorage.getItem("selectedTab");
+    const selectedTab = localStorage.getItem("selectedUserTab");
     const selectedTitle = this.titleTargets.find(title => title.id === selectedTab);
     if (selectedTitle) {
       this.toggle({ target: selectedTitle });
@@ -30,19 +30,19 @@ export default class extends Controller {
         const id = title.id;
         switch (id) {
           case "user-profile-purchases":
-            localStorage.setItem("selectedTab", id);
+            localStorage.setItem("selectedUserTab", id);
             title.classList.remove("user-title-purchases");
             title.classList.add("purchases-focus");
             this.fetchAndRenderPartial(`/users/${userId}/purchases`, document.getElementById("partial-container"));
             break;
           case "user-profile-followings":
-            localStorage.setItem("selectedTab", id);
+            localStorage.setItem("selectedUserTab", id);
             title.classList.remove("user-title-followings");
             title.classList.add("followings-focus");
             this.fetchAndRenderPartial(`/users/${userId}/followings`, document.getElementById("partial-container"));
             break;
           case "user-profile-bookmarks":
-            localStorage.setItem("selectedTab", id);
+            localStorage.setItem("selectedUserTab", id);
             title.classList.remove("user-title-bookmarks");
             title.classList.add("bookmarks-focus");
             this.fetchAndRenderPartial(`/users/${userId}/bookmarks`, document.getElementById("partial-container"));

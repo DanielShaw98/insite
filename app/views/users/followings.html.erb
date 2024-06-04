@@ -5,7 +5,7 @@
         <div class="following-row">
           <div class="creator-card-container">
             <div class="creator-card">
-              <%= link_to user_path(following.creator.user) do %>
+              <%= link_to user_creator_path(following.creator.user, following.creator) do %>
                 <div class="creator-avatar">
                   <%= user_avatar(following.creator.user) %>
                 </div>
