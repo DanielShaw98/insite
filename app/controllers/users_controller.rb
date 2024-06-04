@@ -125,10 +125,16 @@ class UsersController < ApplicationController
 
   def update_password
     if @user.update_with_password(password_params)
-      bypass_sign_in(@user)
-      render json: { status: 'success', message: 'Password successfully changed.' }
+      sign_in(@user, bypass: true)
+      respond_to do |format|
+        format.json { render json: { status: 'success', message: 'Password successfully changed.' } }
+        format.html { redirect_to settings_user_path(@user), notice: 'Password successfully changed.' }
+      end
     else
-      render json: { status: 'error', message: @user.errors.full_messages.to_sentence }, status: :unprocessable_entity
+      respond_to do |format|
+        format.json { render json: { status: 'error', message: @user.errors.full_messages.to_sentence }, status: :unprocessable_entity }
+        format.html { render :settings, alert: @user.errors.full_messages.to_sentence }
+      end
     end
   end
 
