@@ -16,8 +16,8 @@
           current_username: @user.username
         } %>
         </div>
-        <div data-settings-form-target="successMessage" class="settings-hidden settings-success-message"></div>
-        <div data-settings-form-target="errorMessage" class="settings-hidden settings-error-message"></div>
+        <div data-settings-form-target="usernameSuccessMessage" class="settings-hidden settings-success-message"></div>
+        <div data-settings-form-target="usernameErrorMessage" class="settings-hidden settings-error-message"></div>
         <div class="settings-actions">
           <%= form.submit "Change Username" %>
         </div>
@@ -30,29 +30,29 @@
       <%= form_with(model: @user, url: update_password_user_path(@user), local: true, data: { action: "submit->settings-form#validatePassword" }) do |form| %>
         <div class="settings-field">
           <%= form.label :current_password, "Current Password" %>
-          <%= form.password_field :current_password, required: true, data: {
-            action: "input->settings-form#clearFieldError",
-            "settings-form-target": "passwordField"
+          <%= form.password_field :current_password, data: {
+            action: "focus->settings-form#clearFieldError",
+            "settings-form-target": "currentPasswordField"
           } %>
         </div>
         <div class="settings-field">
           <%= form.label :password, "New Password" %>
-          <%= form.password_field :password, required: true, data: {
-            action: "input->settings-form#clearFieldError",
-            "settings-form-target": "passwordField"
+          <%= form.password_field :password, data: {
+            action: "focus->settings-form#clearFieldError",
+            "settings-form-target": "newPasswordField"
           } %>
         </div>
         <div class="settings-field">
           <%= form.label :password_confirmation, "Confirm New Password" %>
-          <%= form.password_field :password_confirmation, required: true, data: {
-            action: "input->settings-form#clearFieldError",
+          <%= form.password_field :password_confirmation, data: {
+            action: "focus->settings-form#clearFieldError",
             "settings-form-target": "passwordConfirmationField"
           } %>
         </div>
-        <div data-settings-form-target="successMessage" class="settings-hidden settings-success-message"></div>
-        <div data-settings-form-target="errorMessage" class="settings-hidden settings-error-message"></div>
+        <div data-settings-form-target="passwordSuccessMessage" class="settings-hidden settings-success-message"></div>
+        <div data-settings-form-target="passwordErrorMessage" class="settings-hidden settings-error-message"></div>
         <div class="settings-actions">
-          <%= form.submit "Change Password", data: { disable_with: "Processing..." } %>
+          <%= form.submit "Change Password" %>
         </div>
       <% end %>
     </div>
@@ -63,12 +63,12 @@
       <%= form_with(model: @user.avatar || @user.build_avatar, url: update_avatar_user_path(@user), local: true, html: { multipart: true }) do |form| %>
         <div class="settings-field">
           <%= form.label :image, "New Avatar" %>
-          <%= form.file_field :image, required: true, class: "settings-file-field" %>
+          <%= form.file_field :image, class: "settings-file-field" %>
         </div>
-        <div data-settings-form-target="successMessage" class="settings-hidden settings-success-message"></div>
-        <div data-settings-form-target="errorMessage" class="settings-hidden settings-error-message"></div>
+        <div data-settings-form-target="avatarSuccessMessage" class="settings-hidden settings-success-message"></div>
+        <div data-settings-form-target="avatarErrorMessage" class="settings-hidden settings-error-message"></div>
         <div class="settings-actions">
-          <%= form.submit "Change Avatar", data: { disable_with: "Processing..." } %>
+          <%= form.submit "Change Avatar" %>
         </div>
       <% end %>
       <% if @user.avatar&.image&.attached? %>
