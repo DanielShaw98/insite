@@ -77,3 +77,31 @@
 .stars {
   width: 100%;
 }
+
+// Small video cards styling displayed on creator profile pages
+
+.video-card-small {
+  width: 240px;
+  height: 200 px;
+  border-radius: 4px;
+  border: 1px solid $dark-gray;
+  box-shadow: 2px 2px 0px $green;
+  background-color: $light-gray;
+  transition: all 0.25s ease;
+}
+
+.video-card-small:hover {
+  box-shadow: 3px 3px 0px $green;
+  transform: translateY(-1px);
+}
+
+.video-small-title,
+.video-small-creator,
+.video-small-rating {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 232.5px;
+  margin-left: 7.5px;
+  font-family: $body-font;
+}
