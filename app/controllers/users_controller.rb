@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[show check_username_availability check_email_availability check_email_exists check_password_correct]
-  before_action :set_user, only: %i[show purchases followings bookmarks user_reviews destroy settings]
+  before_action :set_user, only: %i[show purchases followings bookmarks user_reviews user_pledges settings update_username update_password update_avatar destroy_avatar]
 
   def index
     @users = User.all
@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     end
 
     @pledges = @user.pledges.limit(3).order(created_at: :desc)
+    @has_more_pledges = @user.pledges.count > 3
   end
 
   def purchases
@@ -49,6 +50,23 @@ class UsersController < ApplicationController
             }
           }),
           has_more: @has_more
+        }
+      }
+    end
+  end
+
+  def user_pledges
+    @pledges = @user.pledges.offset(params[:offset].to_i).limit(3).order(created_at: :desc)
+    @has_more_pledges = @user.pledges.count > params[:offset].to_i + @pledges.count
+
+    respond_to do |format|
+      format.json {
+        render json: {
+          pledges: @pledges.as_json(include: {
+            user: { only: %i[id username], methods: [:avatar_image_url] },
+            creator: { only: %i[id specialisation], include: { user: { only: %i[id username], methods: [:avatar_image_url] } } }
+          }),
+          has_more: @has_more_pledges
         }
       }
     end
@@ -88,15 +106,65 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
+  def settings
   end
 
-  def settings
+  def update_username
+    if @user.update(user_params)
+      respond_to do |format|
+        format.json { render json: { status: 'success', message: 'Username successfully changed.' } }
+        format.html { redirect_to settings_user_path(@user) }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: { status: 'error', message: @user.errors.full_messages.to_sentence }, status: :unprocessable_entity }
+        format.html { render :settings }
+      end
+    end
+  end
+
+  def update_password
+    if @user.update_with_password(password_params)
+      bypass_sign_in(@user)
+      render json: { status: 'success', message: 'Password successfully changed.' }
+    else
+      render json: { status: 'error', message: @user.errors.full_messages.to_sentence }, status: :unprocessable_entity
+    end
+  end
+
+  def update_avatar
+    if @user.update(avatar_params)
+      render json: { status: 'success', message: 'Avatar successfully changed.' }
+    else
+      render json: { status: 'error', message: @user.errors.full_messages.to_sentence }, status: :unprocessable_entity
+    end
+  end
+
+  def destroy_avatar
+    if @user.avatar&.attached?
+      @user.avatar.purge
+      @user.generate_placeholder_avatar if @user.needs_placeholder_avatar?
+      render json: { status: 'success', message: 'Avatar successfully removed and placeholder generated.' }
+    else
+      render json: { status: 'error', message: 'No avatar to remove.' }, status: :unprocessable_entity
+    end
   end
 
   private
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:username)
+  end
+
+  def password_params
+    params.require(:user).permit(:current_password, :password, :password_confirmation)
+  end
+
+  def avatar_params
+    params.require(:avatar).permit(:image)
   end
 end

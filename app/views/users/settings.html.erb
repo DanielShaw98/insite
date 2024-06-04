@@ -1,5 +1,84 @@
 <%= render "components/top-navbar-2" %>
 
-<div class="settings-page-container">
-  <h1>Users#settings</h1>
+<div class="settings-page-container" data-controller="settings-form">
+  <div class="settings-page-width">
+    <h1 class="settings-title">Settings</h1>
+
+    <!-- Change Username Section -->
+    <h2 class="settings-sub-title">Change Username</h2>
+    <div class="settings-change-section">
+      <%= form_with(model: @user, url: update_username_user_path(@user), local: true, data: { action: "submit->settings-form#validateUsername" }) do |form| %>
+        <div class="settings-field">
+        <%= form.label :username, "New Username" %>
+        <%= form.text_field :username, value: "", data: {
+          action: "focus->settings-form#clearFieldError",
+          "settings-form-target": "usernameField",
+          current_username: @user.username
+        } %>
+        </div>
+        <div data-settings-form-target="successMessage" class="settings-hidden settings-success-message"></div>
+        <div data-settings-form-target="errorMessage" class="settings-hidden settings-error-message"></div>
+        <div class="settings-actions">
+          <%= form.submit "Change Username" %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Change Password Section -->
+    <h2 class="settings-sub-title">Change Password</h2>
+    <div class="settings-change-section">
+      <%= form_with(model: @user, url: update_password_user_path(@user), local: true, data: { action: "submit->settings-form#validatePassword" }) do |form| %>
+        <div class="settings-field">
+          <%= form.label :current_password, "Current Password" %>
+          <%= form.password_field :current_password, required: true, data: {
+            action: "input->settings-form#clearFieldError",
+            "settings-form-target": "passwordField"
+          } %>
+        </div>
+        <div class="settings-field">
+          <%= form.label :password, "New Password" %>
+          <%= form.password_field :password, required: true, data: {
+            action: "input->settings-form#clearFieldError",
+            "settings-form-target": "passwordField"
+          } %>
+        </div>
+        <div class="settings-field">
+          <%= form.label :password_confirmation, "Confirm New Password" %>
+          <%= form.password_field :password_confirmation, required: true, data: {
+            action: "input->settings-form#clearFieldError",
+            "settings-form-target": "passwordConfirmationField"
+          } %>
+        </div>
+        <div data-settings-form-target="successMessage" class="settings-hidden settings-success-message"></div>
+        <div data-settings-form-target="errorMessage" class="settings-hidden settings-error-message"></div>
+        <div class="settings-actions">
+          <%= form.submit "Change Password", data: { disable_with: "Processing..." } %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Change Avatar Section -->
+    <h2 class="settings-sub-title">Change Avatar</h2>
+    <div class="settings-change-section">
+      <%= form_with(model: @user.avatar || @user.build_avatar, url: update_avatar_user_path(@user), local: true, html: { multipart: true }) do |form| %>
+        <div class="settings-field">
+          <%= form.label :image, "New Avatar" %>
+          <%= form.file_field :image, required: true, class: "settings-file-field" %>
+        </div>
+        <div data-settings-form-target="successMessage" class="settings-hidden settings-success-message"></div>
+        <div data-settings-form-target="errorMessage" class="settings-hidden settings-error-message"></div>
+        <div class="settings-actions">
+          <%= form.submit "Change Avatar", data: { disable_with: "Processing..." } %>
+        </div>
+      <% end %>
+      <% if @user.avatar&.image&.attached? %>
+        <%= form_with(url: destroy_avatar_user_path(@user), method: :delete, local: true) do %>
+          <div class="settings-actions">
+            <%= submit_tag "Delete Avatar", data: { confirm: "Are you sure you want to delete your avatar?" }, class: "delete-avatar-button" %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="settings-spacer"></div>
+  </div>
 </div>
