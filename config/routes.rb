@@ -44,6 +44,10 @@ Rails.application.routes.draw do
     end
     resources :avatars
     resources :socials
+    member do
+      get :videos, to: 'creators#videos'
+      get :pledges, to: 'creators#pledges'
+    end
   end
   resources :videos do
     member do

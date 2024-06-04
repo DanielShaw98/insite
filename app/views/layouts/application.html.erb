@@ -15,7 +15,7 @@
 
   <body>
     <%= yield %>
-    <% unless controller.controller_name == 'users' && action_name.in?(%w[purchases followings bookmarks]) %>
+    <% unless (controller.controller_name == 'users' && action_name.in?(%w[purchases followings bookmarks])) || (controller.controller_name == 'creators' && action_name.in?(%w[videos pledges])) %>
       <%= render "components/footer" %>
     <% end %>
   </body>

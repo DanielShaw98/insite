@@ -1,5 +1,5 @@
 class CreatorsController < ApplicationController
-  before_action :set_creator, only: %i[show edit update destroy]
+  before_action :set_creator, only: %i[show edit update destroy videos pledges]
 
   def index
     @creators = Creator.all
@@ -23,6 +23,14 @@ class CreatorsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def videos
+    @videos = @creator.videos
+  end
+
+  def pledges
+    @pledges = @creator.pledges
   end
 
   private
