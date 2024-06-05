@@ -13,7 +13,15 @@ class PledgesController < ApplicationController
   end
 
   def create
+    @creator = Creator.find(params[:pledge][:creator_id])
     @pledge = Pledge.new(pledge_params)
+    @pledge.user = current_user
+    if @pledge.save
+      redirect_to user_creator_path(@creator.user, @creator), notice: 'Pledge was successfully created.'
+    else
+      logger.debug @pledge.errors.full_messages
+      render 'creators/show', status: :unprocessable_entity, locals: { errors: @pledge.errors.full_messages }
+    end
   end
 
   def edit
@@ -34,7 +42,7 @@ class PledgesController < ApplicationController
   private
 
   def pledge_params
-    params.require(:pledge).permit(:content)
+    params.require(:pledge).permit(:content, :creator_id)
   end
 
   def set_pledge
