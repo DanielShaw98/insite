@@ -57,7 +57,7 @@
 
     <h2 class="settings-sub-title">Change Avatar</h2>
     <div class="settings-change-section">
-      <%= form_with(model: @user.avatar || @user.build_avatar, url: update_avatar_user_path(@user), local: true, html: { multipart: true }) do |form| %>
+      <%= form_with(model: @user.avatar || @user.build_avatar, url: update_avatar_user_path(@user), local: true, html: { multipart: true }, data: { action: "submit->settings-form#addAvatar" }) do |form| %>
         <div class="settings-field">
           <%= form.label :image, "New Avatar" %>
           <%= form.file_field :image, class: "settings-file-field" %>
@@ -69,8 +69,8 @@
         </div>
       <% end %>
       <% if @user.avatar&.image&.attached? %>
-        <%= form_with(url: destroy_avatar_user_path(@user), method: :delete, local: true) do %>
-          <div class="settings-actions">
+        <%= form_with(url: destroy_avatar_user_path(@user), method: :delete, local: true, data: { action: "submit->settings-form#removeAvatar" }) do %>
+          <div class="settings-actions" data-settings-form-target="hideButton">
             <%= submit_tag "Delete Avatar", data: { confirm: "Are you sure you want to delete your avatar?" }, class: "delete-avatar-button" %>
           </div>
         <% end %>

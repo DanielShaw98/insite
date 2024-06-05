@@ -1,4 +1,5 @@
 class CreatorsController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[show videos pledges]
   before_action :set_creator, only: %i[show edit update destroy videos pledges]
 
   def index

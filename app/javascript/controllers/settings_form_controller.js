@@ -1,8 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["usernameField", "currentPasswordField", "newPasswordField", "passwordConfirmationField",
-   "usernameSuccessMessage", "usernameErrorMessage", "passwordSuccessMessage", "passwordErrorMessage", "avatarSuccessMessage", "avatarErrorMessage"];
+  static targets = ["usernameField", "currentPasswordField", "newPasswordField", "passwordConfirmationField", "usernameSuccessMessage",
+  "usernameErrorMessage", "passwordSuccessMessage", "passwordErrorMessage", "avatarSuccessMessage", "avatarErrorMessage", "hideButton"];
 
   connect() {
     this.clearMessages();
@@ -157,6 +157,71 @@ export default class extends Controller {
     .catch(error => {
         console.error("Error submitting form:", error);
         this.displayErrorMessage("password", "An error occurred while updating the password.");
+    });
+  }
+
+  addAvatar(event) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: 'PATCH',
+        body: formData,
+        headers: {
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'Accept': 'application/json'
+        },
+        credentials: 'include'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.status === 'error') {
+            this.displayErrorMessage('avatar', data.message);
+        } else {
+            this.displaySuccessMessage('avatar', data.message);
+        }
+    })
+    .catch(error => {
+        console.error("Error submitting avatar form:", error);
+        this.displayErrorMessage('avatar', "An error occurred while updating the avatar.");
+    });
+  }
+
+  removeAvatar(event) {
+    event.preventDefault();
+    const form = event.target;
+
+    fetch(form.action, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'Accept': 'application/json'
+        },
+        credentials: 'include'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.status === 'error') {
+            this.displayErrorMessage('avatar', data.message);
+        } else {
+            this.displaySuccessMessage('avatar', data.message);
+            this.hideButtonTarget.style.display = 'none';
+        }
+    })
+    .catch(error => {
+        console.error("Error deleting avatar:", error);
+        this.displayErrorMessage('avatar', "An error occurred while deleting the avatar.");
     });
   }
 
