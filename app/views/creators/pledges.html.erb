@@ -1,1 +1,36 @@
-<h1 style="color: white">Hello this is pledges</h1>
+<div class="creator-pledges-container">
+  <div class="creator-pledge-form">
+    <%= form_with(model: Pledge.new, url: pledges_path, local: true, html: { class: "pledge-form" }) do |form| %>
+      <%= form.hidden_field :creator_id, value: @creator.id %>
+      <div class="pledge-content-layout">
+        <%= form.label :content, "Write Pledge:", class: "pledge-form-label" %>
+        <%= form.text_area :content, class: "pledge-form-control" %>
+      </div>
+      <%= form.submit "Submit Pledge", class: "submit-pledge-button" %>
+    <% end %>
+  </div>
+
+  <% if @pledges %>
+    <div class="pledges-container">
+      <% @pledges.each do |pledge| %>
+        <div class="creator-pledge">
+          <div class="user-pledge-user-info">
+            <div class="pledge-username-date">
+              <div class="creator-pledge-username"><%= pledge.user.username %></div>
+              <div class="creator-pledge-date"><%= pledge.created_at.strftime("%d/%m/%y") %></div>
+            </div>
+            <div class="pledge-avatar"><%= user_avatar(pledge.user) %></div>
+          </div>
+          <div class="pledge-votes-info">
+            <div class="creator-pledge-votes"><%= pledge.votes.to_i %> Up-Votes</div>
+          </div>
+          <div class="creator-pledge-content"><%= pledge.content %></div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+  <div class="no-pledges-position">
+    <h3 class="no-pledges-message"><%= @creator.user.username %> currently has no pledges.</h3>
+  </div>
+  <% end %>
+</div>
