@@ -17,7 +17,7 @@ class User < ApplicationRecord
   has_many :followings, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
-  after_create :generate_placeholder_avatar, unless: :avatar_attached?
+  after_create :generate_placeholder_avatar
 
   PASSWORD_FORMAT = /\A
   (?=.{8,})          # Must contain 8 or more characters
@@ -48,6 +48,10 @@ class User < ApplicationRecord
     background_color_encoded = CGI.escape("##{background_color}") # URL-encode the background color
     new_avatar = build_avatar(image_url: "https://ui-avatars.com/api/?name=#{initials}&background=#{background_color_encoded}&color=fff")
     new_avatar.save
+  end
+
+  def needs_placeholder_avatar?
+    avatar.nil? || !avatar.image.attached?
   end
 
   def avatar_image_url

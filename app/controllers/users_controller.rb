@@ -139,18 +139,20 @@ class UsersController < ApplicationController
   end
 
   def update_avatar
-    if @user.update(avatar_params)
+    @avatar = @user.avatar || @user.build_avatar
+    if @avatar.update(avatar_params)
       render json: { status: 'success', message: 'Avatar successfully changed.' }
     else
-      render json: { status: 'error', message: @user.errors.full_messages.to_sentence }, status: :unprocessable_entity
+      render json: { status: 'error', message: @avatar.errors.full_messages.to_sentence }, status: :unprocessable_entity
     end
   end
 
   def destroy_avatar
-    if @user.avatar&.attached?
-      @user.avatar.purge
+    @avatar = @user.avatar
+    if @avatar&.image&.attached?
+      @avatar.image.purge
       @user.generate_placeholder_avatar if @user.needs_placeholder_avatar?
-      render json: { status: 'success', message: 'Avatar successfully removed and placeholder generated.' }
+      render json: { status: 'success', message: 'Avatar successfully removed.' }
     else
       render json: { status: 'error', message: 'No avatar to remove.' }, status: :unprocessable_entity
     end
