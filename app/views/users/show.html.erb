@@ -13,11 +13,13 @@
           <%= render "components/user-reviews" %>
           <%= link_to "", settings_user_path, class: "user-profile-settings-icon" %>
         </div>
-        <div class="user-profile-avatar"><%= user_avatar(@user) %></div>
-      </div>
-      <div class="name-title-position">
-        <h1 class="username-title"><%= @user.username %></h1>
-        <h2 class="user-full-name"><%= @user.first_name%> <%= @user.last_name %></h2>
+        <div class="name-avatar-position">
+          <div class="user-profile-avatar"><%= user_avatar(@user) %></div>
+          <div class="name-title-position">
+            <h1 class="username-title"><%= @user.username %></h1>
+            <h2 class="user-full-name"><%= @user.first_name%> <%= @user.last_name %></h2>
+          </div>
+        </div>
       </div>
       <div data-controller="user-profile-toggle" data-user-id="<%= current_user.id %>">
         <div class="user-title-toggle-container">

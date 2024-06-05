@@ -44,14 +44,21 @@
   transform: scale(1.2);
 }
 
+.name-avatar-position {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 80px;
+  margin-top: 220px;
+  margin-left: 80px;
+}
+
 .user-profile-avatar img {
   height: 200px;
   width: 200px;
   border-radius: 50%;
   border: 6px solid $white;
   background-color: $white;
-  margin-top: 50%;
-  margin-left: 40%;
 }
 
 .name-title-position {
@@ -65,9 +72,7 @@
 .creator-profile-specialisation {
   font-family: $main-header-font;
   color: $white;
-  margin-left: 32%;
-  margin-top: 0px;
-  margin-bottom: 5px;
+  margin: 0px;
 }
 
 .username-title {
@@ -83,7 +88,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 60px 80px 20px 80px;
+  margin: 180px 80px 20px 80px;
 }
 
 #user-profile-purchases,

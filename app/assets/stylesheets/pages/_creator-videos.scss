@@ -1,0 +1,21 @@
+.no-videos-position {
+  margin-top: 120px;
+}
+
+.no-videos-message {
+  font-family: $body-font;
+  font-size: 24px;
+  color: $light-gray;
+}
+
+.no-videos-message a {
+  color: $green-75;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  line-height: 24px;
+}
+
+.no-videos-message a:hover {
+  font-size: 26px;
+  line-height: 24px;
+}

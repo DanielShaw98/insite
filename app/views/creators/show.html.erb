@@ -7,15 +7,14 @@
 <div class="creator-profile-container">
   <div class="creator-profile-card">
     <div class="creator-profile-banner">
-      <div class="user-profile-avatar"><%= user_avatar(@creator.user) %></div>
-      <div id="creator-subscribe-button-container">
-        <button class="creator-subscribe-button">Subscribe for £???/month</button>
+      <div class="name-avatar-position">
+        <div class="user-profile-avatar"><%= user_avatar(@creator.user) %></div>
+        <div class="name-title-position">
+          <h1 class="username-title"><%= @creator.user.username %></h1>
+          <h2 class="user-full-name"><%= @creator.user.first_name%> <%= @creator.user.last_name %></h2>
+          <h4 class="creator-profile-specialisation"><%= @creator.user.creator.specialisation %></h4>
+        </div>
       </div>
-    </div>
-    <div class="name-title-position">
-      <h1 class="username-title"><%= @creator.user.username %></h1>
-      <h2 class="user-full-name"><%= @creator.user.first_name%> <%= @creator.user.last_name %></h2>
-      <h4 class="creator-profile-specialisation"><%= @creator.user.creator.specialisation %></h4>
     </div>
     <div data-controller="creator-profile-toggle" data-user-id="<%= @creator.user.id %>" data-creator-id="<%= @creator.id %>">
       <div class="creator-title-toggle-container">
