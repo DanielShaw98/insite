@@ -7,6 +7,9 @@ class CreatorsController < ApplicationController
   end
 
   def show
+    @follow = @creator.followed_by?(current_user)
+    following = current_user.followings.find_by(creator_id: @creator.id)
+    @following = following || current_user.followings.build(creator_id: @creator.id)
   end
 
   def new
@@ -32,6 +35,7 @@ class CreatorsController < ApplicationController
 
   def pledges
     @pledges = @creator.pledges
+    @following = @creator.followed_by?(current_user)
   end
 
   private

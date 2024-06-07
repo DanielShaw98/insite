@@ -15,6 +15,9 @@
           <h4 class="creator-profile-specialisation"><%= @creator.user.creator.specialisation %></h4>
         </div>
       </div>
+      <div class="creator-subscribe-button-container">
+        <%= render "components/following-form-profile" %>
+      </div>
     </div>
     <div data-controller="creator-profile-toggle" data-user-id="<%= @creator.user.id %>" data-creator-id="<%= @creator.id %>">
       <div class="creator-title-toggle-container">
