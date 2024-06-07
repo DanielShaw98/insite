@@ -1,13 +1,16 @@
-<div class="creator-pledges-container">
-  <div class="creator-pledge-form">
-    <%= form_with(model: Pledge.new, url: pledges_path, local: true, html: { class: "pledge-form" }) do |form| %>
-      <%= form.hidden_field :creator_id, value: @creator.id %>
-      <div class="pledge-content-layout">
-        <%= form.label :content, "Write Pledge:", class: "pledge-form-label" %>
-        <%= form.text_area :content, class: "pledge-form-control" %>
-      </div>
-      <%= form.submit "Submit Pledge", class: "submit-pledge-button" %>
-    <% end %>
+<div class="creator-pledges-container" data-controller="pledge-form">
+  <div class="creator-pledge-button-container">
+    <button class="creator-pledge-button" data-action="click->pledge-form#showPledgeForm">Write Pledge</button>
+    <div class="pledge-form-hide" data-pledge-form-target="form">
+      <%= form_with(model: Pledge.new, url: pledges_path, local: true, html: { class: "pledge-form" }) do |form| %>
+        <%= form.hidden_field :creator_id, value: @creator.id %>
+        <div class="pledge-content-layout">
+          <%= form.label :content, "Pledge:", class: "pledge-form-label" %>
+          <%= form.text_area :content, class: "pledge-form-control" %>
+        </div>
+        <%= form.submit "Submit Pledge", class: "submit-pledge-button" %>
+      <% end %>
+    </div>
   </div>
 
   <% if @pledges %>
