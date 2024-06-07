@@ -1,9 +1,9 @@
 <% if current_user.followings.exists?(creator_id: @video.creator_id) %>
   <%= form_with(model: @following, url: user_creator_following_path(current_user, @video.creator), method: :delete, local: true) do |form| %>
-    <%= form.submit "", class: "following-remove-icon" %>
+    <%= form.submit "", class: "following-remove-icon-video" %>
   <% end %>
 <% else %>
   <%= form_with(model: @following, url: user_creator_followings_path(current_user, @video.creator), method: :post, local: true) do |form| %>
-    <%= form.submit "", class: "following-add-icon" %>
+    <%= form.submit "", class: "following-add-icon-video" %>
   <% end %>
 <% end %>

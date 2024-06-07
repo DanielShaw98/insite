@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 40px;
 }
 
 .creator-pledge-button-container {
@@ -37,6 +38,14 @@
   background-position: 120px center;
   background-size: 20px;
   border: 2px solid $white;
+}
+
+.pledge-follow-message {
+  display: none;
+  font-family: $body-font;
+  font-size: 20px;
+  color: $dark-orange;
+  margin: 20px auto;
 }
 
 .pledge-form-hide {
@@ -81,8 +90,8 @@
 }
 
 .pledge-form-control {
-  width: 200%;
-  height: 100px;
+  width: 480px;
+  height: 160px;
   border-radius: 10px;
   padding: 5px;
   font-family: $body-font;
@@ -107,7 +116,7 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
-  margin-bottom: 20px;
+  margin-top: 40px;
 }
 
 .creator-pledge {

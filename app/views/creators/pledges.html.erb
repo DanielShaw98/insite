@@ -1,6 +1,9 @@
-<div class="creator-pledges-container" data-controller="pledge-form">
+<div class="creator-pledges-container" data-controller="pledge-form" data-pledge-form-follow-value="<%= @following %>">
   <div class="creator-pledge-button-container">
-    <button class="creator-pledge-button" data-action="click->pledge-form#showPledgeForm">Write Pledge</button>
+    <button class="creator-pledge-button" data-action="click->pledge-form#formOrMessage">Write Pledge</button>
+    <div class="pledge-follow-message" data-pledge-form-target="followMessage">
+      <p>You need to follow <%= @creator.user.username %> to write a pledge.</p>
+    </div>
     <div class="pledge-form-hide" data-pledge-form-target="form">
       <%= form_with(model: Pledge.new, url: pledges_path, local: true, html: { class: "pledge-form" }) do |form| %>
         <%= form.hidden_field :creator_id, value: @creator.id %>

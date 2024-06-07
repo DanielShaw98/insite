@@ -1,4 +1,4 @@
-.following-add-icon {
+.following-add-icon-video {
   cursor: pointer;
   background-image: url('icons/following-add-white.svg');
   background-repeat: no-repeat;
@@ -10,7 +10,7 @@
   border: none;
 }
 
-.following-remove-icon {
+.following-remove-icon-video {
   cursor: pointer;
   background-image: url('icons/following-check-white.svg');
   background-repeat: no-repeat;
@@ -23,6 +23,59 @@
   transition: all 0.25s ease-in-out;
 }
 
-.following-remove-icon:hover {
+.following-remove-icon-video:hover {
   background-image: url('icons/following-uncheck-white.svg');
+}
+
+.following-add-icon-profile {
+  font-family: $body-font;
+  font-size: 22px;
+  color: $black;
+  background-color: $white;
+  border: 2px solid $black;
+  border-radius: 40px;
+  padding: 16px 60px 16px 30px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-image: url('icons/following-add-black.svg');
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  background-position: 76px -2px;
+  background-size: 24px;
+  background-color: $white;
+  border: none;
+}
+
+.following-remove-icon-profile {
+  font-family: $body-font;
+  font-size: 22px;
+  color: $black;
+  background-color: $white;
+  border: 2px solid $black;
+  border-radius: 40px;
+  padding: 16px 60px 16px 30px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-image: url('icons/following-check-black.svg');
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  background-position: 110px -2px;
+  background-size: 24px;
+  background-color: $white;
+  border: none;
+  transition: all 0.25s ease-in-out;
+}
+
+.following-remove-icon-profile:hover {
+  background-image: url('icons/following-uncheck-black.svg');
 }

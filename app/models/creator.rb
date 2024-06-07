@@ -15,6 +15,10 @@ class Creator < ApplicationRecord
     user&.username
   end
 
+  def followed_by?(user)
+    followings.exists?(user_id: user.id)
+  end
+
   private
 
   def bio_word_count
