@@ -45,7 +45,7 @@ Insite is a platform designed for educational influencers to share high-quality,
 
 1.  Clone the repository:
 
-	    git clone  <repository-url>
+	    git clone  https://github.com/DanielShaw98/insite.git
     
 	    cd insite
 
