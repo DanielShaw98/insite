@@ -1,17 +1,19 @@
-<% if current_user.followings.exists?(creator_id: @creator.id) %>
-  <%= form_with(model: @following, url: user_creator_following_path(current_user, @creator), method: :delete, local: true) do |form| %>
-    <% if @follow %>
-      <%= form.submit "Following", class: "following-remove-icon-profile" %>
-    <% else %>
-      <%= form.submit "Follow", class: "following-remove-icon-profile" %>
+<% if current_user %>
+  <% if current_user.followings.exists?(creator_id: @creator.id) %>
+    <%= form_with(model: @following, url: user_creator_following_path(current_user, @creator), method: :delete, local: true) do |form| %>
+      <% if @follow %>
+        <%= form.submit "Following", class: "following-remove-icon-profile" %>
+      <% else %>
+        <%= form.submit "Follow", class: "following-remove-icon-profile" %>
+      <% end %>
     <% end %>
-  <% end %>
-<% else %>
-  <%= form_with(model: @following, url: user_creator_followings_path(current_user, @creator), method: :post, local: true) do |form| %>
-    <% if @follow %>
-      <%= form.submit "Following", class: "following-add-icon-profile" %>
-    <% else %>
-      <%= form.submit "Follow", class: "following-add-icon-profile" %>
+  <% else %>
+    <%= form_with(model: @following, url: user_creator_followings_path(current_user, @creator), method: :post, local: true) do |form| %>
+      <% if @follow %>
+        <%= form.submit "Following", class: "following-add-icon-profile" %>
+      <% else %>
+        <%= form.submit "Follow", class: "following-add-icon-profile" %>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>

@@ -7,9 +7,14 @@ class CreatorsController < ApplicationController
   end
 
   def show
-    @follow = @creator.followed_by?(current_user)
-    following = current_user.followings.find_by(creator_id: @creator.id)
-    @following = following || current_user.followings.build(creator_id: @creator.id)
+    if current_user
+      @follow = @creator.followed_by?(current_user)
+      following = current_user.followings.find_by(creator_id: @creator.id)
+      @following = following || current_user.followings.build(creator_id: @creator.id)
+    else
+      @follow = false
+      @following = nil
+    end
   end
 
   def new
@@ -35,7 +40,7 @@ class CreatorsController < ApplicationController
 
   def pledges
     @pledges = @creator.pledges
-    @following = @creator.followed_by?(current_user)
+    @following = current_user ? @creator.followed_by?(current_user) : false
   end
 
   private
