@@ -1,6 +1,13 @@
 class Creator < ApplicationRecord
   include PgSearch::Model
-  multisearchable against: %i[username specialisation]
+  pg_search_scope :search_by_attributes,
+                  against: :specialisation,
+                  associated_against: {
+                    user: :username
+                  },
+                  using: {
+                    tsearch: { prefix: true }
+                  }
 
   belongs_to :user
   has_many :pledges, dependent: :destroy
